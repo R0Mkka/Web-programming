@@ -1,0 +1,11 @@
+<div class="menu">
+  <a
+    *ngFor="let item of menuItems"
+    class="menu__item"
+    [routerLink]="item.path"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <span>{{ item.label }}</span>
+  </a>
+</div>

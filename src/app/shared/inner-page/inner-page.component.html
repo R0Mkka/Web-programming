@@ -1,0 +1,21 @@
+<div class="inner-page">
+  <div class="header">
+    <div class="header__title">
+      <ng-content select="[headerTitle]"></ng-content>
+    </div>
+
+    <div class="header__actions">
+      <ng-content select="[headerActions]"></ng-content>
+    </div>
+
+    <button class="back-button secondary-button" (click)="goBack()">
+      <span>Назад</span>
+    </button>
+  </div>
+
+  <hr class="divider">
+
+  <div class="content">
+    <ng-content select="[pageContent]"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+$black: #000000;
+
+.primary-button {
+  cursor: pointer;
+  position: relative;
+  width: 120px;
+  height: 30px;
+  color: var(--white);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px rgba($color: $black, $alpha: .1);
+  transition: .2s all ease-in-out;
+
+  span {
+    position: relative;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    background-color: rgba($color: $black, $alpha: .1);
+    opacity: 0;
+    transition: .2s all ease-in-out;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+}
+
+.secondary-button {
+  cursor: pointer;
+  width: 120px;
+  height: 30px;
+  color: var(--primary-color);
+  background-color: var(--white);
+  border: 2px solid var(--primary-color);
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px rgba($color: $black, $alpha: .1);
+  transition: .2s all ease-in-out;
+
+  &:hover {
+    background-color: var(--light-gray);
+  }
+}
+
+hr.divider {
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-color);
+  border: none;
+  opacity: .7;
+}

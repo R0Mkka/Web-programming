@@ -1,0 +1,28 @@
+.subject-description {
+  padding: 10px 0;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+
+  &__item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    transition: .2s all ease-in-out;
+
+    &.active {
+      color: var(--white);
+      background-color: var(--primary-color);
+    }
+
+    &:hover {
+      padding-top: 5px;
+      color: var(--white);
+      background-color: var(--primary-color);
+    }
+  }
+}

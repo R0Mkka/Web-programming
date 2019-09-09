@@ -1,0 +1,42 @@
+<app-inner-page>
+  <div headerTitle>
+    <span>
+      {{ subject?.title }}
+    </span>
+    
+    <span *ngIf="subject.courseNumber">
+      ({{ subject.courseNumber }} курс)
+    </span>
+  </div>
+
+  <div headerActions>
+    <div class="header-actions">
+      
+    </div>
+  </div>
+
+  <div pageContent>
+    <div class="content">
+      <div class="subject-description">
+        <span>{{ subject.description }}</span>
+      </div>
+
+      <hr class="divider">
+
+      <div class="tabs">
+        <a
+          *ngFor="let tab of tabs"
+          class="tabs__item"
+          [routerLink]="tab.path"
+          routerLinkActive="active"
+        >
+          <span>{{ tab.label }}</span>
+        </a>
+      </div>
+
+      <div class="tabs-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</app-inner-page>

@@ -1,0 +1,43 @@
+:host {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+  background-color: var(--primary-color);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    flex-shrink: 0;
+    margin-right: 10px;
+
+    img {
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  &__info {
+    position: relative;
+    top: -2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    color: var(--white);
+  }
+
+  &__full-name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  &__role {
+    font-size: 14px;
+    font-weight: 300;
+  }
+}

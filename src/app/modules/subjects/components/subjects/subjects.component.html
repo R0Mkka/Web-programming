@@ -1,0 +1,22 @@
+<app-inner-page>
+  <div headerTitle>
+    <span>Дисциплины</span>
+  </div>
+
+  <div headerActions>
+    <div class="header-actions">
+      <button class="primary-button">
+        <span>Добавить</span>
+      </button>
+    </div>
+  </div>
+
+  <div pageContent>
+    <div class="subjects">
+      <app-subject-card
+        *ngFor="let subject of subjects"
+        [subject]="subject">
+      </app-subject-card>
+    </div>
+  </div>
+</app-inner-page>

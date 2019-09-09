@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="title">
+    {{ subject.title }}
+  </div>
+
+  <div class="actions">
+    <div class="actions__item" title="Удалить" (click)="removeSubject()">
+      <img src="../../../../../assets/images/delete.svg" />
+    </div>
+
+    <a class="actions__item" [routerLink]="subject.link" title="К дисциплине">
+      <img src="../../../../../assets/images/arrow_forward.svg" />
+    </a>
+  </div>
+</div>
