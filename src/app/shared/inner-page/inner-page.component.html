@@ -4,13 +4,17 @@
       <ng-content select="[headerTitle]"></ng-content>
     </div>
 
+    <div class="header__sub-title">
+      <ng-content select="[headerSubTitle]"></ng-content>
+    </div>
+
     <div class="header__actions">
       <ng-content select="[headerActions]"></ng-content>
     </div>
 
-    <button class="back-button secondary-button" (click)="goBack()">
+    <!-- <button class="back-button secondary-button" (click)="goBack()">
       <span>Назад</span>
-    </button>
+    </button> -->
   </div>
 
   <hr class="divider">

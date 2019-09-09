@@ -34,6 +34,17 @@ $black: #000000;
   }
 }
 
+.primary-button-circle {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+}
+
 .secondary-button {
   cursor: pointer;
   width: 120px;

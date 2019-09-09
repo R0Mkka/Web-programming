@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,6 +19,8 @@ import { MainPageComponent } from 'app/components/main-page/main-page.component'
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    InlineSVGModule,
     AppRoutingModule
   ],
   providers: [],

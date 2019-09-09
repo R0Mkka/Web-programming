@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Location } from '@angular/common';
+// import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-inner-page',
@@ -8,9 +8,9 @@ import { Location } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InnerPageComponent {
-  constructor(private location: Location) { }
+  // constructor(private location: Location) { }
 
-  public goBack(): void {
-    this.location.back();
-  }
+  // public goBack(): void {
+  //   this.location.back();
+  // }
 }

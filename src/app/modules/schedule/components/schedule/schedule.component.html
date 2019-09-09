@@ -3,15 +3,21 @@
     <span>Расписание</span>
   </div>
 
+  <div headerSubTitle>
+    <span>
+      {{ weekColor === 'White' ? 'Белая' : 'Зелёная' }} неделя
+    </span>
+  </div>
+
   <div headerActions>
     <div class="header-actions">
-      <button class="primary-button">
-        <span>Добавить</span>
-      </button>
+      <div class="primary-button-circle" (click)="toggleWeekColor()" title="Переключить неделю">
+        <div inlineSVG="../../../../../assets/images/toggle.svg"></div>
+      </div>
     </div>
   </div>
 
   <div pageContent>
-    Расписание
+    <app-schedule-table [weekColor]="weekColor"></app-schedule-table>
   </div>
 </app-inner-page>

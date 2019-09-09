@@ -1,0 +1,81 @@
+:host {
+  display: flex;
+  height: 100%;
+}
+
+.column {
+  position: relative;
+  min-width: 150px;
+  flex-grow: 1;
+
+  &-header {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 150px;
+  }
+
+  &.active {
+    .cell {
+      background-color: var(--light-primary-color);
+    }
+  }
+}
+
+.notifier {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  transform: rotate(30deg);
+  animation: .6s notify infinite;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  height: 12.5%;
+  padding: 0 5px;
+  font-size: 14px;
+  text-align: center;
+  border-width: 0 1px 1px 0;
+  border-style: solid;
+  border-color: var(--primary-color);
+
+  &-header {
+    font-size: 16px;
+  }
+}
+
+.max-height-40 {
+  max-height: 40px;
+}
+
+.max-height-60 {
+  max-height: 60px;
+}
+
+.flex-shrink {
+  flex-shrink: 0;
+}
+
+@keyframes notify {
+  33% {
+    transform: scale(1) rotate(30deg);
+  }
+
+  66% {
+    transform: scale(1.05) rotate(30deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(30deg);
+  }
+}

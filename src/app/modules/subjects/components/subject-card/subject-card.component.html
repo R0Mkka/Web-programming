@@ -1,15 +1,21 @@
 <div class="card">
   <div class="title">
-    {{ subject.title }}
+    <span>
+      {{ subject?.title }}
+    </span>
+
+    <span *ngIf="subject.courseNumber">
+      ({{ subject.courseNumber }} курс)
+    </span>
   </div>
 
   <div class="actions">
     <div class="actions__item" title="Удалить" (click)="removeSubject()">
-      <img src="../../../../../assets/images/delete.svg" />
+      <div inlineSVG="../../../../../assets/images/delete.svg"></div>
     </div>
 
     <a class="actions__item" [routerLink]="subject.link" title="К дисциплине">
-      <img src="../../../../../assets/images/arrow_forward.svg" />
+      <div inlineSVG="../../../../../assets/images/arrow_forward.svg"></div>
     </a>
   </div>
 </div>

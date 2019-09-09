@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { LocalStorageService } from '@services/local-storage.service';
 
@@ -16,11 +16,12 @@ import { ILink } from '@models/link';
 })
 export class SingleSubjectComponent implements OnInit {
   public subject: ISubject;
-  public tabs: ILink[] = tabsConfig;
+  public readonly tabs: ILink[] = tabsConfig;
 
   constructor(
-    private route: ActivatedRoute,
-    private localStorage: LocalStorageService
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly localStorage: LocalStorageService
   ) { }
 
   public ngOnInit(): void {
@@ -33,5 +34,9 @@ export class SingleSubjectComponent implements OnInit {
     }
 
     this.subject = this.localStorage.getAsObject<any>(LocalStorageItems.Subjects)[subjectName];
+  }
+
+  public returnBack(): void {
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

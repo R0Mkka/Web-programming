@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MainPageComponent } from 'app/components/main-page/main-page.component';
-
 const routes: Routes = [
-  { path: '', component: MainPageComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'subjects' },
   {
     path: 'subjects',
     loadChildren:
@@ -30,7 +28,7 @@ const routes: Routes = [
     loadChildren:
       () => import('./modules/student-reviews/student-reviews.module').then(m => m.StudentReviewsModule)
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'subjects' }
 ];
 
 @NgModule({

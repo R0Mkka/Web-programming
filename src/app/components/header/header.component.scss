@@ -8,16 +8,15 @@
 
 .user {
   display: flex;
+  justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 
   &__icon {
     flex-shrink: 0;
+    width: 35px;
+    height: 35px;
     margin-right: 10px;
-
-    img {
-      width: 35px;
-      height: 35px;
-    }
   }
 
   &__info {
@@ -40,4 +39,11 @@
     font-size: 14px;
     font-weight: 300;
   }
+}
+
+.date {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  color: var(--white);
 }
