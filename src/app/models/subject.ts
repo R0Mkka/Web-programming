@@ -6,16 +6,17 @@ export interface ISubject {
   courseNumber?: number;
 }
 
-export interface IScheduleSubject {
+export interface IScheduleItem {
   title: string;
   group: string;
   lectureRoom: string;
+  isEmpty: boolean;
 }
 
 export interface IScheduleColumn {
   index: number;
   from: string;
   to: string;
-  whiteWeekData: IScheduleSubject[];
-  greenWeekData: IScheduleSubject[];
+  whiteWeekData: IScheduleItem[];
+  greenWeekData: IScheduleItem[];
 }

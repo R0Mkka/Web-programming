@@ -13,4 +13,12 @@
   padding: 10px 15px;
   border: 1px solid var(--primary-color);
   border-radius: 3px;
+  transition: .2s all ease-in-out;
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: var(--dark-gray);
+    background-color: var(--light-gray);
+    border-color: transparent;
+  }
 }

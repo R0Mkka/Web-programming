@@ -1,5 +1,6 @@
 export enum LocalStorageItems {
-  Subjects = 'Subjects'
+  Subjects = 'Subjects',
+  Schedule = 'Schedule'
 }
 
 export enum DialogModes {

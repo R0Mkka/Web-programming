@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InlineSVGModule } from 'ng-inline-svg';
 
 import { InnerPageModule } from '@shared/inner-page/inner-page.module';
+import { CustomFlagModule } from '@shared/custom-flag/custom-flag.module';
 import { CustomInputFieldModule } from '@shared/custom-input-field/custom-input-field.module';
 import { ScheduleRoutingModule } from './schedule-routing.module';
 
@@ -19,6 +20,7 @@ import { ScheduleEditDialogComponent } from './components/schedule-edit-dialog/s
     ReactiveFormsModule,
     InlineSVGModule,
     InnerPageModule,
+    CustomFlagModule,
     CustomInputFieldModule,
     ScheduleRoutingModule
   ],

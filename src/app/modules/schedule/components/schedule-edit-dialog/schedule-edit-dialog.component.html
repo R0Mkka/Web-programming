@@ -1,6 +1,6 @@
 <div class="header">
   <div class="header__title">
-    <span>Редактирование расписания</span>
+    <span>Редактирование пары</span>
   </div>
 
   <div class="header__close" (click)="closeModal()">
@@ -17,13 +17,20 @@
             [id]="field.id"
             [type]="field.type"
             [label]="field.label"
+            [readonly]="isLeaveEmpty"
             [placeholder]="field.placeholder"
             [formControlName]="field.control.name"
             class="custom-input"
-          > 
+          >
           </app-custom-input-field>
         </ng-container>
       </div>
+
+      <app-custom-flag
+        [isCkecked]="data.object.isEmpty"
+        label="Оставить ячейку пустой"
+        (toggle)="leaveEmpty($event)">
+      </app-custom-flag>
     </div>
   </ng-container>
 </div>

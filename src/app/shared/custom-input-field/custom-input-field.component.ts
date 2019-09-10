@@ -20,6 +20,10 @@ export class CustomInputFieldComponent implements ControlValueAccessor {
   @Input() public label: string;
   @Input() public placeholder: string;
 
+  @Input() public set readonly(value: boolean) {
+    this.setDisabledState(value);
+  }
+
   public inputFieldControl: FormControl = null;
 
   public onChange = (value: any): void => {};
@@ -39,6 +43,18 @@ export class CustomInputFieldComponent implements ControlValueAccessor {
 
   public registerOnTouched(fn: any): void {
     this.onTouch = fn;
+  }
+
+  public setDisabledState(isDisabled: boolean): void {
+    if (!this.inputFieldControl) {
+      this.initControl();
+    }
+
+    if (isDisabled) {
+      this.inputFieldControl.disable();
+    } else {
+      this.inputFieldControl.enable();
+    }
   }
 
   private initControl(): void {

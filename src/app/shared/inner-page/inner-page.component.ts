@@ -1,5 +1,4 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-// import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-inner-page',
@@ -9,9 +8,4 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 })
 export class InnerPageComponent {
   @Input() public useDivider: boolean;
-  // constructor(private location: Location) { }
-
-  // public goBack(): void {
-  //   this.location.back();
-  // }
 }

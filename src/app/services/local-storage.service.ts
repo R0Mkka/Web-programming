@@ -18,6 +18,10 @@ export class LocalStorageService {
     storage.setItem(key, value);
   }
 
+  public setAsObject<T>(key: string, value: T): void {
+    this.set(key, JSON.stringify(value));
+  }
+
   public remove(key: string): void {
     storage.removeItem(key);
   }

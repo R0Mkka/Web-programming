@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background-color: var(--white);
+  border: 1px solid var(--primary-color);
+  transition: .2s all ease-in;
+
+  &.ckecked {
+    background-color: var(--primary-color);
+  }
+}
+
+.label {
+  cursor: pointer;
+  font-size: 14px;
+}

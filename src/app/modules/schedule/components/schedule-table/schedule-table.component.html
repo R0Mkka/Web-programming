@@ -7,33 +7,38 @@
   </div>
 </div>
 
-<div *ngFor="let scheduleItem of schedule; trackBy: trackByFunc" [class.active]="checkIsActive(scheduleItem)" class="column">
+<div *ngFor="let scheduleColumn of schedule; trackBy: trackByFunc" [class.active]="checkIsActive(scheduleColumn)" class="column">
   <div
-    *ngIf="checkIsActive(scheduleItem)"
+    *ngIf="checkIsActive(scheduleColumn)"
     class="notifier"
     inlineSVG="../../../../../assets/images/notifier.svg"
     title="Сейчас идёт!">
   </div>
 
   <div class="cell max-height-40">
-    {{ scheduleItem.index }}.
+    {{ scheduleColumn.index }}.
   </div>
 
   <div class="cell max-height-60">
-    {{ scheduleItem.from }} -
+    {{ scheduleColumn.from }} -
     <br>
-    {{ scheduleItem.to }}
+    {{ scheduleColumn.to }}
   </div>
 
   <div
-    *ngFor="let data of currentWeekSet(scheduleItem); trackBy: trackByFunc"
+    *ngFor="let data of currentWeekSet(scheduleColumn); let index = index; trackBy: trackByFunc"
     class="cell cell-ordinary"
-    (click)="openEditCellDialog(data)"
   >
-    <span>
-      {{ data.lectureRoom }}  <br>
-      {{ data.title }} <br>
-      {{ data.group }}
-    </span>
+    <button class="edit-button" title="Изменить" (click)="openEditCellDialog(scheduleColumn, index)">
+      <span inlineSVG="../../../../../assets/images/edit-20px.svg"></span>
+    </button>
+
+    <span *ngIf="data.isEmpty; else dataBlock">-</span>
+
+    <ng-template #dataBlock>
+      <div><b>{{ data.lectureRoom }}</b></div>
+      <div>{{ data.title }}</div>
+      <div><b>{{ data.group }}</b></div>
+    </ng-template>
   </div>
 </div>

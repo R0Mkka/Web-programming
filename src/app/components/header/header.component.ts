@@ -1,13 +1,13 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
-const WeekDay = [
+const WeekDay: string[] = [
+  'Воскресенье',
   'Понедельник',
   'Вторник',
   'Среда',
   'Четверг',
   'Пятница',
-  'Суббота',
-  'Воскресенье'
+  'Суббота'
 ];
 
 @Component({
