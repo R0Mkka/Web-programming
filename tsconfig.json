@@ -7,6 +7,7 @@
       "@shared/*": ["app/shared/*"],
       "@models/*": ["app/models/*"],
       "@guards/*": ["app/guards/*"],
+      "@classes/*": ["app/classes/*"],
       "@constants": ["app/constants"]
     },
     "outDir": "./dist/out-tsc",

@@ -1,0 +1,56 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px rgba($color: black, $alpha: .2);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: 60px;
+  padding: 0 20px;
+  background-color: var(--primary-color);
+
+  &__title {
+    flex-grow: 1;
+    font-size: 20px;
+    color: var(--white);
+  }
+
+  &__close {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--white);
+    border-radius: 50%;
+  }
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+  height: 60px;
+  padding: 0 20px;
+}
+
+.single-subject-form {
+  .custom-input {
+    margin-bottom: 10px;
+  }
+}

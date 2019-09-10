@@ -1,7 +1,15 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
 
-import { IScheduleSubject } from '@models/subject';
+import { DialogService } from '@shared/dialog/dialog.service';
+import { ScheduleService } from '../../services/schedule.service';
+
+import { ScheduleEditDialogComponent } from '../schedule-edit-dialog/schedule-edit-dialog.component';
+
 import { WeekColors } from '../../schedule.config';
+import { DialogModes } from '@constants';
+import { IScheduleSubject, IScheduleColumn } from '@models/subject';
+import { scheduleConfig, tableHeaderConfig, ITableHeaderItem } from './schedule-table.config';
 
 @Component({
   selector: 'app-schedule-table',
@@ -9,158 +17,74 @@ import { WeekColors } from '../../schedule.config';
   styleUrls: ['./schedule-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ScheduleTableComponent {
+export class ScheduleTableComponent implements OnInit, OnDestroy {
   @Input() public weekColor: WeekColors;
 
-  public tableHeader: any[] = [
-    { label: 'Пара', className: 'max-height-40' },
-    { label: 'Время', className: 'max-height-60' },
-    { label: 'Понедельник' },
-    { label: 'Вторник' },
-    { label: 'Среда' },
-    { label: 'Четверг' },
-    { label: 'Пятница' },
-    { label: 'Суббота' }
-  ];
+  public tableHeader: ITableHeaderItem[] = tableHeaderConfig;
+  public schedule: IScheduleColumn[] = scheduleConfig;
 
-  public schedule: any[] = [
-    {
-      index: 1,
-      from: '9:00',
-      to: '10:20',
-      whiteWeekData: [
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        {
-          title: 'Программирование для Интернет Интернет Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-      ] as any[],
-      greenWeekData: [
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        2, 3, 4, 5, 6
-      ] as any[],
-    },
-    {
-      index: 2,
-      from: '10:30',
-      to: '11:50',
-      whiteWeekData: [
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        2, 3,
-        {
-          title: 'Программирование для Интернет Интернет Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        }, 5, 6
-      ] as any[],
-      greenWeekData: [1, 2, 3, 4, 5, 6] as any[],
-    },
-    {
-      index: 3,
-      from: '12:20',
-      to: '13:40',
-      whiteWeekData: [
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        2, 3, 4, 5, 6
-      ] as any[],
-      greenWeekData: [1, 2, 3, 4, 5, 6] as any[],
-    },
-    {
-      index: 4,
-      from: '13:50',
-      to: '15:10',
-      whiteWeekData: [
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        2, 3, 4, 5, 6
-      ] as any[],
-      greenWeekData: [1, 2, 3, 4, 5, 6] as any[],
-    },
-    {
-      index: 5,
-      from: '15:30',
-      to: '16:50',
-      whiteWeekData: [
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        2, 3, 4, 5, 6
-      ] as any[],
-      greenWeekData: [1, 2, 3, 4, 5, 6] as any[],
-    },
-    {
-      index: 6,
-      from: '17:00',
-      to: '18:20',
-      whiteWeekData: [
-        {
-          title: 'Программирование для Интернет',
-          group: '16-ИТ-1',
-          lectureRoom: '320Д'
-        },
-        2, 3, 4, 5, 6
-      ] as any[],
-      greenWeekData: [1, 2, 3, 4, 5, 6] as any[],
+  private modalTriggersSub: Subscription = null;
+
+  constructor(
+    private readonly dialogService: DialogService,
+    private readonly scheduleService: ScheduleService
+  ) { }
+
+  public ngOnInit(): void {
+    this.subOnModalTriggers();
+  }
+
+  public ngOnDestroy(): void {
+    if (!!this.modalTriggersSub) {
+      this.modalTriggersSub.unsubscribe();
     }
-  ];
+  }
 
-  public checkIsActive(item): boolean {
+  public get currentWeekSet(): (scheduleItem: IScheduleColumn) => IScheduleSubject[]  {
+    return (scheduleItem: IScheduleColumn): IScheduleSubject[] => {
+      return this.weekColor === WeekColors.White
+        ? scheduleItem.whiteWeekData
+        : scheduleItem.greenWeekData;
+    };
+  }
+
+  public checkIsActive(scheduleItem: IScheduleColumn): boolean {
     const dateNow = new Date();
     const hoursNow = dateNow.getHours();
     const minutesNow = dateNow.getMinutes();
 
-    let [hoursFrom, minutesFrom] = item.from.split(':');
-    let [hoursTo, minutesTo] = item.to.split(':');
+    const [hoursFrom, minutesFrom] = scheduleItem.from.split(':');
+    const [hoursTo, minutesTo] = scheduleItem.to.split(':');
 
-    hoursFrom = parseInt(hoursFrom, 10);
-    minutesFrom = parseInt(minutesFrom, 10);
+    const hoursFromNum = +hoursFrom;
+    const minutesFromNum = +minutesFrom;
 
-    hoursTo = parseInt(hoursTo, 10);
-    minutesTo = parseInt(minutesTo, 10);
+    const hoursToNum = +hoursTo;
+    const minutesToNum = +minutesTo;
 
-    return ((hoursFrom < hoursNow && hoursTo >= hoursNow) && (minutesTo >= minutesNow)) ||
-      ((hoursFrom === hoursNow) && (minutesFrom <= minutesNow));
+    return ((hoursFromNum < hoursNow && hoursToNum >= hoursNow) && (minutesToNum >= minutesNow)) ||
+      ((hoursFromNum === hoursNow) && (minutesFromNum <= minutesNow));
+  }
+
+  public openEditCellDialog(scheduleSubject: IScheduleSubject): void {
+    this.dialogService.open(
+      ScheduleEditDialogComponent,
+      {
+        data: {
+          type: DialogModes.EditSingleSubject,
+          object: scheduleSubject
+        }
+      }
+    );
+  }
+
+  public trackByFunc(index: number): number {
+    return index;
+  }
+
+  private subOnModalTriggers(): void {
+    this.modalTriggersSub = this.scheduleService.openModal$.subscribe(() => {
+      // this.dialogService.open(ScheduleEditDialogComponent, { data: {lol: 'kek'} });
+    });
   }
 }

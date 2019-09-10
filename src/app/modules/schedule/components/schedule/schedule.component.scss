@@ -1,4 +1,8 @@
 .header-actions {
   display: flex;
   justify-content: flex-end;
+
+  &__item {
+    margin-left: 10px;
+  }
 }

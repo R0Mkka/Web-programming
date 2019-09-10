@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.field {
+  padding: 10px 15px;
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+}

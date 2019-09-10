@@ -1,0 +1,12 @@
+<label class="label" [for]="id">
+  <span>{{ label }}</span>
+</label>
+
+<input
+  [id]="id"
+  [type]="type"
+  [placeholder]="placeholder"
+  [formControl]="inputFieldControl"
+  class="field"
+  (input)="onChange($event.target.value)"
+>

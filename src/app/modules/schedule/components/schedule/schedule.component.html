@@ -4,15 +4,25 @@
   </div>
 
   <div headerSubTitle>
-    <span>
-      {{ weekColor === 'White' ? 'Белая' : 'Зелёная' }} неделя
-    </span>
+    <span>{{ currentWeekColor }} неделя</span>
   </div>
 
   <div headerActions>
     <div class="header-actions">
-      <div class="primary-button-circle" (click)="toggleWeekColor()" title="Переключить неделю">
-        <div inlineSVG="../../../../../assets/images/toggle.svg"></div>
+      <div
+        class="header-actions__item primary-button-circle"
+        title="Переключить неделю"
+        (click)="toggleWeekColor()"
+      >
+        <span inlineSVG="../../../../../assets/images/toggle.svg"></span>
+      </div>
+
+      <div
+        class="header-actions__item primary-button-circle"
+        title="Изменить расписание"
+        (click)="openModal()"
+      >
+        <span inlineSVG="../../../../../assets/images/edit.svg"></span>
       </div>
     </div>
   </div>

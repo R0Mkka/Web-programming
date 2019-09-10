@@ -1,0 +1,37 @@
+<div class="header">
+  <div class="header__title">
+    <span>Редактирование расписания</span>
+  </div>
+
+  <div class="header__close" (click)="closeModal()">
+    <div inlineSVG="../../../../../assets/images/close.svg"></div>
+  </div>
+</div>
+
+<div class="content">
+  <ng-container [ngSwitch]="dialogMode">
+    <div *ngSwitchCase="dialogModes.EditSingleSubject">
+      <div [formGroup]="singleSubjectForm" class="single-subject-form">
+        <ng-container *ngFor="let field of singleSubjectFormConfig">
+          <app-custom-input-field
+            [id]="field.id"
+            [type]="field.type"
+            [label]="field.label"
+            [placeholder]="field.placeholder"
+            [formControlName]="field.control.name"
+            class="custom-input"
+          > 
+          </app-custom-input-field>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<hr class="divider">
+
+<div class="actions">
+  <button class="primary-button" (click)="onSave()">
+    <span>Сохранить</span>
+  </button>
+</div>

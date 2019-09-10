@@ -11,3 +11,11 @@ export interface IScheduleSubject {
   group: string;
   lectureRoom: string;
 }
+
+export interface IScheduleColumn {
+  index: number;
+  from: string;
+  to: string;
+  whiteWeekData: IScheduleSubject[];
+  greenWeekData: IScheduleSubject[];
+}

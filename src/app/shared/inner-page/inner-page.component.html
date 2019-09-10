@@ -17,7 +17,7 @@
     </button> -->
   </div>
 
-  <hr class="divider">
+  <hr *ngIf="useDivider" class="divider">
 
   <div class="content">
     <ng-content select="[pageContent]"></ng-content>

@@ -1,6 +1,7 @@
 :host {
   display: flex;
   height: 100%;
+  border-top: 1px solid var(--primary-color);
 }
 
 .column {
@@ -51,6 +52,11 @@
 
   &-header {
     font-size: 16px;
+    border-left: 1px solid var(--primary-color);
+  }
+
+  &-ordinary {
+
   }
 }
 

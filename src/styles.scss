@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700&display=swap&subset=cyrillic');
 
+@import '~@angular/cdk/overlay-prebuilt.css';
+@import './assets/css/normalize.css';
+
 @import './assets/scss/colors';
 @import './assets/scss/elements';
-
-@import './assets/css/normalize.css';
 
 body {
   position: relative;

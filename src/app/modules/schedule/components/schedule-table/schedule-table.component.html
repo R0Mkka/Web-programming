@@ -1,14 +1,19 @@
 <div class="column column-header">
   <div
-    *ngFor="let headerCell of tableHeader"
+    *ngFor="let headerCell of tableHeader; trackBy: trackByFunc"
     [ngClass]="['cell', 'cell-header', 'flex-shrink', headerCell.className ? headerCell.className : '']"
   >
     <span>{{ headerCell.label }}</span>
   </div>
 </div>
 
-<div *ngFor="let scheduleItem of schedule" [class.active]="checkIsActive(scheduleItem)" class="column">
-  <div class="notifier" *ngIf="checkIsActive(scheduleItem)" inlineSVG="../../../../../assets/images/notifier.svg"></div>
+<div *ngFor="let scheduleItem of schedule; trackBy: trackByFunc" [class.active]="checkIsActive(scheduleItem)" class="column">
+  <div
+    *ngIf="checkIsActive(scheduleItem)"
+    class="notifier"
+    inlineSVG="../../../../../assets/images/notifier.svg"
+    title="Сейчас идёт!">
+  </div>
 
   <div class="cell max-height-40">
     {{ scheduleItem.index }}.
@@ -21,15 +26,14 @@
   </div>
 
   <div
-    *ngFor="let data of (weekColor === 'White' ? scheduleItem.whiteWeekData : scheduleItem.greenWeekData)"
-    class="cell"
+    *ngFor="let data of currentWeekSet(scheduleItem); trackBy: trackByFunc"
+    class="cell cell-ordinary"
+    (click)="openEditCellDialog(data)"
   >
-    <span *ngIf="!!data || data < 1">
+    <span>
       {{ data.lectureRoom }}  <br>
       {{ data.title }} <br>
       {{ data.group }}
     </span>
-
-    <span *ngIf="data >= 1">{{ data }}</span>
   </div>
 </div>

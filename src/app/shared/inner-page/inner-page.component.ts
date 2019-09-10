@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 // import { Location } from '@angular/common';
 
 @Component({
@@ -8,6 +8,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InnerPageComponent {
+  @Input() public useDivider: boolean;
   // constructor(private location: Location) { }
 
   // public goBack(): void {
