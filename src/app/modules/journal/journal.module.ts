@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 import { InnerPageModule } from '@shared/inner-page/inner-page.module';
 import { JournalRoutingModule } from './journal-routing.module';
@@ -13,6 +15,8 @@ import { TableWorksheetComponent } from './components/table-worksheet/table-work
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    MatTooltipModule,
+    InlineSVGModule,
     InnerPageModule,
     JournalRoutingModule
   ],

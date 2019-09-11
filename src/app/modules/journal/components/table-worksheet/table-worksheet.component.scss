@@ -5,8 +5,6 @@
 }
 
 :host {
-  @include borer($left: 1px);
-
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -14,14 +12,26 @@
 }
 
 .header {
-  @include borer($right: 1px);
+  @include borer($left: 1px, $right: 1px);
 
   position: relative;
   display: flex;
   flex-shrink: 0;
   height: 105px;
-  padding-left: 199px;
   box-shadow: inset 0 -1px 0 0 var(--primary-color);
+
+  &__actions-panel {
+    @include borer($right: 1px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+
+    &-item {
+      margin-right: 5px;
+    }
+  }
 
   &__cell {
     display: flex;
@@ -50,6 +60,8 @@
 }
 
 .worksheet-item {
+  @include borer($left: 1px);
+
   display: flex;
 
   .cell {
@@ -58,31 +70,32 @@
     display: flex;
     align-items: center;
     height: 40px;
+    transition: .1s all ease-in-out;
 
     &.header-cell {
+      @include borer($right: 1px, $bottom: 1px);
+
       width: 200px;
-
-      input {
-        @include borer($right: 1px, $bottom: 1px);
-
-        padding: 0 10px;
-        width: inherit;
-        height: inherit;
-      }
+      height: 40px;
+      padding: 0 10px;
     }
 
     &.ordinary-cell {
+      @include borer($right: 1px, $bottom: 1px);
+
       justify-content: center;
       width: 40px;
+      height: 40px;
+      padding: 3px;
+      text-align: center;
+    }
 
-      input {
-        @include borer($right: 1px, $bottom: 1px);
+    &:hover {
+      background-color: var(--light-gray);
+    }
 
-        padding: 3px;
-        width: inherit;
-        height: inherit;
-        text-align: center;
-      }
+    &.focused {
+      background-color: var(--light-primary-color);
     }
   }
 }

@@ -1,13 +1,17 @@
 :host {
   display: flex;
-  height: 100%;
+  flex-direction: row;
+  flex-grow: 1;
+  min-height: 0;
   border-top: 1px solid var(--primary-color);
 }
 
 .column {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   position: relative;
   min-width: 150px;
-  flex-grow: 1;
 
   &-header {
     flex-shrink: 0;

@@ -20,6 +20,11 @@
     border-radius: 15px 0 0 0;
     transition: .2s all ease-in-out;
 
+    &.active {
+      color: var(--white);
+      background-color: var(--primary-color);
+    }
+
     &:hover {
       color: var(--white);
       background-color: var(--primary-color);

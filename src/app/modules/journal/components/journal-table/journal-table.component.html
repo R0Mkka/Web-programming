@@ -1,11 +1,12 @@
 <div class="worksheet-list">
-  <div
+  <a
     *ngFor="let worksheet of worksheetList"
     class="worksheet-list__item"
+    routerLinkActive="active"
     [routerLink]="worksheet?.link"
   >
     {{ worksheet?.title }}
-  </div>
+  </a>
 </div>
 
 <div class="table">

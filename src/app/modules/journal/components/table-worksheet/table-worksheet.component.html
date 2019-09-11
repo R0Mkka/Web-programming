@@ -1,4 +1,16 @@
 <div class="header">
+  <div class="header__actions-panel">
+    <button class="header__actions-panel-item primary-button-circle" matTooltip="Добавить ученика" (click)="addStudent()">
+      <span inlineSVG="../../../../../assets/images/add.svg"></span>
+      <span inlineSVG="../../../../../assets/images/person.svg"></span>
+    </button>
+
+    <button class="header__actions-panel-item primary-button-circle" matTooltip="Добавить день" (click)="addDay()">
+      <span inlineSVG="../../../../../assets/images/add.svg"></span>
+      <span inlineSVG="../../../../../assets/images/day.svg"></span>
+    </button>
+  </div>
+
   <div
     *ngFor="let dateControl of datesList.controls"
     [title]="dateControl.value"
@@ -10,15 +22,24 @@
 
 <div class="content">
   <div *ngFor="let item of studentsTable" class="worksheet-item">
-    <div *ngFor="let control of item.controls; let first = first">
-      <div *ngIf="first; else ordinaryCell" class="cell header-cell">
-        <input type="text" [value]="control.value">
-      </div>
+    <div *ngFor="let control of item.controls; let first = first; let index = index">
+      <input
+        *ngIf="first; else ordinaryCell"
+        class="cell header-cell"
+        type="text"
+        [value]="control.value"
+        (focus)="cellFocused($event.target, index)"
+        (blur)="cellBlured($event.target)"
+      >
 
       <ng-template #ordinaryCell>
-        <div class="cell ordinary-cell">
-          <input type="text" [value]="control.value">
-        </div>
+        <input
+          class="cell ordinary-cell"
+          type="text"
+          [value]="control.value"
+          (focus)="cellFocused($event.target, index)"
+          (blur)="cellBlured($event.target)"
+        >
       </ng-template>
     </div>
   </div>
