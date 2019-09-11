@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+
+import { ColorPaletteService } from './services/color-palette.service';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,12 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public currentColorPalette = 'color-palette-blue';
+
+  constructor(private colorPaletteService: ColorPaletteService) { }
+
+  public ngOnInit(): void {
+    this.currentColorPalette = this.colorPaletteService.currentPalette;
+  }
 }

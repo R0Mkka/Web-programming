@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material';
 import { InlineSVGModule } from 'ng-inline-svg';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,7 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from 'app/components/header/header.component';
 import { LeftBarComponent } from 'app/components/left-bar/left-bar.component';
-import { ScheduleEditDialogComponent } from 'app/modules/schedule/components/schedule-edit-dialog/schedule-edit-dialog.component';
+import {
+  EditScheduleItemDialogComponent
+} from 'app/modules/schedule/components/edit-schedule-item-dialog/edit-schedule-item-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +27,13 @@ import { ScheduleEditDialogComponent } from 'app/modules/schedule/components/sch
     HttpClientModule,
     OverlayModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatTooltipModule,
     InlineSVGModule,
     AppRoutingModule
   ],
   entryComponents: [
-    ScheduleEditDialogComponent
+    EditScheduleItemDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

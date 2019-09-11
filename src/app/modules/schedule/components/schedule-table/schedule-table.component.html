@@ -1,39 +1,53 @@
 <div class="column column-header">
   <div
-    *ngFor="let headerCell of tableHeader; trackBy: trackByFunc"
-    [ngClass]="['cell', 'cell-header', 'flex-shrink', headerCell.className ? headerCell.className : '']"
+    *ngFor="let headerCell of tableHeader; let index = index; trackBy: trackByFunc"
+    [ngClass]="[
+      headerCell.className ? headerCell.className : '',
+      index === currentWeekDayIndex + 2 ? 'active' : ''
+    ]"
+    class="cell cell-header"
   >
     <span>{{ headerCell.label }}</span>
   </div>
 </div>
 
-<div *ngFor="let scheduleColumn of schedule; trackBy: trackByFunc" [class.active]="checkIsActive(scheduleColumn)" class="column">
-  <div
-    *ngIf="checkIsActive(scheduleColumn)"
-    class="notifier"
-    inlineSVG="../../../../../assets/images/notifier.svg"
-    title="Сейчас идёт!">
-  </div>
-
-  <div class="cell max-height-40">
+<div
+  *ngFor="let scheduleColumn of schedule; trackBy: trackByFunc"
+  class="column"
+>
+  <div class="cell class-index-cell">
     {{ scheduleColumn.index }}.
   </div>
 
-  <div class="cell max-height-60">
-    {{ scheduleColumn.from }} -
-    <br>
-    {{ scheduleColumn.to }}
+  <div class="cell time-cell">
+    <div>{{ scheduleColumn.from }}</div>
+    <div>{{ scheduleColumn.to }}</div>
   </div>
 
   <div
     *ngFor="let data of currentWeekSet(scheduleColumn); let index = index; trackBy: trackByFunc"
     class="cell cell-ordinary"
+    [ngClass]="[
+      index === currentWeekDayIndex ? 'active' : '',
+      checkIsActive(scheduleColumn) && index === currentWeekDayIndex ? 'now' : ''
+    ]"
   >
-    <button class="edit-button" title="Изменить" (click)="openEditCellDialog(scheduleColumn, index)">
-      <span inlineSVG="../../../../../assets/images/edit-20px.svg"></span>
-    </button>
+    <div
+      *ngIf="checkIsActive(scheduleColumn) && index === currentWeekDayIndex"
+      class="notification"
+      inlineSVG="../../../../../assets/images/notification.svg"
+      title="Сейчас идёт!">
+    </div>
 
-    <span *ngIf="data.isEmpty; else dataBlock">-</span>
+    <div class="panel">
+      <button class="edit-button" title="Изменить" (click)="openEditCellDialog(scheduleColumn, index)">
+        <span inlineSVG="../../../../../assets/images/edit-20px.svg"></span>
+      </button>
+    </div>
+
+    <span *ngIf="data.isEmpty; else dataBlock">
+      -
+    </span>
 
     <ng-template #dataBlock>
       <div><b>{{ data.lectureRoom }}</b></div>

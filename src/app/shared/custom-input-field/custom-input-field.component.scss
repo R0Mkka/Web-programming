@@ -5,20 +5,40 @@
 }
 
 .label {
-  font-size: 16px;
+  flex-shrink: 0;
   margin-bottom: 10px;
+  font-size: 16px;
 }
 
-.field {
-  padding: 10px 15px;
-  border: 1px solid var(--primary-color);
-  border-radius: 3px;
-  transition: .2s all ease-in-out;
+.input-wrapper {
+  position: relative;
 
-  &[disabled] {
-    cursor: not-allowed;
-    color: var(--dark-gray);
-    background-color: var(--light-gray);
-    border-color: transparent;
+  .field {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
+    transition: .2s all ease-in-out;
+
+    &.invalid {
+      border-color: red;
+      padding-right: 48px;
+    }
+
+    &[disabled] {
+      cursor: default;
+      color: var(--dark-gray);
+      background-color: var(--light-gray);
+      border-color: transparent;
+    }
+  }
+
+  .error-notifier {
+    cursor: help;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
   }
 }

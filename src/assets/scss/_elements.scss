@@ -83,6 +83,17 @@ $black: #000000;
   }
 }
 
+.primary-button,
+.primary-button-circle,
+.secondary-button {
+  &[disabled] {
+    cursor: default;
+    color: (--white);
+    background-color: var(--dark-gray);
+    pointer-events: none;
+  }
+}
+
 hr.divider {
   height: 1px;
   margin: 0;

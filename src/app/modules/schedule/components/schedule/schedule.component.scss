@@ -3,6 +3,22 @@
   justify-content: flex-end;
 
   &__item {
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    .text {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+  }
+
+  .toggle-week-button {
+    transform: rotate(0deg);
+    transition: .1s all ease-in-out;
+
+    &:active {
+      transform: rotate(90deg);
+    }
   }
 }

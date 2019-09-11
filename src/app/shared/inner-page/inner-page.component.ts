@@ -7,5 +7,5 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InnerPageComponent {
-  @Input() public useDivider: boolean;
+  @Input() public useDivider = true;
 }

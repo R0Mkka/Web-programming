@@ -6,8 +6,8 @@ export interface ITableHeaderItem {
 }
 
 export const tableHeaderConfig: ITableHeaderItem[] = [
-  { label: 'Пара', className: 'max-height-40' },
-  { label: 'Время', className: 'max-height-60' },
+  { label: 'Пара', className: 'class-index-cell' },
+  { label: 'Время', className: 'time-cell' },
   { label: 'Понедельник' },
   { label: 'Вторник' },
   { label: 'Среда' },

@@ -3,6 +3,7 @@ import { DialogModes } from '@constants';
 export interface IDialogData {
   type: DialogModes;
   object: any;
+  more?: any;
 }
 
 export interface IDialogConfig {

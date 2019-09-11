@@ -1,0 +1,87 @@
+@mixin borer($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  border-width: $top $right $bottom $left;
+  border-style: solid;
+  border-color: var(--primary-color);
+}
+
+:host {
+  @include borer($left: 1px);
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  @include borer($right: 1px);
+
+  position: relative;
+  display: flex;
+  height: 105px;
+  padding-left: 199px;
+  box-shadow: inset 0 -1px 0 0 var(--primary-color);
+
+  &__cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 105px;
+    padding: 5px 10px;
+    border-right: 1px solid var(--primary-color);
+    writing-mode: tb-rl;
+
+    &:first-child {
+      width: 41px;
+      border-left: 1px solid var(--primary-color);
+    }
+  }
+}
+
+.content {
+  height: 440px;
+  overflow-y: auto;
+}
+
+.worksheet-item {
+  display: flex;
+
+  .cell {
+    @include borer($right: 1px, $bottom: 1px);
+
+    display: flex;
+    align-items: center;
+    height: 40px;
+
+    &.header-cell {
+      width: 200px;
+
+      input {
+        @include borer($right: 1px, $bottom: 1px);
+
+        padding: 0 10px;
+        width: inherit;
+        height: inherit;
+      }
+    }
+
+    &.ordinary-cell {
+      justify-content: center;
+      width: 40px;
+
+      input {
+        @include borer($right: 1px, $bottom: 1px);
+
+        padding: 3px;
+        width: inherit;
+        height: inherit;
+        text-align: center;
+      }
+    }
+  }
+}

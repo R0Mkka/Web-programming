@@ -1,0 +1,25 @@
+<div class="header">
+  <div
+    *ngFor="let dateControl of datesList.controls"
+    [title]="dateControl.value"
+    class="header__cell"
+  >
+    {{ dateControl.value }}
+  </div>
+</div>
+
+<div class="content">
+  <div *ngFor="let item of studentsTable" class="worksheet-item">
+    <div *ngFor="let control of item.controls; let first = first">
+      <div *ngIf="first; else ordinaryCell" class="cell header-cell">
+        <input type="text" [value]="control.value">
+      </div>
+
+      <ng-template #ordinaryCell>
+        <div class="cell ordinary-cell">
+          <input type="text" [value]="control.value">
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

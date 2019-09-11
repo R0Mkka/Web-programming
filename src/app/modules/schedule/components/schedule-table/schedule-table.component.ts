@@ -5,7 +5,7 @@ import { DialogService } from '@shared/dialog/dialog.service';
 import { LocalStorageService } from '@services/local-storage.service';
 import { ScheduleService } from '../../services/schedule.service';
 
-import { ScheduleEditDialogComponent } from '../schedule-edit-dialog/schedule-edit-dialog.component';
+import { EditScheduleItemDialogComponent } from '../edit-schedule-item-dialog/edit-schedule-item-dialog.component';
 
 import { WeekColors } from '../../schedule.config';
 import { DialogModes, LocalStorageItems } from '@constants';
@@ -23,6 +23,7 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
 
   public tableHeader: ITableHeaderItem[] = tableHeaderConfig;
   public schedule: IScheduleColumn[];
+  public currentWeekDayIndex: number;
 
   private modalTriggersSub: Subscription = null;
 
@@ -34,8 +35,8 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
+    this.initCurrentDayIndex();
     this.initSchedule();
-    this.subOnModalTriggers();
   }
 
   public ngOnDestroy(): void {
@@ -53,35 +54,33 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
   }
 
   public checkIsActive(scheduleItem: IScheduleColumn): boolean {
-    const dateNow = new Date();
-    const hoursNow = dateNow.getHours();
-    const minutesNow = dateNow.getMinutes();
-
     const [hoursFrom, minutesFrom] = scheduleItem.from.split(':');
     const [hoursTo, minutesTo] = scheduleItem.to.split(':');
 
-    const hoursFromNum = +hoursFrom;
-    const minutesFromNum = +minutesFrom;
+    const dateNow = new Date();
+    const dateFrom = this.newConfiguredDate(dateNow, hoursFrom, minutesFrom);
+    const dateTo = this.newConfiguredDate(dateNow, hoursTo, minutesTo);
 
-    const hoursToNum = +hoursTo;
-    const minutesToNum = +minutesTo;
-
-    return ((hoursFromNum < hoursNow && hoursToNum >= hoursNow) && (minutesToNum >= minutesNow)) ||
-      ((hoursFromNum === hoursNow) && (minutesFromNum <= minutesNow));
+    return dateNow >= dateFrom && dateNow <= dateTo;
   }
 
   public openEditCellDialog(scheduleColumn: IScheduleColumn, itemIndex: number): void {
     const dialogRef = this.dialogService.open(
-      ScheduleEditDialogComponent,
+      EditScheduleItemDialogComponent,
       {
         data: {
           type: DialogModes.EditSingleSubject,
-          object: this.currentWeekSet(scheduleColumn)[itemIndex]
+          object: this.currentWeekSet(scheduleColumn)[itemIndex],
+          more: {
+            classIndex: scheduleColumn.index,
+            classTime: `${scheduleColumn.from} - ${scheduleColumn.to}`,
+            weekDay: this.tableHeader[itemIndex + 2].label
+          }
         }
       }
     );
 
-    const localSub = dialogRef.afterClosed$.subscribe(result => {
+    const localSub: Subscription = dialogRef.afterClosed$.subscribe(result => {
       if (result === null) {
         this.currentWeekSet(scheduleColumn)[itemIndex].isEmpty = true;
       } else {
@@ -90,6 +89,7 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
 
       this.cdRef.detectChanges();
       this.scheduleService.saveScheduleToLocalStorage(this.schedule);
+
       localSub.unsubscribe();
     });
   }
@@ -98,15 +98,25 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
     return index;
   }
 
-  private subOnModalTriggers(): void {
-    this.modalTriggersSub = this.scheduleService.openModal$.subscribe(() => {
-      // this.dialogService.open(ScheduleEditDialogComponent, { data: {lol: 'kek'} });
-    });
+  private initCurrentDayIndex(): void {
+    this.currentWeekDayIndex = new Date().getDay() - 1;
   }
 
   private initSchedule(): void {
     this.schedule = this.localStorageService.has(LocalStorageItems.Schedule)
       ? this.localStorageService.getAsObject<IScheduleColumn[]>(LocalStorageItems.Schedule)
       : scheduleConfig;
+  }
+
+  private newConfiguredDate(now: Date, hours: string, minutes: string): Date {
+    return new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      parseInt(hours, 10),
+      parseInt(minutes, 10),
+      now.getSeconds(),
+      now.getMilliseconds()
+    );
   }
 }

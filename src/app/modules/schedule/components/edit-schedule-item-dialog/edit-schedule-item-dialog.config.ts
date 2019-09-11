@@ -3,7 +3,7 @@ import { Validators } from '@angular/forms';
 import { ICustomField } from '@models/forms';
 import { FieldTypes } from '@constants';
 
-export const singleSubjectFormConfig: ICustomField[] = [
+export const editScheduleItemFormConfig: ICustomField[] = [
   {
     id: 'title',
     type: FieldTypes.Text,
@@ -12,7 +12,7 @@ export const singleSubjectFormConfig: ICustomField[] = [
     control: {
       name: 'title',
       initialValue: '',
-      validators: [Validators.required]
+      validators: [Validators.required, Validators.maxLength(50)]
     }
   },
   {
@@ -23,7 +23,7 @@ export const singleSubjectFormConfig: ICustomField[] = [
     control: {
       name: 'group',
       initialValue: '',
-      validators: [Validators.required]
+      validators: [Validators.required, Validators.maxLength(20)]
     }
   },
   {
@@ -34,7 +34,7 @@ export const singleSubjectFormConfig: ICustomField[] = [
     control: {
       name: 'lectureRoom',
       initialValue: '',
-      validators: [Validators.required]
+      validators: [Validators.required, Validators.maxLength(14)]
     }
   }
 ];

@@ -1,28 +1,20 @@
-<app-inner-page>
+<app-inner-page [useDivider]="false">
   <div headerTitle>
     <span>Расписание</span>
   </div>
 
-  <div headerSubTitle>
-    <span>{{ currentWeekColor }} неделя</span>
-  </div>
-
   <div headerActions>
     <div class="header-actions">
-      <div
-        class="header-actions__item primary-button-circle"
-        title="Переключить неделю"
-        (click)="toggleWeekColor()"
-      >
-        <span inlineSVG="../../../../../assets/images/toggle.svg"></span>
-      </div>
+      <div class="header-actions__item">
+        <div class="text">{{ currentWeekColor }} неделя</div>
 
-      <div
-        class="header-actions__item primary-button-circle"
-        title="Изменить расписание"
-        (click)="openModal()"
-      >
-        <span inlineSVG="../../../../../assets/images/edit-24px.svg"></span>
+        <div
+          class="primary-button-circle toggle-week-button"
+          title="Переключить неделю"
+          (click)="toggleWeekColor()"
+        >
+          <span inlineSVG="../../../../../assets/images/toggle.svg"></span>
+        </div>
       </div>
     </div>
   </div>

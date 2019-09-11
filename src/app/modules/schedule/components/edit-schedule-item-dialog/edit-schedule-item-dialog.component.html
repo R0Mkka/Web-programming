@@ -1,0 +1,47 @@
+<div class="header">
+  <div class="header__title">
+    <span>Отредактировать пару</span>
+  </div>
+
+  <div class="header__close" (click)="closeModal()">
+    <div inlineSVG="../../../../../assets/images/close.svg"></div>
+  </div>
+</div>
+
+<div class="content">
+  <div *ngIf="data.more" class="additional-info">
+    <span>{{ data.more.weekDay }}, </span>
+    <span>{{ data.more.classIndex }} пара, </span>
+    <span>{{ data.more.classTime }}</span>
+  </div>
+
+  <div [formGroup]="editScheduleItemForm" class="edit-schedule-item-form">
+    <ng-container *ngFor="let field of editScheduleItemFormConfig">
+      <app-custom-input-field
+        [id]="field.id"
+        [type]="field.type"
+        [label]="field.label"
+        [readonly]="isLeaveEmpty"
+        [validators]="field.control.validators"
+        [placeholder]="field.placeholder"
+        [formControlName]="field.control.name"
+        class="custom-input"
+      >
+      </app-custom-input-field>
+    </ng-container>
+  </div>
+
+  <app-custom-flag
+    [isCkecked]="data.object.isEmpty"
+    label="Оставить ячейку пустой"
+    (toggle)="leaveEmpty($event)">
+  </app-custom-flag>
+</div>
+
+<hr class="divider">
+
+<div class="actions">
+  <button [disabled]="!canBeSaved" class="primary-button" (click)="saveChanges()">
+    <span>Сохранить</span>
+  </button>
+</div>

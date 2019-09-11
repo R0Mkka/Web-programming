@@ -2,11 +2,21 @@
   <span>{{ label }}</span>
 </label>
 
-<input
-  [id]="id"
-  [type]="type"
-  [placeholder]="placeholder"
-  [formControl]="inputFieldControl"
-  class="field"
-  (input)="onChange($event.target.value)"
->
+<div class="input-wrapper">
+  <input
+    [id]="id"
+    [type]="type"
+    [placeholder]="placeholder"
+    [formControl]="inputFieldControl"
+    [class.invalid]="inputFieldControl.invalid"
+    class="field"
+    (input)="onChange($event.target.value)"
+  >
+  
+  <div
+    *ngIf="errorMessage.length > 0"
+    [matTooltip]="errorMessage"
+    class="error-notifier">
+    <span inlineSVG="../../../assets/images/error.svg"></span>
+  </div>
+</div>

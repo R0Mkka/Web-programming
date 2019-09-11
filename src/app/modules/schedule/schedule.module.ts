@@ -12,7 +12,7 @@ import { ScheduleService } from './services/schedule.service';
 
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { ScheduleTableComponent } from './components/schedule-table/schedule-table.component';
-import { ScheduleEditDialogComponent } from './components/schedule-edit-dialog/schedule-edit-dialog.component';
+import { EditScheduleItemDialogComponent } from './components/edit-schedule-item-dialog/edit-schedule-item-dialog.component';
 
 @NgModule({
   imports: [
@@ -27,7 +27,7 @@ import { ScheduleEditDialogComponent } from './components/schedule-edit-dialog/s
   declarations: [
     ScheduleComponent,
     ScheduleTableComponent,
-    ScheduleEditDialogComponent
+    EditScheduleItemDialogComponent
   ],
   providers: [
     ScheduleService

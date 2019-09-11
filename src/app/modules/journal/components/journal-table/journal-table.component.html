@@ -1,0 +1,13 @@
+<div class="worksheet-list">
+  <div
+    *ngFor="let worksheet of worksheetList"
+    class="worksheet-list__item"
+    [routerLink]="worksheet?.link"
+  >
+    {{ worksheet?.title }}
+  </div>
+</div>
+
+<div class="table">
+  <router-outlet></router-outlet>
+</div>
