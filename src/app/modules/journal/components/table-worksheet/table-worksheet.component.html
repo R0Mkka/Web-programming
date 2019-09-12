@@ -1,4 +1,59 @@
-<div class="header">
+<table mat-table [dataSource]="dataSource">
+  
+  <ng-container *ngFor="let item of dataSource; let first = first; let index = index">
+
+    <ng-container
+      *ngIf="first"
+      [matColumnDef]="displayedColumns[index]"
+      sticky
+    >
+      <th mat-header-cell *matHeaderCellDef>
+        <div class="actions-panel">
+          <button class="header__actions-panel-item primary-button-circle" matTooltip="Добавить ученика" (click)="addStudent()">
+            <span inlineSVG="../../../../../assets/images/add.svg"></span>
+            <span inlineSVG="../../../../../assets/images/person.svg"></span>
+          </button>
+      
+          <button class="header__actions-panel-item primary-button-circle" matTooltip="Добавить день" (click)="addDay()">
+            <span inlineSVG="../../../../../assets/images/add.svg"></span>
+            <span inlineSVG="../../../../../assets/images/day.svg"></span>
+          </button>
+        </div>
+      </th>
+
+      <td mat-cell class="worksheet-item" *matCellDef="let element">
+        <input
+          type="text"
+          [value]="element[displayedColumns[index]]"
+          (focus)="cellFocused($event.target, index)"
+          (blur)="cellBlured($event.target)"
+        >
+      </td>
+    </ng-container>
+
+    <ng-container
+      *ngIf="!first"
+      [matColumnDef]="displayedColumns[index]"
+    >
+      <th mat-header-cell *matHeaderCellDef> {{ displayedColumns[index] }} </th>
+      <td mat-cell class="worksheet-item" *matCellDef="let element">
+        <input
+          type="text"
+          [value]="element[displayedColumns[index]]"
+          (focus)="cellFocused($event.target, index)"
+          (blur)="cellBlured($event.target)"
+        >
+      </td>
+    </ng-container>
+
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+
+<!-- <div class="header">
   <div class="header__actions-panel">
     <button class="header__actions-panel-item primary-button-circle" matTooltip="Добавить ученика" (click)="addStudent()">
       <span inlineSVG="../../../../../assets/images/add.svg"></span>
@@ -18,9 +73,9 @@
   >
     {{ dateControl.value }}
   </div>
-</div>
+</div> -->
 
-<div class="content">
+<!-- <div class="content">
   <div *ngFor="let item of studentsTable" class="worksheet-item">
     <div *ngFor="let control of item.controls; let first = first; let index = index">
       <input
@@ -43,4 +98,4 @@
       </ng-template>
     </div>
   </div>
-</div>
+</div> -->

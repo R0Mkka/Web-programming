@@ -1,7 +1,9 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import { FormArray, FormBuilder } from '@angular/forms';
 
-import { tableDatesConfig } from './table-worksheet.config';
+import { TableWorksheetController } from './table-worksheet.controller';
+
+import { tableDatesConfig, data } from './table-worksheet.config';
 
 @Component({
   selector: 'app-table-worksheet',
@@ -9,7 +11,10 @@ import { tableDatesConfig } from './table-worksheet.config';
   styleUrls: ['./table-worksheet.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableWorksheetComponent implements OnInit {
+export class TableWorksheetComponent implements OnInit, OnDestroy {
+  displayedColumns = data.columns;
+  dataSource = data.data;
+
   public tableDatesConfig: string[] = tableDatesConfig;
 
   public datesList: FormArray = null;
@@ -18,13 +23,18 @@ export class TableWorksheetComponent implements OnInit {
   public focusedElement: any;
 
   constructor(
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly tableWorksheetController: TableWorksheetController
   ) { }
 
   public ngOnInit(): void {
     this.initDates();
     this.initStudents();
     this.initKeysListeners();
+  }
+
+  public ngOnDestroy(): void {
+    document.onkeydown = null;
   }
 
   public addStudent(): void {
@@ -77,49 +87,33 @@ export class TableWorksheetComponent implements OnInit {
   }
 
   private initKeysListeners(): void {
+    document.onwheel = (event: WheelEvent) => {
+      // console.log(event);
+    };
+
     document.onkeydown = (event: KeyboardEvent) => {
-      const target: HTMLElement = event.target as HTMLElement;
+      const target: HTMLInputElement = event.target as HTMLInputElement;
 
       if (!this.focusedElement) {
         return;
       }
 
-      if (event.key === 'ArrowUp') {
-        const index = this.focusedElement.index;
-
-        if (target.parentElement.parentElement.previousElementSibling &&
-          target.parentElement.parentElement.previousElementSibling.classList.contains('worksheet-item')) {
-          this.cellBlured(target);
-
-          target.parentElement.parentElement.previousElementSibling.children[index].querySelector('input').focus();
-        }
-      }
-
-      if (event.key === 'ArrowDown' || event.key === 'Enter') {
-        const index = this.focusedElement.index;
-
-        if (target.parentElement.parentElement.nextElementSibling &&
-          target.parentElement.parentElement.nextElementSibling.classList.contains('worksheet-item')) {
-          this.cellBlured(target);
-
-          target.parentElement.parentElement.nextElementSibling.children[index].querySelector('input').focus();
-        }
-      }
-
-      if (event.key === 'ArrowRight') {
-        if (target.parentElement.nextElementSibling) {
-          this.cellBlured(target);
-
-          target.parentElement.nextElementSibling.querySelector('input').focus();
-        }
-      }
-
-      if (event.key === 'ArrowLeft') {
-        if (target.parentElement.previousElementSibling) {
-          this.cellBlured(target);
-
-          target.parentElement.previousElementSibling.querySelector('input').focus();
-        }
+      switch (event.key) {
+        case 'ArrowDown':
+        case 'Enter':
+          this.tableWorksheetController.moveDown(target, this.focusedElement.index);
+          break;
+        case 'ArrowUp':
+          this.tableWorksheetController.moveUp(target, this.focusedElement.index);
+          break;
+        case 'ArrowRight':
+          this.tableWorksheetController.moveRight(target);
+          break;
+        case 'ArrowLeft':
+          this.tableWorksheetController.moveLeft(target);
+          break;
+        default:
+          break;
       }
     };
   }
