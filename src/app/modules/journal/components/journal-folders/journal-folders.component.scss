@@ -24,15 +24,4 @@
   &__item {
     margin-right: 15px;
   }
-
-  &__create-new {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    width: 50px;
-    background-color: var(--primary-color);
-    border-radius: 5px;
-  }
 }

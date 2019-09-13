@@ -7,13 +7,13 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { InnerPageModule } from '@shared/inner-page/inner-page.module';
 import { JournalRoutingModule } from './journal-routing.module';
 
-import { TableWorksheetController } from './components/table-worksheet/table-worksheet.controller';
+import { WorksheetKeyboardController } from './components/journal-worksheet/journal-worksheet-keyboard.controller';
 
 import { JournalComponent } from './components/journal/journal.component';
 import { JournalFoldersComponent } from './components/journal-folders/journal-folders.component';
 import { JournalFolderCardComponent } from './components/journal-folder-card/journal-folder-card.component';
-import { JournalTableComponent } from './components/journal-table/journal-table.component';
-import { TableWorksheetComponent } from './components/table-worksheet/table-worksheet.component';
+import { JournalListOfWorksheetsComponent } from './components/journal-list-of-worksheets/journal-list-of-worksheets.component';
+import { JournalWorksheetComponent } from './components/journal-worksheet/journal-worksheet.component';
 
 @NgModule({
   imports: [
@@ -30,11 +30,11 @@ import { TableWorksheetComponent } from './components/table-worksheet/table-work
     JournalComponent,
     JournalFoldersComponent,
     JournalFolderCardComponent,
-    JournalTableComponent,
-    TableWorksheetComponent
+    JournalListOfWorksheetsComponent,
+    JournalWorksheetComponent
   ],
   providers: [
-    TableWorksheetController
+    WorksheetKeyboardController
   ],
   exports: []
 })

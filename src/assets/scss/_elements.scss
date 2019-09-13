@@ -1,18 +1,16 @@
 $black: #000000;
 
-.primary-button {
+.primary-button,
+.primary-button-circle,
+.primary-button-square-35px,
+.primary-button-square-50px {
   cursor: pointer;
   position: relative;
-  width: 120px;
-  height: 30px;
   color: var(--white);
   background-color: var(--primary-color);
-  border: none;
-  border-radius: 3px;
-  box-shadow: 2px 2px 2px rgba($color: $black, $alpha: .1);
   transition: .2s all ease-in-out;
 
-  span {
+  & span {
     position: relative;
   }
 
@@ -21,9 +19,6 @@ $black: #000000;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 3px;
     background-color: rgba($color: $black, $alpha: .1);
     opacity: 0;
     transition: .2s all ease-in-out;
@@ -34,37 +29,65 @@ $black: #000000;
   }
 }
 
+.primary-button-square-35px,
+.primary-button-square-50px {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+
+  &:before {
+    border-radius: 5px;
+  }
+}
+
+.primary-button {
+  width: 120px;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px rgba($color: $black, $alpha: .1);
+
+  &:before {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+  }
+}
+
 .primary-button-circle {
-  cursor: pointer;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 35px;
   height: 35px;
-  background-color: var(--primary-color);
   border: none;
   border-radius: 50%;
 
-  span {
-    position: relative;
-  }
-
   &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-color: rgba($color: $black, $alpha: .1);
-    opacity: 0;
-    transition: .2s all ease-in-out;
   }
+}
 
-  &:hover:before {
-    opacity: 1;
+.primary-button-square-35px {
+  width: 35px;
+  height: 35px;
+
+  &:before {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.primary-button-square-50px {
+  width: 50px;
+  height: 50px;
+
+  &:before {
+    width: 50px;
+    height: 50px;
   }
 }
 

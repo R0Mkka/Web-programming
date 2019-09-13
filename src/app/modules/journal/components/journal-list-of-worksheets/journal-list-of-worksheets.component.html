@@ -1,7 +1,7 @@
-<div class="worksheet-list">
+<div class="header">
   <a
-    *ngFor="let worksheet of worksheetList"
-    class="worksheet-list__item"
+    *ngFor="let worksheet of worksheets"
+    class="header__worksheet-anchor"
     routerLinkActive="active"
     [routerLink]="worksheet?.link"
   >
@@ -9,6 +9,6 @@
   </a>
 </div>
 
-<div class="table">
+<div class="workspace">
   <router-outlet></router-outlet>
 </div>

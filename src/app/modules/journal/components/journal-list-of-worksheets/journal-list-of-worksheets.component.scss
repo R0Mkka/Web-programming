@@ -5,12 +5,12 @@
   min-height: 0;
 }
 
-.worksheet-list {
+.header {
   display: flex;
   flex-shrink: 0;
   height: 40px;
 
-  &__item {
+  &__worksheet-anchor {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -39,7 +39,7 @@
   }
 }
 
-.table {
+.workspace {
   display: flex;
   flex-direction: column;
   flex-grow: 1;

@@ -1,17 +1,17 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
 
-import { TableWorksheetController } from './table-worksheet.controller';
+import { WorksheetKeyboardController } from './journal-worksheet-keyboard.controller';
 
-import { tableDatesConfig, data } from './table-worksheet.config';
+import { tableDatesConfig, data } from './journal-worksheet.config';
 
 @Component({
-  selector: 'app-table-worksheet',
-  templateUrl: './table-worksheet.component.html',
-  styleUrls: ['./table-worksheet.component.scss'],
+  selector: 'app-journal-worksheet',
+  templateUrl: './journal-worksheet.component.html',
+  styleUrls: ['./journal-worksheet.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableWorksheetComponent implements OnInit, OnDestroy {
+export class JournalWorksheetComponent implements OnInit, OnDestroy {
   displayedColumns = data.columns;
   dataSource = new Array(25).fill(this.displayedColumns.reduce((acc, curr) => {
     console.log(curr);
@@ -21,7 +21,6 @@ export class TableWorksheetComponent implements OnInit, OnDestroy {
 
     return { ...acc, [curr]: '' };
   }, {}));
-  // dataSource = data.data;
 
   public tableDatesConfig: string[] = tableDatesConfig;
 
@@ -32,7 +31,7 @@ export class TableWorksheetComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly tableWorksheetController: TableWorksheetController
+    private readonly worksheetKeyboardController: WorksheetKeyboardController
   ) { }
 
   public ngOnInit(): void {
@@ -58,7 +57,6 @@ export class TableWorksheetComponent implements OnInit, OnDestroy {
   }
 
   public cellFocused(target: HTMLInputElement, index: number): void {
-    console.log(target);
     target.parentElement.classList.add('focused');
 
     this.focusedElement = {
@@ -110,26 +108,20 @@ export class TableWorksheetComponent implements OnInit, OnDestroy {
       switch (event.key) {
         case 'ArrowDown':
         case 'Enter':
-          this.tableWorksheetController.moveDown(target, this.focusedElement.index);
+          this.worksheetKeyboardController.moveDown(target, this.focusedElement.index);
           break;
         case 'ArrowUp':
-          this.tableWorksheetController.moveUp(target, this.focusedElement.index);
+          this.worksheetKeyboardController.moveUp(target, this.focusedElement.index);
           break;
         case 'ArrowRight':
-          this.tableWorksheetController.moveRight(target);
+          this.worksheetKeyboardController.moveRight(target);
           break;
         case 'ArrowLeft':
-          this.tableWorksheetController.moveLeft(target);
+          this.worksheetKeyboardController.moveLeft(target);
           break;
         default:
           break;
       }
     };
-  }
-
-  public kek(event: MouseEvent): void {
-    if ((event.target as any).firstChild) {
-      (event.target as any).firstChild.focus();
-    }
   }
 }

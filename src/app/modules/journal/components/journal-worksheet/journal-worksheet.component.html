@@ -1,5 +1,5 @@
-<table mat-table class="table" [dataSource]="dataSource">
-  
+<table mat-table class="worksheet" [dataSource]="dataSource">
+
   <ng-container *ngFor="let item of dataSource; let first = first; let index = index">
 
     <ng-container
@@ -13,7 +13,7 @@
             <span inlineSVG="../../../../../assets/images/add-16px.svg"></span>
             <span inlineSVG="../../../../../assets/images/person.svg"></span>
           </button>
-      
+
           <button class="actions-panel__item primary-button-circle" matTooltip="Добавить день" (click)="addDay()">
             <span inlineSVG="../../../../../assets/images/add-16px.svg"></span>
             <span inlineSVG="../../../../../assets/images/day.svg"></span>
@@ -36,10 +36,7 @@
       [matColumnDef]="displayedColumns[index]"
     >
       <th mat-header-cell *matHeaderCellDef> {{ displayedColumns[index] }} </th>
-      <td mat-cell class="worksheet-item"
-        *matCellDef="let element"
-        (click)="kek($event)"
-      >
+      <td mat-cell class="worksheet-item" *matCellDef="let element">
         <input
           type="text"
           [value]="element[displayedColumns[index]]"

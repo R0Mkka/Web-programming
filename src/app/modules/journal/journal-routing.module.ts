@@ -2,14 +2,23 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { JournalComponent } from './components/journal/journal.component';
-import { TableWorksheetComponent } from './components/table-worksheet/table-worksheet.component';
+import { JournalFoldersComponent } from './components/journal-folders/journal-folders.component';
+import { JournalListOfWorksheetsComponent } from './components/journal-list-of-worksheets/journal-list-of-worksheets.component';
+import { JournalWorksheetComponent } from './components/journal-worksheet/journal-worksheet.component';
 
 const routes: Routes = [
   {
     path: '',
     component: JournalComponent,
     children: [
-      { path: ':worksheetId', component: TableWorksheetComponent }
+      { path: '', component: JournalFoldersComponent },
+      {
+        path: ':folderId',
+        component: JournalListOfWorksheetsComponent,
+        children: [
+          { path: ':worksheetId', component: JournalWorksheetComponent }
+        ]
+      }
     ]
   }
 ];

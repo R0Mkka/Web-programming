@@ -1,5 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, ViewChild } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 
 @Component({
   selector: 'app-journal-folder-card',
@@ -8,9 +7,6 @@ import { MatMenuTrigger } from '@angular/material';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JournalFolderCardComponent {
-  @ViewChild(MatMenuTrigger, { static: false })
-  public matMenuTrigger: MatMenuTrigger;
-
   @Input()
   public index: number;
 
@@ -19,7 +15,5 @@ export class JournalFolderCardComponent {
 
   public rightClick(event: MouseEvent): void {
     event.preventDefault();
-
-    this.matMenuTrigger.openMenu();
   }
 }

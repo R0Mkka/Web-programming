@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 const CELL_CLASS = 'worksheet-item';
 
 @Injectable()
-export class TableWorksheetController {
+export class WorksheetKeyboardController {
   public moveUp(target: HTMLInputElement, index: number): void {
     this.moveToElement(
       target,

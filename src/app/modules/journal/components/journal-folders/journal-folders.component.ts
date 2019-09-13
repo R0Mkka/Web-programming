@@ -1,24 +1,18 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
-enum AccessTypes {
-  Closed = 'Closed',
-  Read = 'Read',
-  ReadWrite = 'ReadWrite'
-}
-
-interface IFolder {
-  name: string;
-  accessType: AccessTypes;
-}
-
-interface IFolderSection {
-  title: string;
-  folders: IFolder[];
-}
+import { IFolder, AccessTypes, IFolderSection } from '@models/folder.models';
 
 const folders: IFolder[] = [
-  { name: 'Группа 16-ИТ-1', accessType: AccessTypes.ReadWrite },
-  { name: 'Группа 17-ИТ-2', accessType: AccessTypes.ReadWrite }
+  {
+    name: 'Группа 16-ИТ-1',
+    link: 'folder-123456789',
+    accessType: AccessTypes.ReadWrite
+  },
+  {
+    name: 'Группа 17-ИТ-2',
+    link: 'folder-987654321',
+    accessType: AccessTypes.ReadWrite
+  }
 ];
 
 @Component({
