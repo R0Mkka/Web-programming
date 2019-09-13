@@ -1,0 +1,22 @@
+<div
+  class="folders-section"
+  *ngFor="let section of folderSections"
+>
+  <div class="title">
+    <span>{{ section.title }}</span>
+  </div>
+
+  <div class="folders">
+    <app-journal-folder-card
+      class="folders__item"
+      *ngFor="let folder of section.folders; let index = index"
+      [index]="index + 1"
+      [name]="folder.name"
+    >
+    </app-journal-folder-card>
+    
+    <div class="folders__create-new">
+      <span inlineSVG="../../../../../assets/images/add-24px.svg"></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.folders-section {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: var(--light-gray);
+  border-left: 3px solid var(--primary-color);
+}
+
+.title {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.folders {
+  display: flex;
+
+  &__item {
+    margin-right: 15px;
+  }
+
+  &__create-new {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+  }
+}

@@ -13,7 +13,15 @@ import { tableDatesConfig, data } from './table-worksheet.config';
 })
 export class TableWorksheetComponent implements OnInit, OnDestroy {
   displayedColumns = data.columns;
-  dataSource = data.data;
+  dataSource = new Array(25).fill(this.displayedColumns.reduce((acc, curr) => {
+    console.log(curr);
+    if (curr === 'headline') {
+      return { ...acc, [curr]: 'Student' };
+    }
+
+    return { ...acc, [curr]: '' };
+  }, {}));
+  // dataSource = data.data;
 
   public tableDatesConfig: string[] = tableDatesConfig;
 
@@ -50,7 +58,8 @@ export class TableWorksheetComponent implements OnInit, OnDestroy {
   }
 
   public cellFocused(target: HTMLInputElement, index: number): void {
-    target.classList.add('focused');
+    console.log(target);
+    target.parentElement.classList.add('focused');
 
     this.focusedElement = {
       elemementRef: target,
@@ -59,7 +68,7 @@ export class TableWorksheetComponent implements OnInit, OnDestroy {
   }
 
   public cellBlured(target: HTMLElement): void {
-    target.classList.remove('focused');
+    target.parentElement.classList.remove('focused');
 
     this.focusedElement = null;
   }
@@ -116,5 +125,11 @@ export class TableWorksheetComponent implements OnInit, OnDestroy {
           break;
       }
     };
+  }
+
+  public kek(event: MouseEvent): void {
+    if ((event.target as any).firstChild) {
+      (event.target as any).firstChild.focus();
+    }
   }
 }

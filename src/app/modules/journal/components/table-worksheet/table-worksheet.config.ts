@@ -5,7 +5,33 @@ export const tableDatesConfig: string [] = [
 ];
 
 export const data = {
-  columns: ['headline', 'cell1', 'cell2', 'cell3'],
+  columns: [
+    'headline',
+    '01.02.2019',
+    'cell2',
+    'cell3',
+    'cell4',
+    'cell5',
+    'cell6',
+    'cell7',
+    'cell8',
+    'cell9',
+    'cell10',
+    'cell11',
+    'cell12',
+    'cell13',
+    'cell14',
+    'cell15',
+    'cell16',
+    'cell17',
+    'cell18',
+    'cell19',
+    'cell20',
+    'cell21',
+    'cell22',
+    'cell23',
+    'cell24'
+  ],
   data: [
     { headline: 'Student', cell1: '', cell2: '', cell3: '' },
     { headline: 'Student', cell1: '', cell2: '', cell3: '' },
@@ -13,7 +39,7 @@ export const data = {
     { headline: 'Student', cell1: '', cell2: '', cell3: '' },
     { headline: 'Student', cell1: '', cell2: '', cell3: '' },
   ]
-}
+};
 
 export const tableData: any[] = [
   [
