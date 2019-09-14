@@ -28,6 +28,11 @@ const routes: Routes = [
     loadChildren:
       () => import('./modules/student-reviews/student-reviews.module').then(m => m.StudentReviewsModule)
   },
+  {
+    path: 'help',
+    loadChildren:
+      () => import('./modules/help/help.module').then(m => m.HelpModule)
+  },
   { path: '**', redirectTo: 'subjects' }
 ];
 

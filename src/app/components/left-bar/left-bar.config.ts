@@ -1,9 +1,10 @@
 import { ILink } from '@models/link';
 
 export const menuItems: ILink[] = [
-  { label: 'Дисциплины', path: '/subjects' },
-  { label: 'Расписание', path: '/schedule' },
-  { label: 'Журнал', path: '/journal' },
-  { label: 'Кураторство', path: '/supervision' },
-  { label: 'Отзывы студентов', path: '/student-reviews' }
+  { label: 'Дисциплины', path: '/subjects', matIcon: 'subject' },
+  { label: 'Расписание', path: '/schedule', matIcon: 'schedule' },
+  { label: 'Журнал', path: '/journal', matIcon: 'view_list' },
+  { label: 'Кураторство', path: '/supervision', matIcon: 'supervisor_account' },
+  { label: 'Отзывы студентов', path: '/student-reviews', matIcon: 'comment' },
+  { label: 'Помощь', path: '/help', matIcon: 'help' }
 ];

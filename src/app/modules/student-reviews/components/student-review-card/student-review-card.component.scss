@@ -1,0 +1,68 @@
+:host {
+  display: flex;
+  background-color: var(--white);
+  border-radius: 5px;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 54px;
+  height: 100%;
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-radius: 5px 0 0 5px;
+}
+
+.sub-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 10px;
+
+  &__description {
+    display: flex;
+
+    .student-info {
+      flex-grow: 1;
+
+      &__full-name,
+      &__group {
+        display: flex;
+        align-items: center;
+
+        mat-icon {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .review-date {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-shrink: 0;
+      width: 124px;
+
+      &__date {
+        text-align: right;
+      }
+
+      &__icon {
+        padding-left: 10px;
+      }
+    }
+  }
+
+  &__text {
+    margin-top: 20px;
+    text-indent: 10px;
+  }
+}

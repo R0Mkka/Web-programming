@@ -1,17 +1,24 @@
-<app-inner-page>
+<app-inner-page [useDivider]="false">
   <div headerTitle>
     <span>Отзывы студентов</span>
   </div>
 
   <div headerActions>
     <div class="header-actions">
-      <button class="primary-button">
+      <button class="primary-button" (click)="openReviewAddingDialog()">
         <span>Добавить</span>
       </button>
     </div>
   </div>
 
   <div pageContent>
-    Отзывы студентов
+    <div class="review-list styled-scrollbar">
+      <app-student-review-card
+        class="review-list__item"
+        *ngFor="let review of studentReviews"
+        [review]="review"
+      >
+      </app-student-review-card>
+    </div>
   </div>
 </app-inner-page>

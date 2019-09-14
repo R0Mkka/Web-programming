@@ -1,18 +1,19 @@
 <div class="header">
   <div class="header__title">
-    <span>Отредактировать пару</span>
+    <mat-icon class="header__title-icon">edit</mat-icon>
+    <span class="header__title-text">Отредактировать пару</span>
   </div>
 
-  <div class="header__close" (click)="closeModal()">
-    <div inlineSVG="../../../../../assets/images/close.svg"></div>
+  <div class="header__close" (click)="closeDialog()">
+    <mat-icon class="header__close-icon">close</mat-icon>
   </div>
 </div>
 
 <div class="content">
   <div *ngIf="data.more" class="additional-info">
     <span>{{ data.more.weekDay }}, </span>
-    <span>{{ data.more.classIndex }} пара, </span>
-    <span>{{ data.more.classTime }}</span>
+    <span>{{ data.more.classIndex }} пара</span>
+    <span>({{ data.more.classTime }})</span>
   </div>
 
   <div [formGroup]="editScheduleItemForm" class="edit-schedule-item-form">
@@ -21,6 +22,7 @@
         [id]="field.id"
         [type]="field.type"
         [label]="field.label"
+        [matIcon]="field.matIcon"
         [readonly]="isLeaveEmpty"
         [validators]="field.control.validators"
         [placeholder]="field.placeholder"

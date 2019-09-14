@@ -10,7 +10,8 @@ $black: #000000;
   background-color: var(--primary-color);
   transition: .2s all ease-in-out;
 
-  & span {
+  & span,
+  & mat-icon {
     position: relative;
   }
 
@@ -126,4 +127,15 @@ hr.divider {
   background-color: var(--primary-color);
   border: none;
   opacity: .7;
+}
+
+.styled-scrollbar {
+  &::-webkit-scrollbar {
+    background-color: var(--white);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+  }
 }

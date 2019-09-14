@@ -9,7 +9,7 @@
       matTooltip="Изменить название"
       (click)="renameCurrentFolder()"
     >
-      <span inlineSVG="edit-24px.svg"></span>
+      <mat-icon>edit</mat-icon>
     </button>
   </div>
 
@@ -20,7 +20,7 @@
         matTooltip="Удалить папку"
         (click)="removeCurrentFolder()"
       >
-        <span inlineSVG="delete.svg"></span>
+        <mat-icon>delete</mat-icon>
       </button>
 
       <button
@@ -28,7 +28,7 @@
         matTooltip="Назад"
         (click)="returnBack()"
       >
-        <span inlineSVG="back.svg"></span>
+        <mat-icon>arrow_back</mat-icon>
       </button>
     </div>
   </div>
@@ -47,7 +47,7 @@
       </a>
 
       <button *ngIf="worksheetCanBeAdded" class="worksheet-links-list__add-new" matTooltip="Добавить лист">
-        <span inlineSVG="../../../../../assets/images/add-24px.svg"></span>
+        <mat-icon>add</mat-icon>
       </button>
     </div>
 

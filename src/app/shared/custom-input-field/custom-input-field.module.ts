@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { InlineSVGModule } from 'ng-inline-svg';
+import { MatTooltipModule, MatIconModule } from '@angular/material';
 
 import { CustomInputFieldComponent } from './custom-input-field.component';
 
@@ -11,7 +10,7 @@ import { CustomInputFieldComponent } from './custom-input-field.component';
     CommonModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    InlineSVGModule
+    MatIconModule
   ],
   declarations: [
     CustomInputFieldComponent

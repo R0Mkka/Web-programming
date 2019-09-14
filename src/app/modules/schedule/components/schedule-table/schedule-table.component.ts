@@ -8,7 +8,7 @@ import { ScheduleService } from '../../services/schedule.service';
 import { EditScheduleItemDialogComponent } from '../edit-schedule-item-dialog/edit-schedule-item-dialog.component';
 
 import { WeekColors } from '../../schedule.config';
-import { DialogModes, LocalStorageItems } from '@constants';
+import { LocalStorageItems } from '@constants';
 import { IScheduleItem, IScheduleColumn } from '@models/subject';
 import { scheduleConfig, tableHeaderConfig, ITableHeaderItem } from './schedule-table.config';
 
@@ -69,7 +69,6 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
       EditScheduleItemDialogComponent,
       {
         data: {
-          type: DialogModes.EditSingleSubject,
           object: this.currentWeekSet(scheduleColumn)[itemIndex],
           more: {
             classIndex: scheduleColumn.index,

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { InlineSVGModule } from 'ng-inline-svg';
+import { MatIconModule } from '@angular/material';
 
 import { CustomFlagComponent } from './custom-flag.component';
 
 @NgModule({
   imports: [
-    InlineSVGModule
+    MatIconModule
   ],
   declarations: [
     CustomFlagComponent

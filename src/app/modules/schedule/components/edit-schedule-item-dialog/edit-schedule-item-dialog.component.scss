@@ -17,9 +17,15 @@
   background-color: var(--primary-color);
 
   &__title {
+    display: flex;
+    align-items: center;
     flex-grow: 1;
     font-size: 20px;
     color: var(--white);
+
+    &-icon {
+      margin-right: 5px;
+    }
   }
 
   &__close {
@@ -32,6 +38,10 @@
     height: 32px;
     border: 2px solid var(--white);
     border-radius: 50%;
+
+    &-icon {
+      color: var(--white);
+    }
   }
 }
 
@@ -40,10 +50,16 @@
   padding: 20px;
 
   .additional-info {
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
     font-size: 14px;
     font-weight: 500;
     color: var(--dark-gray);
+
+    & span {
+      margin-right: 5px;
+    }
   }
 }
 

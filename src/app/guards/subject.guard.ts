@@ -15,12 +15,12 @@ export class SubjectGuard implements CanActivate {
     private readonly router: Router
   ) { }
 
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  public canActivate(route: ActivatedRouteSnapshot, _: RouterStateSnapshot): boolean {
     const subjects: { [key: string]: ISubject } = this.localStorageService.getAsObject(LocalStorageItems.Subjects);
     const subjectName: string = route.paramMap.get('subject');
 
     if (!subjects[subjectName]) {
-      this.router.navigateByUrl('/subjects');
+      this.router.navigate(['/subjects']);
 
       return false;
     }

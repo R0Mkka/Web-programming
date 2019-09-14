@@ -1,0 +1,38 @@
+<app-dialog-layout [dialogRef]="dialogRef">
+  <div dialogTitle>
+    <div class="title">
+      <mat-icon class="title__icon">add_comment</mat-icon>
+      <span class="title__text">Новый отзыв</span>
+    </div>
+  </div>
+
+  <div dialogContent>
+    <div class="student-review-form" [formGroup]="studentReviewForm">
+      <ng-container *ngFor="let field of studentReviewFormConfig; trackBy: trackByFunc">
+        <app-custom-input-field
+          class="student-review-form__field"
+          [id]="field.id"
+          [type]="field.type"
+          [label]="field.label"
+          [matIcon]="field?.matIcon"
+          [validators]="field.control.validators"
+          [placeholder]="field.placeholder"
+          [formControlName]="field.control.name"
+        >
+        </app-custom-input-field>
+      </ng-container>
+    </div>
+  </div>
+
+  <div dialogActions>
+    <div class="actions">
+      <button
+        class="primary-button"
+        [disabled]="studentReviewForm.invalid"
+        (click)="addReview()"
+      >
+        <span>Добавить</span>
+      </button>
+    </div>
+  </div>
+</app-dialog-layout>

@@ -1,0 +1,35 @@
+<div class="icon-wrapper">
+  <mat-icon>comment</mat-icon>
+</div>
+
+<div class="review">
+  <div class="review__description">
+    <div class="student-info">
+      <div class="student-info__full-name">
+        <mat-icon matTooltip="Студент">school</mat-icon>
+        <span>{{ review[fields.studentFullName] }}</span>
+      </div>
+
+      <div class="student-info__group">
+        <mat-icon matTooltip="Группа">people</mat-icon>
+        <span>{{ review[fields.studentGroup] }}</span>
+      </div>
+    </div>
+
+    <div class="review-date">
+      <div class="review-date__date">
+        <div>{{ review[fields.date] | date:'dd.MM.yyyy' }}</div>
+        <div>{{ review[fields.date] | date:'HH:mm:ss' }}</div>
+      </div>
+
+      <div class="review-date__icon">
+        <mat-icon matTooltip="Дата написания отзыва">today</mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="review__text">
+    <span class="sub-title">Текст: </span>
+    <span>{{ review[fields.text] }}</span>
+  </div>
+</div>

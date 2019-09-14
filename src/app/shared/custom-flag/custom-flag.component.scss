@@ -5,15 +5,17 @@
 
 .checkbox {
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 20px;
   height: 20px;
   margin-right: 5px;
   background-color: var(--white);
   border: 1px solid var(--primary-color);
   transition: .2s all ease-in;
+
+  &__icon {
+    color: var(--white);
+    font-size: 18px;
+  }
 
   &.ckecked {
     background-color: var(--primary-color);

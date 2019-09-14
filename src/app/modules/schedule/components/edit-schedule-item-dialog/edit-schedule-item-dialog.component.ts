@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { DialogOverlayRef } from '@shared/dialog/dialog-overlay-ref.class';
 
 import { DIALOG_DATA } from '@shared/dialog/dialog.service';
+import { Keyboard } from '@constants';
 import { IDialogData } from '@models/dialog';
 import { ICustomField } from '@models/forms';
 import { IScheduleItem } from '@models/subject';
@@ -43,7 +44,7 @@ export class EditScheduleItemDialogComponent implements OnInit, OnDestroy {
     return this.editScheduleItemForm.valid || this.isLeaveEmpty;
   }
 
-  public closeModal(): void {
+  public closeDialog(): void {
     this.dialogRef.close();
   }
 
@@ -60,7 +61,7 @@ export class EditScheduleItemDialogComponent implements OnInit, OnDestroy {
       return this.dialogRef.close(this.editScheduleItemForm.value);
     }
 
-    this.closeModal();
+    this.closeDialog();
   }
 
   public leaveEmpty(flag: boolean): void {
@@ -81,18 +82,16 @@ export class EditScheduleItemDialogComponent implements OnInit, OnDestroy {
         ]
       }), {})
     });
-
-    this.editScheduleItemForm.statusChanges.subscribe(status => console.log(status));
   }
 
   private initKeysListening(): void {
     this.listeningFunction = (event: KeyboardEvent): void => {
       switch (event.key) {
-        case 'Escape':
+        case Keyboard.Esc:
           event.preventDefault();
-          this.closeModal();
+          this.closeDialog();
           break;
-        case 'Enter':
+        case Keyboard.Enter:
           event.preventDefault();
           this.saveChanges();
           break;

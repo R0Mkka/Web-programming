@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ColorPaletteService {
-  public currentPalette = 'color-palette-blue';
+  public currentPalette = 'color-palette-green';
 
   public changePalette(paletteName: string): void {
     const newColorPalette = `color-palette-${paletteName}`;

@@ -1,5 +1,9 @@
 <label class="label" [for]="id">
-  <span>{{ label }}</span>
+  <mat-icon class="label__icon" *ngIf="matIcon">
+    {{ matIcon }}
+  </mat-icon>
+
+  <span class="label__text">{{ label }}</span>
 </label>
 
 <div class="input-wrapper">
@@ -8,15 +12,16 @@
     [type]="type"
     [placeholder]="placeholder"
     [formControl]="inputFieldControl"
-    [class.invalid]="inputFieldControl.invalid"
     class="field"
     (input)="onChange($event.target.value)"
+    (blur)="onTouch()"
   >
-  
+
   <div
-    *ngIf="errorMessage.length > 0"
+    *ngIf="isFieldInvalid"
     [matTooltip]="errorMessage"
-    class="error-notifier">
-    <span inlineSVG="../../../assets/images/error.svg"></span>
+    class="error-notifier"
+  >
+    <mat-icon>error_outline</mat-icon>
   </div>
 </div>

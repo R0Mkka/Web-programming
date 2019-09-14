@@ -5,6 +5,7 @@ export interface ICustomField {
   type: string;
   label: string;
   placeholder: string;
+  matIcon?: string;
   control: {
     name: string;
     initialValue: any;

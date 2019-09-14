@@ -8,9 +8,6 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 })
 export class JournalFolderCardComponent {
   @Input()
-  public index: number;
-
-  @Input()
   public name: string;
 
   public rightClick(event: MouseEvent): void {

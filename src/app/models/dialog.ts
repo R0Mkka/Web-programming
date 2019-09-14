@@ -1,8 +1,6 @@
-import { DialogModes } from '@constants';
-
 export interface IDialogData {
-  type: DialogModes;
   object: any;
+  type?: string;
   more?: any;
 }
 

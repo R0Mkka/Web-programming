@@ -43,6 +43,11 @@
 
         &__item {
           margin-left: 5px;
+
+          mat-icon {
+            height: 14px;
+            font-size: 14px;
+          }
         }
       }
     }

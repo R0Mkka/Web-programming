@@ -9,6 +9,7 @@ export const editScheduleItemFormConfig: ICustomField[] = [
     type: FieldTypes.Text,
     label: 'Дисциплина',
     placeholder: 'Введите название дисциплины',
+    matIcon: 'subject',
     control: {
       name: 'title',
       initialValue: '',
@@ -20,6 +21,7 @@ export const editScheduleItemFormConfig: ICustomField[] = [
     type: FieldTypes.Text,
     label: 'Группа',
     placeholder: 'Введите группу',
+    matIcon: 'people',
     control: {
       name: 'group',
       initialValue: '',
@@ -31,6 +33,7 @@ export const editScheduleItemFormConfig: ICustomField[] = [
     type: FieldTypes.Text,
     label: 'Аудитория',
     placeholder: 'Введите аудиторию',
+    matIcon: 'meeting_room',
     control: {
       name: 'lectureRoom',
       initialValue: '',

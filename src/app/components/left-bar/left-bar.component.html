@@ -5,5 +5,11 @@
   routerLinkActive="active"
   [routerLinkActiveOptions]="{ exact: true }"
 >
-  <span>{{ item.label }}</span>
+  <mat-icon *ngIf="item.matIcon" class="menu-item__icon">
+    {{ item.matIcon }}
+  </mat-icon>
+
+  <span class="menu-item__label">
+    {{ item.label }}
+  </span>
 </a>

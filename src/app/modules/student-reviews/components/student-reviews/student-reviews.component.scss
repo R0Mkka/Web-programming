@@ -1,4 +1,29 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+}
+
 .header-actions {
   display: flex;
   justify-content: flex-end;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+  padding: 20px;
+  background-color: var(--light-gray);
+  overflow: auto;
+
+  &__item {
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }

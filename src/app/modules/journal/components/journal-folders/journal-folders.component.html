@@ -12,15 +12,11 @@
       *ngFor="let folder of section.folders; let index = index"
       [routerLink]="folder.link"
     >
-      <app-journal-folder-card
-        [index]="index + 1"
-        [name]="folder.name"
-      >
-      </app-journal-folder-card>
+      <app-journal-folder-card [name]="folder.name"></app-journal-folder-card>
     </a>
 
     <div class="folders__create-new primary-button-square-50px">
-      <span inlineSVG="../../../../../assets/images/add-24px.svg"></span>
+      <mat-icon>add</mat-icon>
     </div>
   </div>
 </div>

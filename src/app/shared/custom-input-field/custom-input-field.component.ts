@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl, ValidatorFn } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-custom-input-field',
@@ -18,14 +19,18 @@ export class CustomInputFieldComponent implements ControlValueAccessor {
   @Input() public id: string;
   @Input() public type: string;
   @Input() public label: string;
+  @Input() public matIcon: string;
   @Input() public validators: ValidatorFn[];
-  @Input() public placeholder: string;
+  @Input() public placeholder = 'Введите здесь';
 
   @Input() public set readonly(value: boolean) {
     this.setDisabledState(value);
   }
 
   public inputFieldControl: FormControl = null;
+
+  public onChange = (value: any): void => { };
+  public onTouch = (): void => { };
 
   public get errorMessage(): string  {
     const controlErrors = this.inputFieldControl.errors;
@@ -44,8 +49,9 @@ export class CustomInputFieldComponent implements ControlValueAccessor {
     }
   }
 
-  public onChange = (value: any): void => {};
-  public onTouch = (): void => {};
+  public get isFieldInvalid(): boolean {
+    return this.errorMessage.length > 0 && (this.inputFieldControl.touched || this.inputFieldControl.dirty);
+  }
 
   public writeValue(value: any): void {
     if (!this.inputFieldControl) {
