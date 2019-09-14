@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { menuItems } from './left-bar.config';
-import { ILink } from '@models/link';
+import { ILink } from '@models/link.models';
 
 @Component({
   selector: 'app-left-bar',

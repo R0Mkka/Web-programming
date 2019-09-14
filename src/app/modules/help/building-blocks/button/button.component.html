@@ -1,0 +1,5 @@
+<div [ngClass]="buttonClass">
+  <ng-content *ngIf="type === 'primary' || type === 'secondary'"></ng-content>
+
+  <mat-icon *ngIf="type === 'square' || type === 'circle' || type === 'circle-outlined'">{{ matIcon }}</mat-icon>
+</div>

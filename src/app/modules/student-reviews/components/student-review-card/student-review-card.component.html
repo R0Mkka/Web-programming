@@ -28,8 +28,16 @@
     </div>
   </div>
 
-  <div class="review__text">
-    <span class="sub-title">Текст: </span>
-    <span>{{ review[fields.text] }}</span>
+  <div class="review__body">
+    <div class="review__text">
+      <span class="sub-title">Текст: </span>
+      <span>{{ review[fields.text] }}</span>
+    </div>
+
+    <div class="review__actions">
+      <button class="primary-button-square-35px" matTooltip="Удалить отзыв" (click)="removeReview()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

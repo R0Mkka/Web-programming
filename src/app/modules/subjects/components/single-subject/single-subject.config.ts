@@ -1,5 +1,5 @@
 import { PATHS } from '../../subjects.config';
-import { ILink } from '@models/link';
+import { ILink } from '@models/link.models';
 
 export const tabsConfig: ILink[] = [
   { label: 'Программа', path: PATHS.PLAN },

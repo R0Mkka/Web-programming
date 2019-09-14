@@ -1,6 +1,16 @@
+export enum ApplicationSections {
+  Subjects = 'Дисциплины',
+  Schedule = 'Расписание',
+  Journal = 'Журнал',
+  Supervision = 'Кураторство',
+  StudentReviews = 'Отзывы студентов',
+  Help = 'Помощь'
+}
+
 export enum LocalStorageItems {
   Subjects = 'Subjects',
-  Schedule = 'Schedule'
+  Schedule = 'Schedule',
+  StudentReviews = 'StudentReviews'
 }
 
 export enum FieldTypes {

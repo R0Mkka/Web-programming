@@ -6,7 +6,7 @@ import { LocalStorageService } from '@services/local-storage.service';
 import { LocalStorageItems } from '@constants';
 import { tabsConfig } from './single-subject.config';
 import { ISubject } from '@models/subject';
-import { ILink } from '@models/link';
+import { ILink } from '@models/link.models';
 
 @Component({
   selector: 'app-single-subject',

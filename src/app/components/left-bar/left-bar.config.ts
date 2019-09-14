@@ -1,10 +1,12 @@
-import { ILink } from '@models/link';
+import { ILink } from '@models/link.models';
+
+import { ApplicationSections } from '@constants';
 
 export const menuItems: ILink[] = [
-  { label: 'Дисциплины', path: '/subjects', matIcon: 'subject' },
-  { label: 'Расписание', path: '/schedule', matIcon: 'schedule' },
-  { label: 'Журнал', path: '/journal', matIcon: 'view_list' },
-  { label: 'Кураторство', path: '/supervision', matIcon: 'supervisor_account' },
-  { label: 'Отзывы студентов', path: '/student-reviews', matIcon: 'comment' },
-  { label: 'Помощь', path: '/help', matIcon: 'help' }
+  { label: ApplicationSections.Subjects, path: '/subjects', matIcon: 'subject' },
+  { label: ApplicationSections.Schedule, path: '/schedule', matIcon: 'schedule' },
+  { label: ApplicationSections.Journal, path: '/journal', matIcon: 'view_list' },
+  { label: ApplicationSections.Supervision, path: '/supervision', matIcon: 'supervisor_account' },
+  { label: ApplicationSections.StudentReviews, path: '/student-reviews', matIcon: 'comment' },
+  { label: ApplicationSections.Help, path: '/help', matIcon: 'help' }
 ];

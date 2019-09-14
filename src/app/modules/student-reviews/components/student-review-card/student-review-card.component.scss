@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-width: 0;
   padding: 10px;
 
   &__description {
@@ -61,8 +62,20 @@
     }
   }
 
-  &__text {
+  &__body {
+    display: flex;
     margin-top: 20px;
-    text-indent: 10px;
+  }
+
+  &__text {
+    flex-grow: 1;
+    text-align: justify;
+    word-break: break-word;
+    word-break: break-word;
+  }
+
+  &__actions {
+    flex-shrink: 0;
+    margin: auto 0 0 10px;
   }
 }

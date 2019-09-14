@@ -1,0 +1,56 @@
+:host {
+  display: inline-block;
+  text-indent: 0;
+}
+
+.primary-button-building-block,
+.secondary-button-building-block,
+.square-button-building-block,
+.circle-button-building-block,
+.circle-outlined-button-building-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary-button-building-block,
+.square-button-building-block,
+.circle-button-building-block,
+.circle-outlined-button-building-block {
+  color: var(--white);
+  background-color: var(--primary-color);
+}
+
+.secondary-button-building-block {
+  color: var(--primary-color);
+  background-color: var(--white);
+  border: 2px solid var(--primary-color);
+}
+
+.primary-button-building-block,
+.secondary-button-building-block {
+  width: 120px;
+  height: 30px;
+}
+
+.square-button-building-block,
+.circle-button-building-block,
+.circle-outlined-button-building-block  {
+  width: 35px;
+  height: 35px;
+}
+
+.primary-button-building-block,
+.secondary-button-building-block,
+.square-button-building-block {
+  border-radius: 5px;
+}
+
+.circle-button-building-block,
+.circle-outlined-button-building-block  {
+  border-radius: 50%;
+}
+
+.circle-outlined-button-building-block {
+  border: 2px solid var(--white);
+}

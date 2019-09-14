@@ -1,0 +1,17 @@
+<div class="toggle" [class.expanded]="isExpanded" (click)="toggle()">
+  <span class="toggle__label">{{ section?.label }}</span>
+  <mat-icon class="toggle__icon">keyboard_arrow_down</mat-icon>
+</div>
+
+<div class="content-wrapper" [style.maxHeight.px]="maxHeight">
+  <div class="content">
+    <a
+      class="content__item"
+      *ngFor="let item of section.items; let index = index"
+      [routerLink]="item?.path"
+    >
+      <span>{{ index + 1 }}.</span>
+      <span>{{ item?.label }}</span>
+    </a>
+  </div>
+</div>

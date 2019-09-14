@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
 import { IStudentReview, StudentReviewFields } from '@models/review.models';
 
@@ -12,5 +12,12 @@ export class StudentReviewCardComponent {
   @Input()
   public readonly review: IStudentReview;
 
+  @Output()
+  public readonly remove: EventEmitter<void> = new EventEmitter<void>();
+
   public readonly fields = StudentReviewFields;
+
+  public removeReview(): void {
+    this.remove.emit();
+  }
 }

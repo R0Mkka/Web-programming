@@ -1,4 +1,4 @@
-<app-inner-page [useDivider]="false">
+<app-inner-page>
   <div headerTitle>
     <span>Отзывы студентов</span>
   </div>
@@ -15,10 +15,16 @@
     <div class="review-list styled-scrollbar">
       <app-student-review-card
         class="review-list__item"
-        *ngFor="let review of studentReviews"
+        *ngFor="let review of studentReviews; let index = index; trackBy: trackByFunc"
         [review]="review"
+        (remove)="removeReview(index)"
       >
       </app-student-review-card>
+
+      <div class="empty" *ngIf="studentReviews.length === 0">
+        <mat-icon class="empty__icon">warning</mat-icon>
+        <span class="empty__text">Список пуст.</span>
+      </div>
     </div>
   </div>
 </app-inner-page>

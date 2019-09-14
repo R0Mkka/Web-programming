@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  min-height: 0;
+  margin-bottom: 30px;
+}
+
+.headline {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.text {
+  line-height: 2em;
+  text-indent: 15px;
+  text-align: justify;
+}
