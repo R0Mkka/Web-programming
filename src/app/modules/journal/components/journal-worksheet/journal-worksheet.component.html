@@ -10,18 +10,22 @@
       <th mat-header-cell *matHeaderCellDef>
         <div class="actions-panel">
           <button class="actions-panel__item primary-button-circle" matTooltip="Добавить ученика" (click)="addStudent()">
-            <span inlineSVG="../../../../../assets/images/add-16px.svg"></span>
-            <span inlineSVG="../../../../../assets/images/person.svg"></span>
+            <span inlineSVG="add-16px.svg"></span>
+            <span inlineSVG="person.svg"></span>
           </button>
 
           <button class="actions-panel__item primary-button-circle" matTooltip="Добавить день" (click)="addDay()">
-            <span inlineSVG="../../../../../assets/images/add-16px.svg"></span>
-            <span inlineSVG="../../../../../assets/images/day.svg"></span>
+            <span inlineSVG="add-16px.svg"></span>
+            <span inlineSVG="day.svg"></span>
           </button>
         </div>
       </th>
 
-      <td mat-cell class="worksheet-item header-cell" *matCellDef="let element">
+      <td mat-cell
+        class="worksheet-item header-cell"
+        *matCellDef="let element"
+        (click)="cellClicked($event)"
+      >
         <input
           type="text"
           [value]="element[displayedColumns[index]]"
@@ -36,7 +40,11 @@
       [matColumnDef]="displayedColumns[index]"
     >
       <th mat-header-cell *matHeaderCellDef> {{ displayedColumns[index] }} </th>
-      <td mat-cell class="worksheet-item" *matCellDef="let element">
+      <td mat-cell
+        class="worksheet-item"
+        *matCellDef="let element"
+        (click)="cellClicked($event)"
+      >
         <input
           type="text"
           [value]="element[displayedColumns[index]]"

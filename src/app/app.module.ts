@@ -29,7 +29,7 @@ import {
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTooltipModule,
-    InlineSVGModule,
+    InlineSVGModule.forRoot({ baseUrl: 'http://localhost:4200/assets/images/' }),
     AppRoutingModule
   ],
   entryComponents: [

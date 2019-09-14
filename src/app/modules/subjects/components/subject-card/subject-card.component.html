@@ -1,21 +1,13 @@
-<div class="card">
-  <div class="title">
-    <span>
-      {{ subject?.title }}
-    </span>
+<div class="icon-wrapper">
+  <span inlineSVG="subject.svg"></span>
+</div>
 
-    <span *ngIf="subject.courseNumber">
-      ({{ subject.courseNumber }} курс)
-    </span>
+<div class="main-info">
+  <div class="subject-name">
+    {{ subject?.title }}
   </div>
 
-  <div class="actions">
-    <div class="actions__item" title="Удалить" (click)="removeSubject()">
-      <div inlineSVG="../../../../../assets/images/delete.svg"></div>
-    </div>
-
-    <a class="actions__item" [routerLink]="subject.link" title="К дисциплине">
-      <div inlineSVG="../../../../../assets/images/arrow_forward.svg"></div>
-    </a>
+  <div class="course-number" *ngIf="subject.courseNumber">
+    ({{ subject.courseNumber }} курс)
   </div>
 </div>

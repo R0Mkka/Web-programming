@@ -1,14 +1,58 @@
-<div class="header">
-  <a
-    *ngFor="let worksheet of worksheets"
-    class="header__worksheet-anchor"
-    routerLinkActive="active"
-    [routerLink]="worksheet?.link"
-  >
-    {{ worksheet?.title }}
-  </a>
-</div>
+<app-inner-page [useDivider]="false">
+  <div headerTitle>
+    <span>Папка (сделать в динамике)</span>
+  </div>
 
-<div class="workspace">
-  <router-outlet></router-outlet>
-</div>
+  <div headerSubTitle>
+    <button
+      class="primary-button-square-35px"
+      matTooltip="Изменить название"
+      (click)="renameCurrentFolder()"
+    >
+      <span inlineSVG="edit-24px.svg"></span>
+    </button>
+  </div>
+
+  <div headerActions>
+    <div class="header-actions">
+      <button
+        class="header-actions__item primary-button-square-35px"
+        matTooltip="Удалить папку"
+        (click)="removeCurrentFolder()"
+      >
+        <span inlineSVG="delete.svg"></span>
+      </button>
+
+      <button
+        class="header-actions__item primary-button-square-35px"
+        matTooltip="Назад"
+        (click)="returnBack()"
+      >
+        <span inlineSVG="back.svg"></span>
+      </button>
+    </div>
+  </div>
+
+  <div pageContent>
+    <div class="worksheet-links-list">
+      <a
+        *ngFor="let worksheet of worksheets; let first = first; let last = last"
+        class="worksheet-links-list__item"
+        [class.first]="first"
+        [class.last]="last"
+        [routerLink]="worksheet?.link"
+        routerLinkActive="active"
+      >
+        {{ worksheet?.title }}
+      </a>
+
+      <button *ngIf="worksheetCanBeAdded" class="worksheet-links-list__add-new" matTooltip="Добавить лист">
+        <span inlineSVG="../../../../../assets/images/add-24px.svg"></span>
+      </button>
+    </div>
+
+    <div class="workspace">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</app-inner-page>

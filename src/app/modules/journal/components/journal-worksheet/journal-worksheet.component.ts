@@ -71,6 +71,17 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     this.focusedElement = null;
   }
 
+  public cellClicked(event: MouseEvent): void {
+    event.stopPropagation();
+
+    const target: HTMLElement = event.target as HTMLElement;
+    const firstChild: HTMLElement = target.firstChild as HTMLElement;
+
+    if (firstChild) {
+      firstChild.focus();
+    }
+  }
+
   private initDates(): void {
     this.datesList = this.formBuilder.array(
       this.tableDatesConfig.reduce((previous, current) => ([

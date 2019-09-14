@@ -1,22 +1,25 @@
-<app-inner-page>
+<app-inner-page [useDivider]="false">
   <div headerTitle>
     <span>Дисциплины</span>
   </div>
 
   <div headerActions>
     <div class="header-actions">
-      <button class="primary-button">
-        <span>Добавить</span>
+      <button class="primary-button-square-35px">
+        <span inlineSVG="add-24px.svg"></span>
       </button>
     </div>
   </div>
 
   <div pageContent>
     <div class="subjects">
-      <app-subject-card
+      <a
+        class="subjects__item"
         *ngFor="let subject of subjects"
-        [subject]="subject">
-      </app-subject-card>
+        [routerLink]="subject.link"
+      >
+        <app-subject-card [subject]="subject"></app-subject-card>
+      </a>
     </div>
   </div>
 </app-inner-page>

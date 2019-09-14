@@ -22,20 +22,20 @@
   }
 
   .mat-header-cell {
-    @include borer($right: 1px, $bottom: 1px);
+    @include borer($right: 1px);
 
     padding-bottom: 10px;
     vertical-align: bottom;
     color: var(--black);
     text-align: center;
-    border-bottom-width: 3px;
+    box-shadow: inset 0 -3px 0 0 var(--primary-color);
 
     &:first-child {
       width: 200px;
       min-width: 200px;
       vertical-align: middle;
       padding: 0;
-      border-right-width: 3px;
+      box-shadow: inset -3px -3px 0 0 var(--primary-color);
 
       .actions-panel {
         display: flex;
@@ -55,12 +55,13 @@
   .mat-cell {
     @include borer($right: 1px, $bottom: 1px);
 
+    cursor: text;
     min-width: 80px;
     min-height: 30px;
     padding: 0 !important;
 
     &.header-cell {
-      border-right-width: 3px;
+      box-shadow: inset -3px 0 0 0 var(--primary-color);
 
       input {
         text-align: left;
@@ -72,7 +73,7 @@
     }
 
     &.focused {
-      background-color: var(--light-primary-color) !important;
+      background-color: var(--light-primary-color);
     }
 
     input {
