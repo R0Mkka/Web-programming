@@ -50,8 +50,9 @@ $black: #000000;
 }
 
 .primary-button {
-  width: 120px;
-  height: 30px;
+  width: 140px;
+  height: 35px;
+  font-size: 18px;
   border: none;
   border-radius: 3px;
   box-shadow: 2px 2px 2px rgba($color: $black, $alpha: .1);
@@ -101,8 +102,9 @@ $black: #000000;
 
 .secondary-button {
   cursor: pointer;
-  width: 120px;
-  height: 30px;
+  width: 140px;
+  height: 35px;
+  font-size: 18px;
   color: var(--primary-color);
   background-color: var(--white);
   border: 2px solid var(--primary-color);
