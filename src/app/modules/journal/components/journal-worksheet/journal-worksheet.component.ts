@@ -1,9 +1,8 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
 
 import { WorksheetKeyboardController } from './journal-worksheet-keyboard.controller';
 
-import { tableDatesConfig, data } from './journal-worksheet.config';
+import { IColumn, tableData } from './journal-worksheet.config';
 
 @Component({
   selector: 'app-journal-worksheet',
@@ -12,31 +11,15 @@ import { tableDatesConfig, data } from './journal-worksheet.config';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JournalWorksheetComponent implements OnInit, OnDestroy {
-  displayedColumns = data.columns;
-  dataSource = new Array(25).fill(this.displayedColumns.reduce((acc, curr) => {
-    console.log(curr);
-    if (curr === 'headline') {
-      return { ...acc, [curr]: 'Student' };
-    }
-
-    return { ...acc, [curr]: '' };
-  }, {}));
-
-  public tableDatesConfig: string[] = tableDatesConfig;
-
-  public datesList: FormArray = null;
-  public studentsTable: FormArray[] = [];
+  public data: IColumn[] = tableData;
 
   public focusedElement: any;
 
   constructor(
-    private readonly formBuilder: FormBuilder,
     private readonly worksheetKeyboardController: WorksheetKeyboardController
   ) { }
 
   public ngOnInit(): void {
-    this.initDates();
-    this.initStudents();
     this.initKeysListeners();
   }
 
@@ -44,20 +27,26 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     document.onkeydown = null;
   }
 
-  public addStudent(): void {
-    this.pushStudent();
+  public addDay(): void {
+    const cells = this.data[0] && this.data[0].cells.length
+      ? new Array(this.data[0].cells.length).fill('')
+      : [];
+
+    this.data.push({
+      headerCell: '(empty)',
+      cells
+    });
   }
 
-  public addDay(): void {
-    this.datesList.push(this.formBuilder.control(new Date().toLocaleDateString()));
-
-    this.studentsTable.forEach((studentForm: FormArray) => {
-      studentForm.push(this.formBuilder.control(''));
+  public addStudent(): void {
+    this.data.forEach((column) => {
+      column.cells.push('');
     });
   }
 
   public cellFocused(target: HTMLInputElement, index: number): void {
-    target.parentElement.classList.add('focused');
+    target.select();
+    target.classList.add('focused');
 
     this.focusedElement = {
       elemementRef: target,
@@ -66,7 +55,7 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
   }
 
   public cellBlured(target: HTMLElement): void {
-    target.parentElement.classList.remove('focused');
+    target.classList.remove('focused');
 
     this.focusedElement = null;
   }
@@ -80,28 +69,6 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     if (firstChild) {
       firstChild.focus();
     }
-  }
-
-  private initDates(): void {
-    this.datesList = this.formBuilder.array(
-      this.tableDatesConfig.reduce((previous, current) => ([
-        ...previous,
-        current
-      ]), [])
-    );
-  }
-
-  private initStudents(): void {
-    for (let i = 0; i < 10; i++) {
-      this.pushStudent();
-    }
-  }
-
-  private pushStudent(): void {
-    this.studentsTable.push(this.formBuilder.array([
-      ['Student'],
-      ...new Array(this.datesList.length).fill('')
-    ]));
   }
 
   private initKeysListeners(): void {

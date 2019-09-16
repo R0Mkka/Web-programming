@@ -1,109 +1,47 @@
-<table mat-table class="worksheet" [dataSource]="dataSource">
+<ng-container *ngFor="let column of data; let first = first">
+  <ng-container *ngIf="first">
+    <div class="column left-column">
+      <div class="actions-panel">
+        <button class="actions-panel__item primary-button" matTooltip="Добавить ученика" (click)="addStudent()">
+          <mat-icon>add</mat-icon>
+          <mat-icon>school</mat-icon>
+        </button>
 
-  <ng-container *ngFor="let item of dataSource; let first = first; let index = index">
+        <button class="actions-panel__item primary-button" matTooltip="Добавить день" (click)="addDay()">
+          <mat-icon>add</mat-icon>
+          <mat-icon>today</mat-icon>
+        </button>
+      </div>
 
-    <ng-container
-      *ngIf="first"
-      [matColumnDef]="displayedColumns[index]"
-      sticky
-    >
-      <th mat-header-cell *matHeaderCellDef>
-        <div class="actions-panel">
-          <button class="actions-panel__item primary-button-circle" matTooltip="Добавить ученика" (click)="addStudent()">
-            <mat-icon>add</mat-icon>
-            <mat-icon>person</mat-icon>
-          </button>
-
-          <button class="actions-panel__item primary-button-circle" matTooltip="Добавить день" (click)="addDay()">
-            <mat-icon>add</mat-icon>
-            <mat-icon>today</mat-icon>
-          </button>
-        </div>
-      </th>
-
-      <td mat-cell
-        class="worksheet-item header-cell"
-        *matCellDef="let element"
-        (click)="cellClicked($event)"
-      >
-        <input
-          type="text"
-          [value]="element[displayedColumns[index]]"
-          (focus)="cellFocused($event.target, index)"
-          (blur)="cellBlured($event.target)"
-        >
-      </td>
-    </ng-container>
-
-    <ng-container
-      *ngIf="!first"
-      [matColumnDef]="displayedColumns[index]"
-    >
-      <th mat-header-cell *matHeaderCellDef> {{ displayedColumns[index] }} </th>
-      <td mat-cell
-        class="worksheet-item"
-        *matCellDef="let element"
-        (click)="cellClicked($event)"
-      >
-        <input
-          type="text"
-          [value]="element[displayedColumns[index]]"
-          (focus)="cellFocused($event.target, index)"
-          (blur)="cellBlured($event.target)"
-        >
-      </td>
-    </ng-container>
-
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-</table>
-
-<!-- <div class="header">
-  <div class="header__actions-panel">
-    <button class="header__actions-panel-item primary-button-circle" matTooltip="Добавить ученика" (click)="addStudent()">
-      <span inlineSVG="../../../../../assets/images/add-16px.svg"></span>
-      <span inlineSVG="../../../../../assets/images/person.svg"></span>
-    </button>
-
-    <button class="header__actions-panel-item primary-button-circle" matTooltip="Добавить день" (click)="addDay()">
-      <span inlineSVG="../../../../../assets/images/add-16px.svg"></span>
-      <span inlineSVG="../../../../../assets/images/day.svg"></span>
-    </button>
-  </div>
-
-  <div
-    *ngFor="let dateControl of datesList.controls"
-    [title]="dateControl.value"
-    class="header__cell"
-  >
-    {{ dateControl.value }}
-  </div>
-</div> -->
-
-<!-- <div class="content">
-  <div *ngFor="let item of studentsTable" class="worksheet-item">
-    <div *ngFor="let control of item.controls; let first = first; let index = index">
       <input
-        *ngIf="first; else ordinaryCell"
-        class="cell header-cell"
+        class="cell left-cell"
+        *ngFor="let cell of column.cells; let index = index"
         type="text"
-        [value]="control.value"
+        value="New student"
         (focus)="cellFocused($event.target, index)"
         (blur)="cellBlured($event.target)"
       >
-
-      <ng-template #ordinaryCell>
-        <input
-          class="cell ordinary-cell"
-          type="text"
-          [value]="control.value"
-          (focus)="cellFocused($event.target, index)"
-          (blur)="cellBlured($event.target)"
-        >
-      </ng-template>
     </div>
-  </div>
-</div> -->
+  </ng-container>
+
+  <ng-container *ngIf="!first">
+    <div class="column ordinary-column">
+      <input
+        class="cell header-cell"
+        type="text"
+        [value]="column.headerCell"
+        (focus)="cellFocused($event.target, 0)"
+        (blur)="cellBlured($event.target)"
+      >
+
+      <input
+        class="cell ordinary-cell"
+        *ngFor="let cell of column.cells; let index = index"
+        type="text"
+        [value]=""
+        (focus)="cellFocused($event.target, index)"
+        (blur)="cellBlured($event.target)"
+      >
+    </div>
+  </ng-container>
+</ng-container>
