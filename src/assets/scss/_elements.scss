@@ -50,12 +50,27 @@ $black: #000000;
 }
 
 .primary-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 140px;
   height: 35px;
   font-size: 18px;
   border: none;
   border-radius: 3px;
   box-shadow: 2px 2px 2px rgba($color: $black, $alpha: .1);
+
+  &.with-left-icon {
+    mat-icon {
+      margin-right: 5px;
+    }
+  }
+
+  &.with-right-icon {
+    mat-icon {
+      margin-left: 5px;
+    }
+  }
 
   &:before {
     width: 100%;

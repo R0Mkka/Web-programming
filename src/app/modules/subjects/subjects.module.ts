@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InlineSVGModule } from 'ng-inline-svg';
+import { MatIconModule } from '@angular/material';
 
 import { InnerPageModule } from '@shared/inner-page/inner-page.module';
 import { SubjectsRoutingModule } from './subjects-routing.module';
@@ -17,7 +17,7 @@ import { ExamsComponent } from './components/exams/exams.component';
 @NgModule({
   imports: [
     CommonModule,
-    InlineSVGModule,
+    MatIconModule,
     InnerPageModule,
     SubjectsRoutingModule
   ],

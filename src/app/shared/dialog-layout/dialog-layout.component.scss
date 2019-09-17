@@ -6,20 +6,12 @@
   background-color: var(--white);
   border-radius: 5px;
   overflow: hidden;
-
-  &::ng-deep {
-    [dialogactions] {
-      display: flex;
-      align-items: center;
-      flex-grow: 1;
-    }
-  }
 }
 
 .header,
 .actions {
   flex-shrink: 0;
-  height: 60px;
+  height: 70px;
   padding: 0 20px;
 }
 
@@ -29,7 +21,11 @@
   background-color: var(--primary-color);
 
   &__title {
+    display: flex;
+    align-items: center;
     flex-grow: 1;
+    font-size: 20px;
+    color: var(--white);
   }
 
   &__close-button {
@@ -58,4 +54,6 @@
 
 .actions {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

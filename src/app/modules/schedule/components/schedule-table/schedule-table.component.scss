@@ -4,6 +4,7 @@
   flex-grow: 1;
   min-height: 0;
   border-top: 1px solid var(--primary-color);
+  background-color: var(--light-gray);
 }
 
 .column {
@@ -30,10 +31,11 @@
   align-items: center;
   width: 25px;
   height: 25px;
+  font-size: 18px;
+  color: var(--white);
   background-color: var(--primary-color);
   border-radius: 50%;
-  transform: rotate(30deg);
-  animation: .6s notify infinite;
+  animation: 1.8s notify infinite ease-out;
 }
 
 .cell {
@@ -56,7 +58,7 @@
     border-left: 1px solid var(--primary-color);
 
     &.active {
-      background-color: var(--light-gray);
+      background-color: var(--white);
     }
   }
 
@@ -72,15 +74,20 @@
       align-items: center;
       width: 24px;
       height: 24px;
+      color: var(--white);
       background-color: var(--primary-color);
       border: none;
       border-radius: 50%;
       opacity: 0;
       transition: .2s all ease-in-out;
+
+      mat-icon {
+        font-size: 20px;
+      }
     }
 
     &.active {
-      background-color: var(--light-gray);
+      background-color: var(--white);
     }
 
     &.now {
@@ -108,15 +115,23 @@
 }
 
 @keyframes notify {
-  33% {
-    transform: scale(1) rotate(30deg);
+  0% {
+    transform: rotate(30deg);
   }
 
-  66% {
-    transform: scale(1.08) rotate(30deg);
+  25% {
+    transform: rotate(-30deg);
+  }
+
+  50% {
+    transform: rotate(30deg);
+  }
+
+  75% {
+    transform: rotate(-30deg);
   }
 
   100% {
-    transform: scale(1) rotate(30deg);
+    transform: rotate(30deg);
   }
 }

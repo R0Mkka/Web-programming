@@ -4,6 +4,6 @@ export interface IColumn {
   firstCell?: string;
 }
 
-export const tableData: IColumn[] = [
+export const emptyTableData: IColumn[] = [
   { headerCell: '', cells: [] }
 ];

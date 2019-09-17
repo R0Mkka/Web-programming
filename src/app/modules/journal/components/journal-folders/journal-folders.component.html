@@ -7,16 +7,19 @@
   </div>
 
   <div class="folders">
-    <a
-      class="folders__item"
-      *ngFor="let folder of section.folders; let index = index"
-      [routerLink]="folder.link"
-    >
-      <app-journal-folder-card [name]="folder.name"></app-journal-folder-card>
-    </a>
+    <ng-container *ngFor="let folder of folders">
+      <a
+        class="folders__item"
+        *ngIf="folder.accessType === section.accessType"
+        [routerLink]="folder.link"
+      >
+        <app-journal-folder-card [name]="folder.name"></app-journal-folder-card>
+      </a>
+    </ng-container>
 
-    <div class="folders__create-new primary-button-square-50px">
-      <mat-icon>add</mat-icon>
+    <div *ngIf="isSectionEmpty(section.accessType)" class="empty">
+      <mat-icon>warning</mat-icon>
+      <span>Список пуст.</span>
     </div>
   </div>
 </div>

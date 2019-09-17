@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/
 
 import { WorksheetKeyboardController } from './journal-worksheet-keyboard.controller';
 
-import { IColumn, tableData } from './journal-worksheet.config';
+import { IColumn, emptyTableData } from './journal-worksheet.config';
 
 @Component({
   selector: 'app-journal-worksheet',
@@ -11,9 +11,9 @@ import { IColumn, tableData } from './journal-worksheet.config';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JournalWorksheetComponent implements OnInit, OnDestroy {
-  public data: IColumn[] = tableData;
+  public data: IColumn[] = emptyTableData;
 
-  public focusedElement: any;
+  public focusedElementIndex: number;
 
   constructor(
     private readonly worksheetKeyboardController: WorksheetKeyboardController
@@ -48,16 +48,13 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     target.select();
     target.classList.add('focused');
 
-    this.focusedElement = {
-      elemementRef: target,
-      index
-    };
+    this.focusedElementIndex = index;
   }
 
   public cellBlured(target: HTMLElement): void {
     target.classList.remove('focused');
 
-    this.focusedElement = null;
+    this.focusedElementIndex = null;
   }
 
   public cellClicked(event: MouseEvent): void {
@@ -79,23 +76,23 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     document.onkeydown = (event: KeyboardEvent) => {
       const target: HTMLInputElement = event.target as HTMLInputElement;
 
-      if (!this.focusedElement) {
+      if (!this.focusedElementIndex) {
         return;
       }
 
       switch (event.key) {
         case 'ArrowDown':
         case 'Enter':
-          this.worksheetKeyboardController.moveDown(target, this.focusedElement.index);
+          this.worksheetKeyboardController.moveDown(target);
           break;
         case 'ArrowUp':
-          this.worksheetKeyboardController.moveUp(target, this.focusedElement.index);
+          this.worksheetKeyboardController.moveUp(target);
           break;
         case 'ArrowRight':
-          this.worksheetKeyboardController.moveRight(target);
+          this.worksheetKeyboardController.moveRight(target, this.focusedElementIndex);
           break;
         case 'ArrowLeft':
-          this.worksheetKeyboardController.moveLeft(target);
+          this.worksheetKeyboardController.moveLeft(target, this.focusedElementIndex);
           break;
         default:
           break;

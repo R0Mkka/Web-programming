@@ -32,16 +32,17 @@
       checkIsActive(scheduleColumn) && index === currentWeekDayIndex ? 'now' : ''
     ]"
   >
-    <div
+    <mat-icon
       *ngIf="checkIsActive(scheduleColumn) && index === currentWeekDayIndex"
       class="notification"
-      inlineSVG="../../../../../assets/images/notification.svg"
-      matTooltip="Сейчас идёт!">
-    </div>
+      matTooltip="Сейчас идёт!"
+    >
+      notifications_active
+    </mat-icon>
 
     <div class="panel">
       <button class="edit-button" (click)="openEditCellDialog(scheduleColumn, index)">
-        <span inlineSVG="../../../../../assets/images/edit-20px.svg"></span>
+        <mat-icon>edit</mat-icon>
       </button>
     </div>
 

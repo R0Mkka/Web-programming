@@ -1,12 +1,10 @@
 <app-dialog-layout [dialogRef]="dialogRef">
-  <div dialogTitle>
-    <div class="title">
-      <mat-icon class="title__icon">add_comment</mat-icon>
-      <span class="title__text">Новый отзыв</span>
-    </div>
-  </div>
+  <ng-container dialogTitle>
+    <mat-icon class="title-icon">add_comment</mat-icon>
+    <span class="title-text">Новый отзыв</span>
+  </ng-container>
 
-  <div dialogContent>
+  <ng-container dialogContent>
     <div class="student-review-form" [formGroup]="studentReviewForm">
       <ng-container *ngFor="let field of studentReviewFormConfig; trackBy: trackByFunc">
         <app-custom-input-field
@@ -22,17 +20,15 @@
         </app-custom-input-field>
       </ng-container>
     </div>
-  </div>
+  </ng-container>
 
-  <div dialogActions>
-    <div class="actions">
-      <button
-        class="primary-button"
-        [disabled]="studentReviewForm.invalid"
-        (click)="addReview()"
-      >
-        <span>Добавить</span>
-      </button>
-    </div>
-  </div>
+  <ng-container dialogActions>
+    <button
+      class="primary-button"
+      [disabled]="studentReviewForm.invalid"
+      (click)="addReview()"
+    >
+      <span>Добавить</span>
+    </button>
+  </ng-container>
 </app-dialog-layout>

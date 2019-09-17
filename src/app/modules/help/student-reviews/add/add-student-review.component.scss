@@ -1,3 +1,5 @@
+@import '../../../../../assets/scss/mixins';
+
 :host {
   display: flex;
   flex-direction: column;
@@ -6,6 +8,8 @@
 }
 
 .page-wrapper {
+  @include scrollbar;
+
   display: flex;
   flex-direction: column;
   flex-grow: 1;

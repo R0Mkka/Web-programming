@@ -18,7 +18,7 @@
         *ngFor="let cell of column.cells; let index = index"
         type="text"
         value="New student"
-        (focus)="cellFocused($event.target, index)"
+        (focus)="cellFocused($event.target, index + 1)"
         (blur)="cellBlured($event.target)"
       >
     </div>
@@ -39,7 +39,7 @@
         *ngFor="let cell of column.cells; let index = index"
         type="text"
         [value]=""
-        (focus)="cellFocused($event.target, index)"
+        (focus)="cellFocused($event.target, index + 1)"
         (blur)="cellBlured($event.target)"
       >
     </div>

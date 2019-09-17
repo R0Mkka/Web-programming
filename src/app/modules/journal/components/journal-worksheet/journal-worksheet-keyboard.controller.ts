@@ -1,46 +1,57 @@
 import { Injectable } from '@angular/core';
 
-const CELL_CLASS = 'worksheet-item';
+const CELL_CLASS = 'cell';
+const ACTIONS_PANEL_CLASS = 'actions-panel';
 
 @Injectable()
 export class WorksheetKeyboardController {
-  public moveUp(target: HTMLInputElement, index: number): void {
+  public moveUp(target: HTMLInputElement): void {
     this.moveToElement(
       target,
-      target.parentElement.parentElement.previousElementSibling,
+      target.previousElementSibling as HTMLElement
+    );
+  }
+
+  public moveDown(target: HTMLInputElement): void {
+    this.moveToElement(
+      target,
+      target.nextElementSibling as HTMLElement
+    );
+  }
+
+  public moveRight(target: HTMLInputElement, index: number): void {
+    this.moveToElement(
+      target,
+      target.parentElement.nextElementSibling as HTMLElement,
       index
     );
   }
 
-  public moveDown(target: HTMLInputElement, index: number): void {
+  public moveLeft(target: HTMLInputElement, index: number): void {
     this.moveToElement(
       target,
-      target.parentElement.parentElement.nextElementSibling,
+      target.parentElement.previousElementSibling as HTMLElement,
       index
     );
   }
 
-  public moveRight(target: HTMLInputElement): void {
-    this.moveToElement(target, target.parentElement.nextElementSibling);
-  }
+  private moveToElement(currentElement: HTMLInputElement, nextElement: HTMLElement, index?: number): void {
+    if (!nextElement) {
+      return;
+    }
 
-  public moveLeft(target: HTMLInputElement): void {
-    this.moveToElement(target, target.parentElement.previousElementSibling);
-  }
-
-  private moveToElement(target: HTMLInputElement, workingElement: Element, index?: number): void {
-    if (!index && workingElement) {
-      target.blur();
-
-      workingElement.querySelector('input').focus();
+    if (nextElement.classList.contains(CELL_CLASS)) {
+      currentElement.blur();
+      nextElement.focus();
 
       return;
     }
 
-    if (workingElement && workingElement.children[index].classList.contains(CELL_CLASS)) {
-      target.blur();
+    const nextElementChildren: HTMLCollection = nextElement.children;
 
-      workingElement.children[index].querySelector('input').focus();
+    if (nextElementChildren[index] && !nextElementChildren[index].classList.contains(ACTIONS_PANEL_CLASS)) {
+      currentElement.blur();
+      (nextElementChildren[index] as HTMLElement).focus();
     }
   }
 }

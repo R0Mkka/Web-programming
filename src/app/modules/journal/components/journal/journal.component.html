@@ -3,11 +3,16 @@
     <span>Журнал</span>
   </div>
 
-  <!-- <div headerActions>
-
-  </div> -->
-
-  <div pageContent>
-    <app-journal-folders></app-journal-folders>
+  <div headerActions>
+    <div class="header-actions">
+      <button class="primary-button" (click)="openNewForlderDialog()">
+        <mat-icon>add</mat-icon>
+        <mat-icon>folder</mat-icon>
+      </button>
+    </div>
   </div>
+
+  <ng-container pageContent>
+    <app-journal-folders></app-journal-folders>
+  </ng-container>
 </app-inner-page>

@@ -10,7 +10,8 @@ export enum ApplicationSections {
 export enum LocalStorageItems {
   Subjects = 'Subjects',
   Schedule = 'Schedule',
-  StudentReviews = 'StudentReviews'
+  StudentReviews = 'StudentReviews',
+  Folders = 'Folders'
 }
 
 export enum FieldTypes {

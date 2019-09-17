@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule, MatIconModule } from '@angular/material';
-import { InlineSVGModule } from 'ng-inline-svg';
 
 import { InnerPageModule } from '@shared/inner-page/inner-page.module';
 import { CustomFlagModule } from '@shared/custom-flag/custom-flag.module';
@@ -21,7 +20,6 @@ import { EditScheduleItemDialogComponent } from './components/edit-schedule-item
     ReactiveFormsModule,
     MatTooltipModule,
     MatIconModule,
-    InlineSVGModule,
     InnerPageModule,
     CustomFlagModule,
     CustomInputFieldModule,

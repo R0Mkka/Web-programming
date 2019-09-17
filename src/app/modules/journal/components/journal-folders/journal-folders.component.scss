@@ -13,15 +13,25 @@
 }
 
 .title {
-  margin-bottom: 15px;
   font-size: 20px;
   font-weight: 500;
 }
 
 .folders {
   display: flex;
+  flex-wrap: wrap;
 
   &__item {
-    margin-right: 15px;
+    margin: 15px 15px 0 0;
+  }
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+
+  mat-icon {
+    margin-right: 5px;
   }
 }

@@ -1,6 +1,5 @@
 import { Component, ChangeDetectionStrategy, forwardRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormControl, ValidatorFn } from '@angular/forms';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-custom-input-field',

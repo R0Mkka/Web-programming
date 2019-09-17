@@ -12,5 +12,5 @@ export interface IFolder {
 
 export interface IFolderSection {
   title: string;
-  folders: IFolder[];
+  accessType: AccessTypes;
 }

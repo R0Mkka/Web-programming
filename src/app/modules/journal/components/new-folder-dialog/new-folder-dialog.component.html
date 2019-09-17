@@ -1,0 +1,29 @@
+<app-dialog-layout [dialogRef]="dialogRef">
+  <ng-container dialogTitle>
+    <mat-icon class="title-icon">create_new_folder</mat-icon>
+    <span>Новая папка</span>
+  </ng-container>
+
+  <ng-container dialogContent>
+    <div class="new-folder-form" [formGroup]="newFolderForm" #form>
+      <app-custom-input-field
+        class="new-folder-form__field"
+        *ngFor="let field of newFolderFormConfig"
+        [id]="field.id"
+        [type]="field.type"
+        [label]="field.label"
+        [matIcon]="field?.matIcon"
+        [validators]="field.control.validators"
+        [placeholder]="field.placeholder"
+        [formControlName]="field.control.name"
+      >
+      </app-custom-input-field>
+    </div>
+  </ng-container>
+  
+  <ng-container dialogActions>
+    <button class="primary-button" [disabled]="newFolderForm.invalid" (click)="createFolder()">
+      <span>Создать</span>
+    </button>
+  </ng-container>
+</app-dialog-layout>
