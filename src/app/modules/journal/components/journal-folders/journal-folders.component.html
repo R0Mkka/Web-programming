@@ -3,6 +3,7 @@
   *ngFor="let section of folderSections"
 >
   <div class="title">
+    <mat-icon *ngIf="section.matIcon">{{ section.matIcon }}</mat-icon>
     <span>{{ section.title }}</span>
   </div>
 
@@ -11,14 +12,13 @@
       <a
         class="folders__item"
         *ngIf="folder.accessType === section.accessType"
-        [routerLink]="folder.link"
+        [routerLink]="folder.id"
       >
         <app-journal-folder-card [name]="folder.name"></app-journal-folder-card>
       </a>
     </ng-container>
 
     <div *ngIf="isSectionEmpty(section.accessType)" class="empty">
-      <mat-icon>warning</mat-icon>
       <span>Список пуст.</span>
     </div>
   </div>

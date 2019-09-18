@@ -5,12 +5,13 @@ export enum AccessTypes {
 }
 
 export interface IFolder {
+  id: string;
   name: string;
-  link: string;
   accessType: AccessTypes;
 }
 
 export interface IFolderSection {
   title: string;
   accessType: AccessTypes;
+  matIcon?: string;
 }

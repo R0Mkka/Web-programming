@@ -1,6 +1,12 @@
 import { Validators } from '@angular/forms';
 
-import { ICustomField } from '@models/forms';
+import { ICustomField, ControlTypes } from '@models/forms';
+
+export enum AccessTypesText {
+  ReadWrite = 'Полный доступ',
+  Read = 'Только для чтения',
+  Private = 'Приватная'
+}
 
 export const newFolderFormConfig: ICustomField[] = [
   {
@@ -10,6 +16,7 @@ export const newFolderFormConfig: ICustomField[] = [
     placeholder: 'Введите название папки',
     matIcon: 'folder',
     control: {
+      type: ControlTypes.Input,
       name: 'folderName',
       initialValue: 'Новая папка',
       validators: [Validators.required, Validators.maxLength(40)]
@@ -22,9 +29,11 @@ export const newFolderFormConfig: ICustomField[] = [
     placeholder: 'Введите доступность папки',
     matIcon: 'folder_shared',
     control: {
+      type: ControlTypes.Select,
       name: 'folderAccessType',
-      initialValue: 'Приватная',
-      validators: [Validators.required, Validators.maxLength(40)]
+      initialValue: AccessTypesText.Private,
+      values: [AccessTypesText.ReadWrite, AccessTypesText.Read, AccessTypesText.Private],
+      validators: [Validators.required]
     }
   }
 ];

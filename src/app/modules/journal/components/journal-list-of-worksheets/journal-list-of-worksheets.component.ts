@@ -51,7 +51,7 @@ export class JournalListOfWorksheetsComponent implements OnInit {
     const folderId: string = this.route.snapshot.paramMap.get('folderId');
 
     this.folder = folders.find((folder: IFolder) => {
-      return folder.link === folderId;
+      return folder.id === folderId;
     });
   }
 }

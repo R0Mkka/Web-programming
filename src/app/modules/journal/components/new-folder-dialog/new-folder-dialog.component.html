@@ -6,18 +6,36 @@
 
   <ng-container dialogContent>
     <div class="new-folder-form" [formGroup]="newFolderForm" #form>
-      <app-custom-input-field
-        class="new-folder-form__field"
-        *ngFor="let field of newFolderFormConfig"
-        [id]="field.id"
-        [type]="field.type"
-        [label]="field.label"
-        [matIcon]="field?.matIcon"
-        [validators]="field.control.validators"
-        [placeholder]="field.placeholder"
-        [formControlName]="field.control.name"
-      >
-      </app-custom-input-field>
+      <ng-container *ngFor="let field of newFolderFormConfig">
+        <ng-container [ngSwitch]="field.control.type">
+
+          <app-custom-input-field
+            class="new-folder-form__field"
+            *ngSwitchCase="ControlTypes.Input"
+            [id]="field.id"
+            [type]="field.type"
+            [label]="field.label"
+            [matIcon]="field?.matIcon"
+            [validators]="field.control.validators"
+            [placeholder]="field.placeholder"
+            [formControlName]="field.control.name"
+          >
+          </app-custom-input-field>
+  
+          <app-custom-select-field
+            class="new-folder-form__field"
+            *ngSwitchCase="ControlTypes.Select"
+            [id]="field.id"
+            [label]="field.label"
+            [values]="field.control.values"
+            [matIcon]="field?.matIcon"
+            [placeholder]="field.placeholder"
+            [formControlName]="field.control.name"
+          >
+          </app-custom-select-field>
+
+        </ng-container>
+      </ng-container>
     </div>
   </ng-container>
   

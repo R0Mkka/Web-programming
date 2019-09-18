@@ -28,7 +28,7 @@
 
     &.ng-touched.ng-invalid,
     &.ng-dirty.ng-invalid {
-      border-color: red;
+      border-color: rgb(255, 88, 88);
       padding-right: 48px;
     }
 
@@ -52,7 +52,7 @@
       width: inherit;
       height: inherit;
       font-size: 20px;
-      color: red;
+      color: rgb(255, 88, 88);
     }
   }
 }

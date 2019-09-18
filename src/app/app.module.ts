@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTooltipModule, MatIconModule } from '@angular/material';
+import { MatTooltipModule, MatIconModule, MatSelectModule } from '@angular/material';
 import { QuicklinkModule } from 'ngx-quicklink';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +34,7 @@ import {
     BrowserAnimationsModule,
     MatTooltipModule,
     MatIconModule,
+    MatSelectModule,
     QuicklinkModule,
     AppRoutingModule
   ],

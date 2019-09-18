@@ -1,0 +1,55 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &::ng-deep {
+    .mat-form-field {
+      &-flex {
+        padding: 3px 15px;
+        border: 1px solid var(--primary-color);
+        border-radius: 3px;
+      }
+
+      &-wrapper {
+        padding-bottom: 0;
+      }
+
+      &-infix {
+        border-top: 0;
+      }
+
+      &-underline {
+        display: none;
+      }
+    }
+
+    .mat-select-arrow {
+      color: var(--black) !important;
+    }
+  }
+}
+
+::ng-deep {
+  .mat-option {
+    &.mat-selected {
+      background-color: var(--light-gray) !important;
+    }
+  }
+
+  .mat-option-text {
+    color: var(--black) !important;
+  }
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-bottom: 10px;
+  font-size: 16px;
+
+  &__icon {
+    margin-right: 5px;
+  }
+}

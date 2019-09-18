@@ -4,8 +4,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { NewFolderService } from '../../services/new-folder.service';
 
 import { DialogOverlayRef } from '@shared/dialog/dialog-overlay-ref.class';
-import { newFolderFormConfig } from './new-folder-dialog.config';
-import { ICustomField } from '@models/forms';
+import { newFolderFormConfig, AccessTypesText } from './new-folder-dialog.config';
+import { ICustomField, ControlTypes } from '@models/forms';
 import { AccessTypes } from '@models/folder.models';
 
 @Component({
@@ -17,6 +17,7 @@ import { AccessTypes } from '@models/folder.models';
 export class NewFolderDialogComponent implements OnInit, AfterViewInit {
   @ViewChild('form', { static: false }) public readonly formRef: ElementRef;
 
+  public ControlTypes = ControlTypes;
   public newFolderForm: FormGroup;
   public newFolderFormConfig: ICustomField[] = newFolderFormConfig;
 
@@ -35,10 +36,17 @@ export class NewFolderDialogComponent implements OnInit, AfterViewInit {
   }
 
   public createFolder(): void {
+    // TODO: Отрефакторить эту часть кода
+    const accessType = this.newFolderForm.get('folderAccessType').value === AccessTypesText.Private
+      ? AccessTypes.Private
+      : this.newFolderForm.get('folderAccessType').value === AccessTypesText.ReadWrite
+        ? AccessTypes.ReadWrite
+        : AccessTypes.Read;
+
     this.newFolderService.folderCreated$.next({
       name: this.newFolderForm.get('folderName').value,
-      accessType: AccessTypes.Private,
-      link: `folder-${Date.now().toString()}`
+      accessType,
+      id: `folder-${Date.now().toString()}`
     });
 
     this.dialogRef.close();

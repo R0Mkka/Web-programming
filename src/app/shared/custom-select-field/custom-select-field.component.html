@@ -1,0 +1,15 @@
+<label class="label" [for]="id">
+  <mat-icon class="label__icon" *ngIf="matIcon">
+    {{ matIcon }}
+  </mat-icon>
+
+  <span class="label__text">{{ label }}</span>
+</label>
+
+<mat-form-field floatLabel="never">
+  <mat-select [disableRipple]="true" [placeholder]="placeholder" [value]="selectedValue">
+    <mat-option *ngFor="let value of values" [value]="value" (click)="onChange(value)">
+      {{ value }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
