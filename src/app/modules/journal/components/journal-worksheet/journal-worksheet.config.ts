@@ -1,8 +1,4 @@
-export interface IColumn {
-  cells: string[];
-  headerCell?: string;
-  firstCell?: string;
-}
+import { IColumn } from '@models/table.models';
 
 export const emptyTableData: IColumn[] = [
   { headerCell: '', cells: [] }

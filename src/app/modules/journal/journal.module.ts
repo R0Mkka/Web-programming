@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule, MatIconModule } from '@angular/material';
+import { DndModule } from 'ng2-dnd';
 
 import { InnerPageModule } from '@shared/inner-page/inner-page.module';
 import { DialogLayoutModule } from '@shared/dialog-layout/dialog-layout.module';
@@ -24,6 +25,7 @@ import { JournalWorksheetComponent } from './components/journal-worksheet/journa
     ReactiveFormsModule,
     MatTooltipModule,
     MatIconModule,
+    DndModule,
     InnerPageModule,
     DialogLayoutModule,
     CustomInputFieldModule,

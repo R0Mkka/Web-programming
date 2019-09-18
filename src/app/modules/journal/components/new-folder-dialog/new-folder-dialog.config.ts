@@ -1,12 +1,7 @@
 import { Validators } from '@angular/forms';
 
 import { ICustomField, ControlTypes } from '@models/forms';
-
-export enum AccessTypesText {
-  ReadWrite = 'Полный доступ',
-  Read = 'Только для чтения',
-  Private = 'Приватная'
-}
+import { AccessTypesText } from '@models/folder.models';
 
 export const newFolderFormConfig: ICustomField[] = [
   {

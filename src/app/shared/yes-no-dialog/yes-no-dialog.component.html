@@ -1,0 +1,20 @@
+<app-dialog-layout [dialogRef]="dialogRef">
+  <ng-container dialogTitle>
+    <mat-icon class="title-icon">help</mat-icon>
+    <span>Сообщение</span>
+  </ng-container>
+
+  <ng-container dialogContent>
+    <div class="message" [innerHTML]="yesNoDialogData?.htmlMessage"></div>
+  </ng-container>
+
+  <ng-container dialogActions>
+    <button class="primary-button action" (click)="yesNoDialogData?.onYes()">
+      <span>{{ yesNoDialogData?.yesLabel }}</span>
+    </button>
+
+    <button class="primary-button action" (click)="onNo()">
+      <span>{{ yesNoDialogData?.noLabel }}</span>
+    </button>
+  </ng-container>
+</app-dialog-layout>

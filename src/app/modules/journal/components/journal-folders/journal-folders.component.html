@@ -7,15 +7,22 @@
     <span>{{ section.title }}</span>
   </div>
 
-  <div class="folders">
+  <div
+    class="folders"
+    dnd-droppable
+    (onDropSuccess)="onDrop($event, section)"
+  >
     <ng-container *ngFor="let folder of folders">
-      <a
+      <app-journal-folder-card
+        dnd-draggable
         class="folders__item"
         *ngIf="folder.accessType === section.accessType"
+        [name]="folder.name"
         [routerLink]="folder.id"
+        [dragEnabled]="true"
+        [dragData]="folder"
       >
-        <app-journal-folder-card [name]="folder.name"></app-journal-folder-card>
-      </a>
+      </app-journal-folder-card>
     </ng-container>
 
     <div *ngIf="isSectionEmpty(section.accessType)" class="empty">

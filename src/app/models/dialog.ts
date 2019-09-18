@@ -12,3 +12,12 @@ export interface IDialogConfig {
   panelClass?: string;
   data?: IDialogData;
 }
+
+export interface IYesNoData {
+  htmlMessage: string;
+  yesLabel: string;
+  noLabel: string;
+  onYes: () => void;
+  onNo: () => void;
+}
+

@@ -1,8 +1,14 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { WorksheetKeyboardController } from './journal-worksheet-keyboard.controller';
+import { LocalStorageService } from '@services/local-storage.service';
 
-import { IColumn, emptyTableData } from './journal-worksheet.config';
+import { emptyTableData } from './journal-worksheet.config';
+import { IColumn } from '@models/table.models';
+import { IFolder } from '@models/folder.models';
+import { IWorksheet } from '@models/worksheet.models';
+import { LocalStorageItems } from '@constants';
 
 @Component({
   selector: 'app-journal-worksheet',
@@ -11,20 +17,38 @@ import { IColumn, emptyTableData } from './journal-worksheet.config';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JournalWorksheetComponent implements OnInit, OnDestroy {
-  public data: IColumn[] = emptyTableData;
+  public data: IColumn[];
+  public localDataCopy: IColumn[];
 
   public focusedElementIndex: number;
 
   constructor(
-    private readonly worksheetKeyboardController: WorksheetKeyboardController
+    private readonly route: ActivatedRoute,
+    private readonly worksheetKeyboardController: WorksheetKeyboardController,
+    private readonly localStorageService: LocalStorageService
   ) { }
 
   public ngOnInit(): void {
+    this.initData();
     this.initKeysListeners();
   }
 
   public ngOnDestroy(): void {
     document.onkeydown = null;
+  }
+
+  public addStudent(): void {
+    this.data.forEach((column) => {
+      column.cells.push('');
+    });
+
+    // TODO
+    this.localDataCopy = Object.assign(this.localDataCopy, {
+      ...this.data.map((column: IColumn) => ({
+        ...column,
+        cells: [...column.cells]
+      }))
+    });
   }
 
   public addDay(): void {
@@ -33,15 +57,20 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
       : [];
 
     this.data.push({
-      headerCell: '(empty)',
+      headerCell: '(пусто)',
       cells
+    });
+
+    this.localDataCopy = Object.assign(this.localDataCopy, {
+      ...this.data.map((column: IColumn) => ({
+        ...column,
+        cells: [...column.cells]
+      }))
     });
   }
 
-  public addStudent(): void {
-    this.data.forEach((column) => {
-      column.cells.push('');
-    });
+  public saveChanges(): void {
+    console.log(this.localDataCopy);
   }
 
   public cellFocused(target: HTMLInputElement, index: number): void {
@@ -57,26 +86,39 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     this.focusedElementIndex = null;
   }
 
-  public cellClicked(event: MouseEvent): void {
-    event.stopPropagation();
+  public onCellInput(event: KeyboardEvent, columnIndex: number, cellIndex: number): void {
+    this.localDataCopy[columnIndex].cells[cellIndex] = (event.target as HTMLInputElement).value;
+  }
 
-    const target: HTMLElement = event.target as HTMLElement;
-    const firstChild: HTMLElement = target.firstChild as HTMLElement;
+  private initData(): void {
+    const routeSnapshot = this.route.snapshot;
+    const { pathFromRoot } = routeSnapshot;
+    const folderId: string = pathFromRoot[pathFromRoot.length - 2].paramMap.get('folderId') as string;
+    const worksheetId: string = routeSnapshot.paramMap.get('worksheetId') as string;
 
-    if (firstChild) {
-      firstChild.focus();
-    }
+    const { content } = this.localStorageService
+      .getAsObject<IFolder[]>(LocalStorageItems.Folders)
+      .find((folder: IFolder) => folder.id === folderId)
+      .worksheets.find((worksheet: IWorksheet) => worksheet.id === worksheetId);
+
+    this.data = content && content.length !== 0
+      ? content
+      : emptyTableData;
+
+      // TODO
+    this.localDataCopy = {
+        ...this.data.map((column: IColumn) => ({
+          ...column,
+          cells: [...column.cells]
+        }))
+    };
   }
 
   private initKeysListeners(): void {
-    document.onwheel = (event: WheelEvent) => {
-      // console.log(event);
-    };
-
     document.onkeydown = (event: KeyboardEvent) => {
       const target: HTMLInputElement = event.target as HTMLInputElement;
 
-      if (!this.focusedElementIndex) {
+      if (this.focusedElementIndex === null) {
         return;
       }
 

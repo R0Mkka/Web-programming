@@ -1,8 +1,15 @@
+@import '../../../../../assets/scss/mixins';
+
 :host {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   min-height: 0;
+}
+
+.access-type {
+  margin-left: 5px;
+  font-size: 16px;
 }
 
 .header-actions {
@@ -15,9 +22,12 @@
 }
 
 .worksheet-links-list {
+  @include scrollbar;
+
   display: flex;
   flex-shrink: 0;
   height: 40px;
+  overflow-x: auto;
 
   &__item {
     cursor: pointer;
@@ -39,6 +49,10 @@
 
     &.last {
       border-radius: 0 20px 0 0;
+    }
+
+    &.first.last {
+      border-radius: 20px 20px 0 0;
     }
 
     &:hover {

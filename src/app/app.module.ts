@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule, MatIconModule, MatSelectModule } from '@angular/material';
 import { QuicklinkModule } from 'ngx-quicklink';
+import { DndModule } from 'ng2-dnd';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -19,7 +20,7 @@ import {
 import {
   NewStudentReviewDialogComponent
 } from './modules/student-reviews/components/new-student-review-dialog/new-student-review-dialog.component';
-
+import { YesNoDialogComponent } from './shared/yes-no-dialog/yes-no-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,12 +37,14 @@ import {
     MatIconModule,
     MatSelectModule,
     QuicklinkModule,
+    DndModule.forRoot(),
     AppRoutingModule
   ],
   entryComponents: [
     NewFolderDialogComponent,
     EditScheduleItemDialogComponent,
-    NewStudentReviewDialogComponent
+    NewStudentReviewDialogComponent,
+    YesNoDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

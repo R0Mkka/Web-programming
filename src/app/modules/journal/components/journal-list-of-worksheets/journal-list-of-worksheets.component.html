@@ -1,7 +1,8 @@
 <app-inner-page>
-  <div headerTitle>
-    <span>{{ folder.name }}</span>
-  </div>
+  <ng-container headerTitle>
+    <span class="folder-name">{{ folder.name }}</span>
+    <span class="access-type">({{ folderAccessType }})</span>
+  </ng-container>
 
   <div headerSubTitle>
     <button
@@ -36,17 +37,22 @@
   <div pageContent>
     <div class="worksheet-links-list">
       <a
-        *ngFor="let worksheet of worksheets; let first = first; let last = last"
+        *ngFor="let worksheet of folder.worksheets; let first = first; let last = last"
         class="worksheet-links-list__item"
         [class.first]="first"
         [class.last]="last"
-        [routerLink]="worksheet?.link"
+        [routerLink]="worksheet?.id"
         routerLinkActive="active"
       >
         {{ worksheet?.title }}
       </a>
 
-      <button *ngIf="worksheetCanBeAdded" class="worksheet-links-list__add-new" matTooltip="Добавить лист">
+      <button
+        class="worksheet-links-list__add-new"
+        *ngIf="worksheetCanBeAdded"
+        matTooltip="Добавить лист"
+        (click)="addWorksheet()"
+      >
         <mat-icon>add</mat-icon>
       </button>
     </div>

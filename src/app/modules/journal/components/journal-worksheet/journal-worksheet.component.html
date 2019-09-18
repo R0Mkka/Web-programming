@@ -1,46 +1,65 @@
-<ng-container *ngFor="let column of data; let first = first">
+<ng-container *ngFor="let column of data; let first = first; let columnIndex = index">
   <ng-container *ngIf="first">
     <div class="column left-column">
       <div class="actions-panel">
-        <button class="actions-panel__item primary-button" matTooltip="Добавить ученика" (click)="addStudent()">
+        <button
+          class="actions-panel__item primary-button"
+          matTooltip="Добавить ученика"
+          (click)="addStudent()"
+        >
           <mat-icon>add</mat-icon>
           <mat-icon>school</mat-icon>
         </button>
 
-        <button class="actions-panel__item primary-button" matTooltip="Добавить день" (click)="addDay()">
+        <button
+          class="actions-panel__item primary-button"
+          matTooltip="Добавить день"
+          (click)="addDay()"
+        >
           <mat-icon>add</mat-icon>
           <mat-icon>today</mat-icon>
+        </button>
+
+        <button
+          class="actions-panel__item primary-button"
+          matTooltip="Сохранить изменения"
+          (click)="saveChanges()"
+        >
+          <mat-icon>save</mat-icon>
         </button>
       </div>
 
       <input
         class="cell left-cell"
-        *ngFor="let cell of column.cells; let index = index"
+        *ngFor="let cell of column.cells; let cellIndex = index"
         type="text"
-        value="New student"
-        (focus)="cellFocused($event.target, index + 1)"
+        [value]="column.cells[cellIndex]"
+        (focus)="cellFocused($event.target, cellIndex + 1)"
         (blur)="cellBlured($event.target)"
+        (input)="onCellInput($event, columnIndex, cellIndex)"
       >
     </div>
   </ng-container>
 
   <ng-container *ngIf="!first">
     <div class="column ordinary-column">
-      <input
+      <textarea
         class="cell header-cell"
         type="text"
         [value]="column.headerCell"
         (focus)="cellFocused($event.target, 0)"
         (blur)="cellBlured($event.target)"
       >
+      </textarea>
 
       <input
         class="cell ordinary-cell"
-        *ngFor="let cell of column.cells; let index = index"
+        *ngFor="let cell of column.cells; let cellIndex = index"
         type="text"
         [value]=""
-        (focus)="cellFocused($event.target, index + 1)"
+        (focus)="cellFocused($event.target, cellIndex + 1)"
         (blur)="cellBlured($event.target)"
+        (input)="onCellInput($event, columnIndex, cellIndex)"
       >
     </div>
   </ng-container>

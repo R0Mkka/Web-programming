@@ -4,12 +4,14 @@ export const folders: IFolder[] = [
   {
     id: 'folder-123456789',
     name: 'Группа 16-ИТ-1',
-    accessType: AccessTypes.ReadWrite
+    accessType: AccessTypes.ReadWrite,
+    worksheets: []
   },
   {
     id: 'folder-987654321',
     name: 'Группа 17-ИТ-2',
-    accessType: AccessTypes.ReadWrite
+    accessType: AccessTypes.ReadWrite,
+    worksheets: []
   }
 ];
 

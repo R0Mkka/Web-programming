@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, OnDestro
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { NewFolderService } from '../../services/new-folder.service';
+import { FoldersService } from '../../services/folders.service';
 import { LocalStorageService } from '@services/local-storage.service';
 
 import { IFolderSection, IFolder, AccessTypes } from '@models/folder.models';
@@ -23,18 +23,29 @@ export class JournalFoldersComponent implements OnInit, OnDestroy {
   private readonly destroySubscriptions$: Subject<void> = new Subject<void>();
 
   constructor(
-    private readonly newFolderService: NewFolderService,
+    private readonly foldersService: FoldersService,
     private readonly localStorageService: LocalStorageService,
     private readonly cdRef: ChangeDetectorRef
   ) { }
 
   public ngOnInit(): void {
     this.initFolders();
+    this.sortFolders();
     this.subOnFoldersCreation();
   }
 
   public ngOnDestroy(): void {
     this.destroySubscriptions$.next();
+  }
+
+  public onDrop(event: any, section: IFolderSection): void {
+    const folder: IFolder = event.dragData as IFolder;
+
+    if (folder.accessType !== section.accessType) {
+      folder.accessType = section.accessType;
+    }
+
+    this.saveToLocalStorage();
   }
 
   public isSectionEmpty(accessType: AccessTypes): boolean {
@@ -54,11 +65,18 @@ export class JournalFoldersComponent implements OnInit, OnDestroy {
     this.localStorageService.setAsObject(LocalStorageItems.Folders, []);
   }
 
+  private sortFolders(): void {
+    this.folders = this.folders.sort((firstFolder: IFolder, secondFolder: IFolder) => {
+      return firstFolder.name.localeCompare(secondFolder.name);
+    });
+  }
+
   private subOnFoldersCreation(): void {
-    this.newFolderService.folderCreated$.pipe(
+    this.foldersService.folderCreated$.pipe(
       takeUntil(this.destroySubscriptions$)
     ).subscribe((newFolder: IFolder) => {
       this.folders.push(newFolder);
+      this.sortFolders();
       this.cdRef.markForCheck();
       this.saveToLocalStorage();
     });

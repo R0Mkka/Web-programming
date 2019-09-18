@@ -9,7 +9,7 @@ export const editScheduleItemFormConfig: ICustomField[] = [
     type: FieldTypes.Text,
     label: 'Дисциплина',
     placeholder: 'Введите название дисциплины',
-    matIcon: 'subject',
+    matIcon: 'menu_book',
     control: {
       name: 'title',
       initialValue: '',

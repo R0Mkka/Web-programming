@@ -24,11 +24,17 @@
 }
 
 .folders {
+  cursor: default !important;
   display: flex;
   flex-wrap: wrap;
 
   &__item {
     margin: 15px 15px 0 0;
+
+    &.dnd-drag-start {
+      opacity: .6;
+      animation: pulse 1s infinite;
+    }
   }
 }
 
@@ -38,4 +44,18 @@
   margin-top: 15px;
   padding: 5px 10px;
   border-radius: 3px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(.9);
+  }
+
+  50% {
+    transform: scale(.95);
+  }
+
+  100% {
+    transform: scale(.9);
+  }
 }
