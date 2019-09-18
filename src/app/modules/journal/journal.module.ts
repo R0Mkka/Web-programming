@@ -11,6 +11,7 @@ import { CustomSelectFieldModule } from '@shared/custom-select-field/custom-sele
 import { JournalRoutingModule } from './journal-routing.module';
 
 import { WorksheetKeyboardController } from './components/journal-worksheet/journal-worksheet-keyboard.controller';
+import { DataResolve } from './services/data-resolve.service';
 
 import { JournalComponent } from './components/journal/journal.component';
 import { NewFolderDialogComponent } from './components/new-folder-dialog/new-folder-dialog.component';
@@ -41,7 +42,8 @@ import { JournalWorksheetComponent } from './components/journal-worksheet/journa
     JournalWorksheetComponent
   ],
   providers: [
-    WorksheetKeyboardController
+    WorksheetKeyboardController,
+    DataResolve
   ],
   exports: []
 })

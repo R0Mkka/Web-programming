@@ -8,6 +8,7 @@ import { FoldersService } from '../../services/folders.service';
 import { LocalStorageItems } from '@constants';
 import { IFolder, AccessTypesText } from '@models/folder.models';
 import { MAX_WORKSHEETS_COUNT, onRemoveDialogData } from './journal-list-of-worksheets.config';
+import { emptyWorksheeteData } from '../journal-worksheet/journal-worksheet.config';
 
 @Component({
   selector: 'app-journal-list-of-worksheets',
@@ -56,7 +57,7 @@ export class JournalListOfWorksheetsComponent implements OnInit {
     this.folder.worksheets.push({
       id: `worksheet-${Date.now().toString()}`,
       title: Date.now().toString(),
-      content: []
+      content: emptyWorksheeteData
     });
 
     const folders: IFolder[] = this.localStorageService

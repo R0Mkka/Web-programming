@@ -1,10 +1,51 @@
 import { Injectable } from '@angular/core';
 
+import { JournalWorksheetComponent } from './journal-worksheet.component';
+
+import { Keyboard } from '@constants';
+
 const CELL_CLASS = 'cell';
 const ACTIONS_PANEL_CLASS = 'actions-panel';
 
 @Injectable()
 export class WorksheetKeyboardController {
+  public initKeyboardListeners(context: JournalWorksheetComponent): void {
+    document.onkeydown = (event: KeyboardEvent) => {
+      const target: HTMLInputElement = event.target as HTMLInputElement;
+
+      if (context.focusedElementIndex === null) {
+        return;
+      }
+
+      // TODO: Tab and Sthift + Tab
+      switch (event.key) {
+        case Keyboard.ArrowDown:
+        case Keyboard.Enter:
+          event.preventDefault();
+          this.moveDown(target);
+          break;
+        case Keyboard.ArrowUp:
+          event.preventDefault();
+          this.moveUp(target);
+          break;
+        case Keyboard.ArrowRight:
+          event.preventDefault();
+          this.moveRight(target, context.focusedElementIndex);
+          break;
+        case Keyboard.ArrowLeft:
+          event.preventDefault();
+          this.moveLeft(target, context.focusedElementIndex);
+          break;
+        default:
+          break;
+      }
+    };
+  }
+
+  public destroyListeners(): void {
+    document.onkeydown = null;
+  }
+
   public moveUp(target: HTMLInputElement): void {
     this.moveToElement(
       target,

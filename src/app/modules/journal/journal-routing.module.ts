@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FolderGuard } from '@guards/folder.guard';
 import { FolderWorksheetGuard } from '@guards/folder-worksheet.guard';
 
+import { DataResolve } from './services/data-resolve.service';
+
 import { JournalComponent } from './components/journal/journal.component';
 import { JournalListOfWorksheetsComponent } from './components/journal-list-of-worksheets/journal-list-of-worksheets.component';
 import { JournalWorksheetComponent } from './components/journal-worksheet/journal-worksheet.component';
@@ -19,7 +21,13 @@ const routes: Routes = [
     canActivate: [FolderGuard],
     canActivateChild: [FolderWorksheetGuard],
     children: [
-      { path: ':worksheetId', component: JournalWorksheetComponent }
+      {
+        path: ':worksheetId',
+        component: JournalWorksheetComponent,
+        resolve: {
+          worksheetData: DataResolve
+        }
+      }
     ]
   }
 ];
