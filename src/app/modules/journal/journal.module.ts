@@ -8,6 +8,7 @@ import { InnerPageModule } from '@shared/inner-page/inner-page.module';
 import { DialogLayoutModule } from '@shared/dialog-layout/dialog-layout.module';
 import { CustomInputFieldModule } from '@shared/custom-input-field/custom-input-field.module';
 import { CustomSelectFieldModule } from '@shared/custom-select-field/custom-select-field.module';
+import { DoubleStateFieldModule } from '@shared/double-state-field/double-state-field.module';
 import { JournalRoutingModule } from './journal-routing.module';
 
 import { WorksheetKeyboardController } from './components/journal-worksheet/journal-worksheet-keyboard.controller';
@@ -18,6 +19,7 @@ import { NewFolderDialogComponent } from './components/new-folder-dialog/new-fol
 import { JournalFoldersComponent } from './components/journal-folders/journal-folders.component';
 import { JournalFolderCardComponent } from './components/journal-folder-card/journal-folder-card.component';
 import { JournalListOfWorksheetsComponent } from './components/journal-list-of-worksheets/journal-list-of-worksheets.component';
+import { NoWorksheetSelectedComponent } from './components/no-worksheet-selected/no-worksheet-selected.component';
 import { JournalWorksheetComponent } from './components/journal-worksheet/journal-worksheet.component';
 
 @NgModule({
@@ -31,6 +33,7 @@ import { JournalWorksheetComponent } from './components/journal-worksheet/journa
     DialogLayoutModule,
     CustomInputFieldModule,
     CustomSelectFieldModule,
+    DoubleStateFieldModule,
     JournalRoutingModule
   ],
   declarations: [
@@ -39,6 +42,7 @@ import { JournalWorksheetComponent } from './components/journal-worksheet/journa
     JournalFoldersComponent,
     JournalFolderCardComponent,
     JournalListOfWorksheetsComponent,
+    NoWorksheetSelectedComponent,
     JournalWorksheetComponent
   ],
   providers: [

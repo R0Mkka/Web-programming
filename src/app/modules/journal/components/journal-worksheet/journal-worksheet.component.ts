@@ -1,13 +1,15 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, of, Observable, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { WorksheetKeyboardController } from './journal-worksheet-keyboard.controller';
 import { LocalStorageService } from '@services/local-storage.service';
 import { RouteChangeWatcherService } from '../../services/route-change-watcher.service';
+import { YesNoDialogService } from '@services/yes-no-dialog.service';
+import { FoldersService } from '../../services/folders.service';
 
-import { emptyWorksheeteData } from './journal-worksheet.config';
+import { emptyWorksheeteData, removeWorksheetDialogData } from './journal-worksheet.config';
 import { IColumn } from '@models/table.models';
 import { IFolder } from '@models/folder.models';
 import { IWorksheet } from '@models/worksheet.models';
@@ -23,14 +25,18 @@ import { LocalStorageItems } from '@constants';
 export class JournalWorksheetComponent implements OnInit, OnDestroy {
   public data: Observable<IColumn[]>;
   public focusedElementIndex: number;
+  public currentWorksheet: IWorksheet;
 
   private subscriptionsDestroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private readonly route: ActivatedRoute,
+    private readonly router: Router,
     private readonly worksheetKeyboardController: WorksheetKeyboardController,
     private readonly localStorageService: LocalStorageService,
     private readonly routeChangesService: RouteChangeWatcherService,
+    private readonly yesNoDialog: YesNoDialogService,
+    private readonly foldersService: FoldersService,
     private readonly elementRef: ElementRef,
     private readonly cdRef: ChangeDetectorRef
   ) { }
@@ -75,6 +81,29 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     localSub.unsubscribe();
   }
 
+  public openRemoveWorksheetDialog(): void {
+    this.yesNoDialog.open(removeWorksheetDialogData(this));
+  }
+
+  public removeWorksheet(): void {
+    this.getCurrentState().then(([worksheet, folder, folderList]) => {
+      folderList.some((singleFolder: IFolder) => {
+        if (singleFolder.id === folder.id) {
+          singleFolder.worksheets = singleFolder.worksheets.filter((singleWorksheet: IWorksheet) => {
+            return singleWorksheet.id !== worksheet.id;
+          });
+
+          this.yesNoDialog.close();
+          this.router.navigate(['/journal', folder.id]);
+          this.saveFoldersToLocalStorage(folderList);
+          this.foldersService.removeWorksheet$.next();
+
+          return singleFolder.id === folder.id;
+        }
+      });
+    });
+  }
+
   public saveChanges(): void {
     const columnsElements = [...this.elementRef.nativeElement.querySelectorAll('.column')];
     this.getCurrentState().then(([worksheet, folder, folderList]) => {
@@ -106,7 +135,7 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
         }
       });
 
-      this.localStorageService.setAsObject<IFolder[]>(LocalStorageItems.Folders, folderList);
+      this.saveFoldersToLocalStorage(folderList);
     });
   }
 
@@ -138,7 +167,11 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
   private getCurrentState(): Promise<[IWorksheet, IFolder, IFolder[]]> {
     return new Promise(resolve => {
       setTimeout(() => {
-        resolve(this.route.snapshot.data.worksheetData);
+        const { worksheetData } = this.route.snapshot.data;
+
+        this.currentWorksheet = worksheetData[0];
+
+        resolve(worksheetData);
       }, 0);
     });
   }
@@ -148,11 +181,14 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
       takeUntil(this.subscriptionsDestroy$)
     ).subscribe(_ => {
       this.getCurrentState().then(([worksheet]) => {
-        console.log(worksheet);
         this.data = of(worksheet.content);
 
         this.cdRef.markForCheck();
       });
     });
+  }
+
+  private saveFoldersToLocalStorage(folderList: IFolder[]): void {
+    this.localStorageService.setAsObject<IFolder[]>(LocalStorageItems.Folders, folderList);
   }
 }

@@ -1,0 +1,15 @@
+<div
+  class="text"
+  *ngIf="currentState === fieldStates.Text"
+>
+  {{ value }}
+</div>
+
+<input
+  #input
+  class="input"
+  *ngIf="currentState === fieldStates.Input"
+  type="text"
+  [value]="value"
+  (blur)="setDefaultState()"
+>

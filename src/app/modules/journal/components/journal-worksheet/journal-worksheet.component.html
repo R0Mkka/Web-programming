@@ -22,6 +22,14 @@
 
         <button
           class="actions-panel__item primary-button"
+          matTooltip="Удалить лист"
+          (click)="openRemoveWorksheetDialog()"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+          class="actions-panel__item primary-button"
           matTooltip="Сохранить изменения"
           (click)="saveChanges()"
         >

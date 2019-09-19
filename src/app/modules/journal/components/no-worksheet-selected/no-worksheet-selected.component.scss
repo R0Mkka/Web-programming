@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.message {
+  font-size: 18px;
+  text-align: center;
+  // animation: blinking 3s infinite;
+}
+
+// @keyframes blinking {
+//   0% {
+//     opacity: .1;
+//   }
+
+//   50% {
+//     opacity: 1;
+//   }
+
+//   100% {
+//     opacity: .1;
+//   }
+// }

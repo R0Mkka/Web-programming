@@ -13,6 +13,7 @@ import { LocalStorageItems } from '@constants';
 export class FoldersService implements OnDestroy {
   public readonly folderCreated$: Subject<IFolder> = new Subject<IFolder>();
   public readonly removeFolder$: Subject<IFolder> = new Subject<IFolder>();
+  public readonly removeWorksheet$: Subject<void> = new Subject<void>();
 
   private destroySubscriptions$: Subject<void> = new Subject<void>();
 

@@ -9,12 +9,12 @@
   </ng-container>
 
   <ng-container dialogActions>
-    <button class="primary-button action" (click)="yesNoDialogData?.onYes()">
-      <span>{{ yesNoDialogData?.yesLabel }}</span>
+    <button class="primary-button action" (click)="onYes()">
+      <span>{{ yesLabel }}</span>
     </button>
 
     <button class="primary-button action" (click)="onNo()">
-      <span>{{ yesNoDialogData?.noLabel }}</span>
+      <span>{{ noLabel }}</span>
     </button>
   </ng-container>
 </app-dialog-layout>

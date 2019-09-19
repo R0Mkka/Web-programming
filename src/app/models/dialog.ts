@@ -15,9 +15,9 @@ export interface IDialogConfig {
 
 export interface IYesNoData {
   htmlMessage: string;
-  yesLabel: string;
-  noLabel: string;
   onYes: () => void;
-  onNo: () => void;
+  onNo?: () => void;
+  yesLabel?: string;
+  noLabel?: string;
 }
 

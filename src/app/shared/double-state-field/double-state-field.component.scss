@@ -1,0 +1,11 @@
+:host {
+  display: inline;
+}
+
+.input {
+  display: inline;
+  min-width: 100px;
+  max-width: 200px;
+  background-color: var(--white);
+  border: none;
+}

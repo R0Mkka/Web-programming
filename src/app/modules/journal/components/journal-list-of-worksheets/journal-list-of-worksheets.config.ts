@@ -10,9 +10,6 @@ export const onRemoveDialogData = (context?: JournalListOfWorksheetsComponent): 
       <div>Вы уверены, что хотите удалить папку "${context.folder.name}"?</div>
       <div>Восстановление данных будет невозможно.</div>
     `,
-    yesLabel: 'Да',
-    noLabel: 'Отмена',
-    onYes: () => context.removeFolder(),
-    onNo: null
+    onYes: () => context.removeFolder()
   };
 };

@@ -1,6 +1,14 @@
 <app-inner-page>
   <ng-container headerTitle>
-    <span class="folder-name">{{ folder.name }}</span>
+    <span class="folder-name">
+      <app-double-state-field
+        #folderNameRef
+        [value]="folder.name"
+        (dblclick)="changeFolderNameState(folderNameRef)"
+        (valueChanged)="changeFolderName($event)"
+      >
+      </app-double-state-field>
+    </span>
     <span class="access-type">({{ folderAccessType }})</span>
   </ng-container>
 
@@ -43,8 +51,14 @@
         [class.last]="last"
         [routerLink]="worksheet?.id"
         routerLinkActive="active"
+        (dblclick)="changeWorksheetTitleState(worksheetTitleRef)"
       >
-        {{ worksheet?.title }}
+        <app-double-state-field
+          #worksheetTitleRef
+          [value]="worksheet?.title"
+          (valueChanged)="setNewWorksheetTitle($event, worksheet)"
+        >
+        </app-double-state-field>
       </a>
 
       <button
@@ -54,6 +68,7 @@
         (click)="addWorksheet()"
       >
         <mat-icon>add</mat-icon>
+        <mat-icon>insert_drive_file</mat-icon>
       </button>
     </div>
 

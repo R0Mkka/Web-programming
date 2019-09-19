@@ -18,6 +18,11 @@ export class FolderWorksheetGuard implements CanActivateChild {
 
   public canActivateChild(childRoute: ActivatedRouteSnapshot, _: RouterStateSnapshot): boolean {
     const pathFromRoot = childRoute.pathFromRoot;
+
+    if (pathFromRoot[pathFromRoot.length - 1].url.length === 0) {
+      return true;
+    }
+
     const folderId: string = pathFromRoot[pathFromRoot.length - 2].paramMap.get('folderId');
     const worksheetId: string = childRoute.paramMap.get('worksheetId');
 

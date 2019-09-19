@@ -23,6 +23,22 @@ export class YesNoDialogComponent implements OnInit {
     this.initDialogData();
   }
 
+  public get yesLabel(): string {
+    return this.yesNoDialogData.yesLabel || 'Да';
+  }
+
+  public get noLabel(): string {
+    return this.yesNoDialogData.noLabel || 'Отмена';
+  }
+
+  public onYes(): void {
+    if (!this.yesNoDialogData.onYes || !(this.yesNoDialogData.onYes instanceof Function)) {
+      throw new Error(`No action for "${this.yesLabel}" button click!`);
+    }
+
+    this.yesNoDialogData.onYes();
+  }
+
   public onNo(): void {
     if (this.yesNoDialogData.onNo) {
       this.yesNoDialogData.onNo();
