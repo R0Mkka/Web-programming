@@ -1,3 +1,5 @@
+@import '../../../../../assets/scss/mixins';
+
 :host {
   display: flex;
   flex-direction: column;
@@ -11,6 +13,8 @@
 }
 
 .review-list {
+  @include scrollbar;
+
   display: flex;
   flex-direction: column;
   flex-grow: 1;

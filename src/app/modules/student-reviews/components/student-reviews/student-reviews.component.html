@@ -1,31 +1,31 @@
 <app-inner-page>
-  <div headerTitle>
+  <ng-container headerTitle>
     <span>Отзывы студентов</span>
-  </div>
+  </ng-container>
 
-  <div headerActions>
+  <ng-container headerActions>
     <div class="header-actions">
       <button class="primary-button" matTooltip="Добавить отзыв" (click)="openReviewAddingDialog()">
         <mat-icon>add</mat-icon>
         <mat-icon>comment</mat-icon>
       </button>
     </div>
-  </div>
+  </ng-container>
 
-  <div pageContent>
-    <div class="review-list styled-scrollbar">
+  <ng-container pageContent>
+    <div class="review-list">
       <app-student-review-card
         class="review-list__item"
-        *ngFor="let review of studentReviews; let index = index; trackBy: trackByFunc"
+        *ngFor="let review of (studentReviewsStream | async); trackBy: trackByFunc"
         [review]="review"
-        (remove)="removeReview(index)"
+        (remove)="removeReview(review)"
       >
       </app-student-review-card>
 
-      <div class="empty" *ngIf="studentReviews.length === 0">
+      <div class="empty" *ngIf="(studentReviewsStream | async).length === 0">
         <mat-icon class="empty__icon">warning</mat-icon>
         <span class="empty__text">Список пуст.</span>
       </div>
     </div>
-  </div>
+  </ng-container>
 </app-inner-page>

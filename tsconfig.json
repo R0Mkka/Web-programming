@@ -8,6 +8,7 @@
       "@models/*": ["app/models/*"],
       "@guards/*": ["app/guards/*"],
       "@classes/*": ["app/classes/*"],
+      "@store/*": ["app/store/*"],
       "@constants": ["app/constants"]
     },
     "outDir": "./dist/out-tsc",

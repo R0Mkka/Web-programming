@@ -1,4 +1,5 @@
 export enum StudentReviewFields {
+  id = 'id',
   studentFullName = 'studentFullName',
   studentGroup = 'studentGroup',
   text = 'text',
@@ -6,6 +7,7 @@ export enum StudentReviewFields {
 }
 
 export interface IStudentReview {
+  id: string;
   studentFullName: string;
   studentGroup: string;
   text: string;

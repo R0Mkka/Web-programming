@@ -46,6 +46,7 @@ export class NewStudentReviewDialogComponent implements OnInit, OnDestroy {
 
     const studentReview: IStudentReview = {
       ...this.studentReviewForm.value,
+      id: Date.now().toString(),
       date: new Date()
     };
 

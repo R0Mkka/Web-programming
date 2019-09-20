@@ -54,6 +54,7 @@
         class="cell header-cell"
         type="text"
         [value]="column.headerCell"
+        [maxLength]="25"
         (focus)="cellFocused($event.target, 0)"
         (blur)="cellBlured($event.target)"
       >

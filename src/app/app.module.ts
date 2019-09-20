@@ -8,6 +8,7 @@ import { MatTooltipModule, MatIconModule, MatSelectModule } from '@angular/mater
 import { QuicklinkModule } from 'ngx-quicklink';
 import { DndModule } from 'ng2-dnd';
 
+import { StoreModule } from './store/store.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -38,6 +39,7 @@ import { YesNoDialogComponent } from './shared/yes-no-dialog/yes-no-dialog.compo
     MatSelectModule,
     QuicklinkModule,
     DndModule.forRoot(),
+    StoreModule,
     AppRoutingModule
   ],
   entryComponents: [

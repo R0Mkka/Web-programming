@@ -1,11 +1,12 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { LocalStorageService } from '@services/local-storage.service';
 
 import { IFolder } from '@models/folder.models';
-import { LocalStorageItems } from '@constants';
+import { LocalStorageItems, SERVER_URL, DBTables } from '@constants';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,31 @@ export class FoldersService implements OnDestroy {
 
   private destroySubscriptions$: Subject<void> = new Subject<void>();
 
-  constructor(private readonly localStorageService: LocalStorageService) {
+  constructor(
+    private readonly http: HttpClient,
+    private readonly localStorageService: LocalStorageService
+  ) {
     this.subOnFoldersRemove();
   }
 
   public ngOnDestroy(): void {
     this.destroySubscriptions$.next();
+  }
+
+  public initFolders(): Observable<IFolder[]> {
+    return this.http.get<IFolder[]>(`${SERVER_URL}/${DBTables.Folders}`);
+  }
+
+  public addFolder(folder: IFolder): Observable<IFolder> {
+    return this.http.post<IFolder>(`${SERVER_URL}/${DBTables.Folders}`, folder);
+  }
+
+  public deleteFolder(): void {
+
+  }
+
+  public editFolder(folder: IFolder): Observable<IFolder> {
+    return this.http.patch<IFolder>(`${SERVER_URL}/${DBTables.Folders}/${folder.id}`, folder);
   }
 
   private subOnFoldersRemove(): void {

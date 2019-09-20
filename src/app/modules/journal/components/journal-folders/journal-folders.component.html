@@ -12,7 +12,7 @@
     dnd-droppable
     (onDropSuccess)="onDrop($event, section)"
   >
-    <ng-container *ngFor="let folder of folders">
+    <ng-container *ngFor="let folder of (folders$ | async)">
       <app-journal-folder-card
         dnd-draggable
         class="folders__item"
@@ -25,7 +25,7 @@
       </app-journal-folder-card>
     </ng-container>
 
-    <div *ngIf="isSectionEmpty(section.accessType)" class="empty">
+    <div *ngIf="(isSectionEmpty(section.accessType) | async)" class="empty">
       <span>Список пуст.</span>
     </div>
   </div>

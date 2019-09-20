@@ -1,3 +1,12 @@
+export const SERVER_URL = 'http://localhost:3000';
+
+export enum DBTables {
+  Schedule = 'schedule',
+  Folders = 'folders',
+  Worksheets = 'worksheets',
+  StudentReviews = 'student-reviews'
+}
+
 export enum ApplicationSections {
   Subjects = 'Дисциплины',
   Schedule = 'Расписание',

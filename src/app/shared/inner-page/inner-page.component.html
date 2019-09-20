@@ -15,5 +15,10 @@
 <hr *ngIf="useDivider" class="divider">
 
 <div class="content">
-  <ng-content select="[pageContent]"></ng-content>
+  <app-spinner *ngIf="(spinnerState$ | async).isShown; else content"></app-spinner>
+
+  <ng-template #content>
+    <ng-content select="[pageContent]"></ng-content>
+  </ng-template>
+  
 </div>

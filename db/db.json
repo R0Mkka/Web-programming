@@ -1,0 +1,39 @@
+{
+  "schedule": {},
+  "folders": [
+    {
+      "name": "kekekekek",
+      "accessType": "Read",
+      "id": "folder-1568989388121",
+      "worksheets": []
+    },
+    {
+      "name": "asdfas",
+      "accessType": "Private",
+      "id": "folder-1568989674759",
+      "worksheets": []
+    },
+    {
+      "name": "Новая папка",
+      "accessType": "Read",
+      "id": "folder-1568990096917",
+      "worksheets": []
+    },
+    {
+      "name": "lklklkkl",
+      "accessType": "ReadWrite",
+      "id": "folder-1568990492061",
+      "worksheets": []
+    }
+  ],
+  "worksheets": [],
+  "student-reviews": [
+    {
+      "studentFullName": "11",
+      "studentGroup": "11233222",
+      "text": "22",
+      "id": "1568986758918",
+      "date": "2019-09-20T13:39:18.918Z"
+    }
+  ]
+}
