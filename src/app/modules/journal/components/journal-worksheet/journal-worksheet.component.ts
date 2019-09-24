@@ -1,10 +1,9 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, of, Observable, Subscription } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { WorksheetKeyboardController } from './journal-worksheet-keyboard.controller';
-import { LocalStorageService } from '@services/local-storage.service';
 import { RouteChangeWatcherService } from '../../services/route-change-watcher.service';
 import { YesNoDialogService } from '@services/yes-no-dialog.service';
 import { FoldersService } from '../../services/folders.service';
@@ -13,7 +12,6 @@ import { emptyWorksheeteData, removeWorksheetDialogData } from './journal-worksh
 import { IColumn } from '@models/table.models';
 import { IFolder } from '@models/folder.models';
 import { IWorksheet } from '@models/worksheet.models';
-import { LocalStorageItems } from '@constants';
 
 @Component({
   selector: 'app-journal-worksheet',
@@ -23,7 +21,7 @@ import { LocalStorageItems } from '@constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JournalWorksheetComponent implements OnInit, OnDestroy {
-  public data: Observable<IColumn[]>;
+  public data$: BehaviorSubject<IColumn[]> = new BehaviorSubject<IColumn[]>([]);
   public focusedElementIndex: number;
   public currentWorksheet: IWorksheet;
 
@@ -33,7 +31,6 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly worksheetKeyboardController: WorksheetKeyboardController,
-    private readonly localStorageService: LocalStorageService,
     private readonly routeChangesService: RouteChangeWatcherService,
     private readonly yesNoDialog: YesNoDialogService,
     private readonly foldersService: FoldersService,
@@ -52,33 +49,33 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     this.subscriptionsDestroy$.next();
   }
 
-  public addStudent(): void {
-    const localSub: Subscription = this.data.subscribe((columns: IColumn[]) => {
-      columns.forEach((column) => {
-        column.cells.push('');
-      });
+  public get dataStream(): Observable<IColumn[]> {
+    return this.data$.asObservable();
+  }
 
-      this.data = of(columns);
+  public addStudent(): void {
+    const columns: IColumn[] = this.data$.getValue();
+
+    columns.forEach((column) => {
+      column.cells.push('');
     });
 
-    localSub.unsubscribe();
+    this.data$.next(columns);
   }
 
   public addDay(): void {
-    const localSub: Subscription = this.data.subscribe((columns: IColumn[]) => {
-      const cells = columns[0] && columns[0].cells.length
-        ? new Array(columns[0].cells.length).fill('')
-        : [];
+    const columns: IColumn[] = this.data$.getValue();
 
-      columns.push({
-        headerCell: '(пусто)',
-        cells
-      });
+    const cells = columns[0] && columns[0].cells.length
+      ? new Array(columns[0].cells.length).fill('')
+      : [];
 
-      this.data = of(columns);
+    columns.push({
+      headerCell: '(пусто)',
+      cells
     });
 
-    localSub.unsubscribe();
+    this.data$.next(columns);
   }
 
   public openRemoveWorksheetDialog(): void {
@@ -86,57 +83,54 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
   }
 
   public removeWorksheet(): void {
-    this.getCurrentState().then(([worksheet, folder, folderList]) => {
-      folderList.some((singleFolder: IFolder) => {
-        if (singleFolder.id === folder.id) {
-          singleFolder.worksheets = singleFolder.worksheets.filter((singleWorksheet: IWorksheet) => {
-            return singleWorksheet.id !== worksheet.id;
-          });
+    // this.getCurrentState().then(([worksheet, folder, folderList]) => {
+    //   folderList.some((singleFolder: IFolder) => {
+    //     if (singleFolder.id === folder.id) {
+    //       singleFolder.worksheets = singleFolder.worksheets.filter((singleWorksheet: IWorksheet) => {
+    //         return singleWorksheet.id !== worksheet.id;
+    //       });
 
-          this.yesNoDialog.close();
-          this.router.navigate(['/journal', folder.id]);
-          this.saveFoldersToLocalStorage(folderList);
-          this.foldersService.removeWorksheet$.next();
+    //       this.yesNoDialog.close();
+    //       this.router.navigate(['/journal', folder.id]);
+    //       this.foldersService.removeWorksheet$.next();
 
-          return singleFolder.id === folder.id;
-        }
-      });
-    });
+    //       return singleFolder.id === folder.id;
+    //     }
+    //   });
+    // });
   }
 
   public saveChanges(): void {
-    const columnsElements = [...this.elementRef.nativeElement.querySelectorAll('.column')];
-    this.getCurrentState().then(([worksheet, folder, folderList]) => {
-      const updatedData: IColumn[] = columnsElements.map((column: HTMLDivElement) => {
-        const inputs: HTMLInputElement[] = [].slice.call(column.querySelectorAll('input'), 0);
-        const cells: string[] = inputs.map((input: HTMLInputElement) => input.value);
+    // const columnsElements = [...this.elementRef.nativeElement.querySelectorAll('.column')];
+    // this.getCurrentState().then(([worksheet, folder, folderList]) => {
+    //   const updatedData: IColumn[] = columnsElements.map((column: HTMLDivElement) => {
+    //     const inputs: HTMLInputElement[] = [].slice.call(column.querySelectorAll('input'), 0);
+    //     const cells: string[] = inputs.map((input: HTMLInputElement) => input.value);
 
-        if (column.classList.contains('left-column')) {
-          return { headerCell: '', cells };
-        }
+    //     if (column.classList.contains('left-column')) {
+    //       return { headerCell: '', cells };
+    //     }
 
-        return {
-          headerCell: column.querySelector('textarea').value,
-          cells
-        };
-      });
+    //     return {
+    //       headerCell: column.querySelector('textarea').value,
+    //       cells
+    //     };
+    //   });
 
-      folderList.some((singleFolder: IFolder) => {
-        if (singleFolder.id === folder.id) {
-          singleFolder.worksheets.some((singleWorksheet: IWorksheet) => {
-            if (singleWorksheet.id === worksheet.id) {
-              singleWorksheet.content = updatedData;
-            }
+    //   folderList.some((singleFolder: IFolder) => {
+    //     if (singleFolder.id === folder.id) {
+    //       singleFolder.worksheets.some((singleWorksheet: IWorksheet) => {
+    //         if (singleWorksheet.id === worksheet.id) {
+    //           singleWorksheet.content = updatedData;
+    //         }
 
-            return singleWorksheet.id === worksheet.id;
-          });
+    //         return singleWorksheet.id === worksheet.id;
+    //       });
 
-          return singleFolder.id === folder.id;
-        }
-      });
-
-      this.saveFoldersToLocalStorage(folderList);
-    });
+    //       return singleFolder.id === folder.id;
+    //     }
+    //   });
+    // });
   }
 
   public cellFocused(target: HTMLInputElement, index: number): void {
@@ -153,18 +147,10 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
   }
 
   private initData(): void {
-    this.getCurrentState().then(([worksheet]) => {
-      const { content } = worksheet;
-
-      this.data = content && content.length !== 0
-        ? of(content)
-        : of(emptyWorksheeteData);
-
-      this.cdRef.markForCheck();
-    });
+    this.data$.next(this.route.snapshot.data.worksheetData.content as IColumn[]);
   }
 
-  private getCurrentState(): Promise<[IWorksheet, IFolder, IFolder[]]> {
+  private getCurrentState(): Promise<IWorksheet> {
     return new Promise(resolve => {
       setTimeout(() => {
         const { worksheetData } = this.route.snapshot.data;
@@ -180,15 +166,11 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     this.routeChangesService.routeChanged$.pipe(
       takeUntil(this.subscriptionsDestroy$)
     ).subscribe(_ => {
-      this.getCurrentState().then(([worksheet]) => {
-        this.data = of(worksheet.content);
+      this.getCurrentState().then((worksheet) => {
+        this.data$.next(worksheet.content);
 
         this.cdRef.markForCheck();
       });
     });
-  }
-
-  private saveFoldersToLocalStorage(folderList: IFolder[]): void {
-    this.localStorageService.setAsObject<IFolder[]>(LocalStorageItems.Folders, folderList);
   }
 }

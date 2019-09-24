@@ -3,7 +3,7 @@
     <span class="folder-name">
       <app-double-state-field
         #folderNameRef
-        [value]="folder.name"
+        [value]="folder?.name"
         (dblclick)="changeFolderNameState(folderNameRef)"
         (valueChanged)="changeFolderName($event)"
       >
@@ -45,7 +45,7 @@
   <div pageContent>
     <div class="worksheet-links-list">
       <a
-        *ngFor="let worksheet of folder.worksheets; let first = first; let last = last"
+        *ngFor="let worksheet of (worksheetsStream | async); let first = first; let last = last"
         class="worksheet-links-list__item"
         [class.first]="first"
         [class.last]="last"

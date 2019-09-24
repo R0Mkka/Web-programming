@@ -14,7 +14,6 @@ export class FoldersState {
   @Action(FoldersActions.InitFoldersAction)
   public initFolders(ctx: ctxType, action: { folders: IFolder[] }): void {
     ctx.setState([
-      ...ctx.getState(),
       ...action.folders
     ]);
   }

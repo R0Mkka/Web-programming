@@ -1,4 +1,4 @@
-<ng-container *ngFor="let column of (data | async); let first = first; let columnIndex = index">
+<ng-container *ngFor="let column of (dataStream | async); let first = first; let columnIndex = index">
   <ng-container *ngIf="first">
     <div class="column left-column">
       <div class="actions-panel">

@@ -18,9 +18,9 @@
         class="folders__item"
         *ngIf="folder.accessType === section.accessType"
         [name]="folder.name"
-        [routerLink]="folder.id"
         [dragEnabled]="true"
         [dragData]="folder"
+        [routerLink]="folder.id"
       >
       </app-journal-folder-card>
     </ng-container>

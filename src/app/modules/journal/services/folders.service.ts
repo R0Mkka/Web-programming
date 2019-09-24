@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, share } from 'rxjs/operators';
 
 import { LocalStorageService } from '@services/local-storage.service';
 
@@ -29,8 +29,13 @@ export class FoldersService implements OnDestroy {
     this.destroySubscriptions$.next();
   }
 
-  public initFolders(): Observable<IFolder[]> {
-    return this.http.get<IFolder[]>(`${SERVER_URL}/${DBTables.Folders}`);
+  public getFolders(): Observable<IFolder[]> {
+    return this.http.get<IFolder[]>(`${SERVER_URL}/${DBTables.Folders}`)
+      .pipe(share());
+  }
+
+  public getFolderById(folderId: string): Observable<IFolder> {
+    return this.http.get<IFolder>(`${SERVER_URL}/${DBTables.Folders}/${folderId}`);
   }
 
   public addFolder(folder: IFolder): Observable<IFolder> {

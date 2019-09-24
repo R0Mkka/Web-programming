@@ -43,7 +43,7 @@ export class StudentReviewsComponent implements OnInit {
   public removeReview(removingReview: IStudentReview): void {
     const reviewList: IStudentReview[] = this.studentReviews$.getValue();
 
-    this.studentReviews$.next(reviewList.filter(ref => ref !== removingReview));
+    this.studentReviews$.next(reviewList.filter((itemRef: IStudentReview) => itemRef !== removingReview));
 
     this.studentReviewsService.deleteStudentReview(removingReview).subscribe();
   }

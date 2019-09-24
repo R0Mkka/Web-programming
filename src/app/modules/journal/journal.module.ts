@@ -12,6 +12,7 @@ import { DoubleStateFieldModule } from '@shared/double-state-field/double-state-
 import { JournalRoutingModule } from './journal-routing.module';
 
 import { WorksheetKeyboardController } from './components/journal-worksheet/journal-worksheet-keyboard.controller';
+import { FolderResolver } from './services/folder.resolver';
 import { DataResolve } from './services/data-resolve.service';
 
 import { JournalComponent } from './components/journal/journal.component';
@@ -47,6 +48,7 @@ import { JournalWorksheetComponent } from './components/journal-worksheet/journa
   ],
   providers: [
     WorksheetKeyboardController,
+    FolderResolver,
     DataResolve
   ],
   exports: []

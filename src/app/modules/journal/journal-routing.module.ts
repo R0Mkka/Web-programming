@@ -5,6 +5,7 @@ import { FolderGuard } from '@guards/folder.guard';
 import { FolderWorksheetGuard } from '@guards/folder-worksheet.guard';
 
 import { DataResolve } from './services/data-resolve.service';
+import { FolderResolver } from './services/folder.resolver';
 
 import { JournalComponent } from './components/journal/journal.component';
 import { JournalListOfWorksheetsComponent } from './components/journal-list-of-worksheets/journal-list-of-worksheets.component';
@@ -21,6 +22,9 @@ const routes: Routes = [
     component: JournalListOfWorksheetsComponent,
     canActivate: [FolderGuard],
     canActivateChild: [FolderWorksheetGuard],
+    resolve: {
+      folderData: FolderResolver
+    },
     children: [
       {
         path: '',

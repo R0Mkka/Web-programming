@@ -4,12 +4,14 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
 import { SpinnerState } from './states/spinner.state';
 import { FoldersState } from './states/folders.state';
+import { WorksheetsState } from './states/worksheets.state';
 
 @NgModule({
   imports: [
     NgxsModule.forRoot([
       SpinnerState,
-      FoldersState
+      FoldersState,
+      WorksheetsState
     ]),
     NgxsLoggerPluginModule.forRoot()
   ],
