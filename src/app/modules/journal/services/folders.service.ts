@@ -43,7 +43,11 @@ export class FoldersService implements OnDestroy {
   }
 
   public deleteFolder(): void {
-
+    // some comments here
+    // some more comments
+    // and
+    // even
+    // more
   }
 
   public editFolder(folder: IFolder): Observable<IFolder> {
