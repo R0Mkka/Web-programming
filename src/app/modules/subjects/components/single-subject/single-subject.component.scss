@@ -12,6 +12,9 @@
   display: flex;
   justify-content: center;
   height: 50px;
+  border-width: 1px 0 1px 0;
+  border-style: solid;
+  border-color: var(--primary-color);
 
   &__item {
     cursor: pointer;

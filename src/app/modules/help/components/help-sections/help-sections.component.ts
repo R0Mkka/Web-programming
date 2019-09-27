@@ -14,8 +14,7 @@ export class HelpSectionsComponent {
     {
       label: ApplicationSections.StudentReviews,
       items: [
-        { label: 'Добавить отзыв', path: 'add-student-review' },
-        { label: 'Удалить отзыв', path: '/remove-student-review' }
+        { label: 'Добавить отзыв', path: 'add-student-review' }
       ]
     }
   ];

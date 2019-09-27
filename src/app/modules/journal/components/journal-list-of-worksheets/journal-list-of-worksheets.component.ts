@@ -67,9 +67,9 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
     return this.folder.worksheets.length < MAX_WORKSHEETS_COUNT;
   }
 
-  public renameCurrentFolder(): void {
-    console.log('renameCurrentFolder');
-  }
+  // public renameCurrentFolder(): void {
+  //   console.log('renameCurrentFolder');
+  // }
 
   public removeCurrentFolder(): void {
     this.yesNoDialog.open(onRemoveDialogData(this));
