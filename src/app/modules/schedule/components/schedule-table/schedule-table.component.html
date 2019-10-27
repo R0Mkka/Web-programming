@@ -3,7 +3,7 @@
     *ngFor="let headerCell of tableHeader; let index = index; trackBy: trackByFunc"
     [ngClass]="[
       headerCell.className ? headerCell.className : '',
-      index === currentWeekDayIndex + 2 ? 'active' : ''
+      (index === currentWeekDayIndex + 2) && index !== 1 ? 'active' : ''
     ]"
     class="cell cell-header"
   >

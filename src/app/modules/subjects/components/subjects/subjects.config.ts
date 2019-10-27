@@ -8,39 +8,39 @@ export const subjects: ISubject[] = [
     accessName: 'web-programming',
     courseNumber: 4
   },
-  {
-    title: 'Программирование для Интернет',
-    description: 'Какое-то описание',
-    link: 'web-programming/plan',
-    accessName: 'web-programming',
-    courseNumber: 4
-  },
-  {
-    title: 'Программирование для Интернет',
-    description: 'Какое-то описание',
-    link: 'web-programming/plan',
-    accessName: 'web-programming',
-    courseNumber: 4
-  },
-  {
-    title: 'Программирование для Интернет',
-    description: 'Какое-то описание',
-    link: 'web-programming/plan',
-    accessName: 'web-programming',
-    courseNumber: 4
-  },
-  {
-    title: 'Программирование для Интернет',
-    description: 'Какое-то описание',
-    link: 'web-programming/plan',
-    accessName: 'web-programming',
-    courseNumber: 4
-  },
-  {
-    title: 'Программирование для Интернет',
-    description: 'Какое-то описание',
-    link: 'web-programming/plan',
-    accessName: 'web-programming',
-    courseNumber: 3
-  }
+  // {
+  //   title: 'Программирование для Интернет',
+  //   description: 'Какое-то описание',
+  //   link: 'web-programming/plan',
+  //   accessName: 'web-programming',
+  //   courseNumber: 4
+  // },
+  // {
+  //   title: 'Программирование для Интернет',
+  //   description: 'Какое-то описание',
+  //   link: 'web-programming/plan',
+  //   accessName: 'web-programming',
+  //   courseNumber: 4
+  // },
+  // {
+  //   title: 'Программирование для Интернет',
+  //   description: 'Какое-то описание',
+  //   link: 'web-programming/plan',
+  //   accessName: 'web-programming',
+  //   courseNumber: 4
+  // },
+  // {
+  //   title: 'Программирование для Интернет',
+  //   description: 'Какое-то описание',
+  //   link: 'web-programming/plan',
+  //   accessName: 'web-programming',
+  //   courseNumber: 4
+  // },
+  // {
+  //   title: 'Программирование для Интернет',
+  //   description: 'Какое-то описание',
+  //   link: 'web-programming/plan',
+  //   accessName: 'web-programming',
+  //   courseNumber: 3
+  // }
 ];

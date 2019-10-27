@@ -21,6 +21,7 @@ import {
 import {
   NewStudentReviewDialogComponent
 } from './modules/student-reviews/components/new-student-review-dialog/new-student-review-dialog.component';
+import { NewSubjectDialogComponent } from './modules/subjects/components/new-subject-dialog/new-subject-dialog.component';
 import { YesNoDialogComponent } from './shared/yes-no-dialog/yes-no-dialog.component';
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { YesNoDialogComponent } from './shared/yes-no-dialog/yes-no-dialog.compo
     NewFolderDialogComponent,
     EditScheduleItemDialogComponent,
     NewStudentReviewDialogComponent,
+    NewSubjectDialogComponent,
     YesNoDialogComponent
   ],
   providers: [],

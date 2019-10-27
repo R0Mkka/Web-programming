@@ -4,7 +4,8 @@ export enum DBTables {
   Schedule = 'schedule',
   Folders = 'folders',
   Worksheets = 'worksheets',
-  StudentReviews = 'student-reviews'
+  StudentReviews = 'student-reviews',
+  Subjects = 'subjects',
 }
 
 export enum ApplicationSections {

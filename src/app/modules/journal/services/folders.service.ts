@@ -1,12 +1,12 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngxs/store';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, share } from 'rxjs/operators';
 
-import { LocalStorageService } from '@services/local-storage.service';
-
 import { IFolder } from '@models/folder.models';
-import { LocalStorageItems, SERVER_URL, DBTables } from '@constants';
+import { SERVER_URL, DBTables } from '@constants';
+import { DeleteFolderAction } from '@store/actions/folders.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class FoldersService implements OnDestroy {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly localStorageService: LocalStorageService
+    private readonly store: Store,
   ) {
     this.subOnFoldersRemove();
   }
@@ -42,12 +42,8 @@ export class FoldersService implements OnDestroy {
     return this.http.post<IFolder>(`${SERVER_URL}/${DBTables.Folders}`, folder);
   }
 
-  public deleteFolder(): void {
-    // some comments here
-    // some more comments
-    // and
-    // even
-    // more
+  public deleteFolder(folderId: string): Observable<any> {
+    return this.http.delete<any>(`${SERVER_URL}/${DBTables.Folders}/${folderId}`);
   }
 
   public editFolder(folder: IFolder): Observable<IFolder> {
@@ -58,14 +54,9 @@ export class FoldersService implements OnDestroy {
     this.removeFolder$.pipe(
       takeUntil(this.destroySubscriptions$)
     ).subscribe((folder: IFolder) => {
-      const updatedFolders: IFolder[] = this.localStorageService
-        .getAsObject<IFolder[]>(LocalStorageItems.Folders)
-        .filter((singleFolder: IFolder) => {
-          return singleFolder.id !== folder.id;
-        });
-
-      this.localStorageService
-        .setAsObject<IFolder[]>(LocalStorageItems.Folders, updatedFolders);
+      this.deleteFolder(folder.id).subscribe(_ => {
+        this.store.dispatch(new DeleteFolderAction(folder.id));
+      });
     });
   }
 }

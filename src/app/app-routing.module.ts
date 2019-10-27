@@ -20,11 +20,6 @@ const routes: Routes = [
       () => import('./modules/journal/journal.module').then(m => m.JournalModule)
   },
   {
-    path: 'supervision',
-    loadChildren:
-      () => import('./modules/supervision/supervision.module').then(m => m.SupervisionModule)
-  },
-  {
     path: 'student-reviews',
     loadChildren:
       () => import('./modules/student-reviews/student-reviews.module').then(m => m.StudentReviewsModule)

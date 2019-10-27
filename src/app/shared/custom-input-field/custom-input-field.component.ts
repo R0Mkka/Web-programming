@@ -43,6 +43,8 @@ export class CustomInputFieldComponent implements ControlValueAccessor {
         return 'Поле должно быть заполнено!';
       case !!controlErrors.maxlength:
         return 'Превышено допустимое количество символов!';
+      case !!controlErrors.max:
+        return 'Превышено максимальное значение!';
       default:
         return '';
     }

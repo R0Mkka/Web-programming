@@ -1,0 +1,27 @@
+<app-dialog-layout [dialogRef]="dialogRef">
+  <ng-container dialogTitle>
+    <mat-icon class="title-icon">menu_book</mat-icon>
+    <span class="title-text">Добавление дисциплины</span>
+  </ng-container>
+
+  <ng-container dialogContent>
+    <div class="new-subject-form" [formGroup]="newSubjectForm">
+      <app-custom-input-field
+        class="field"
+        *ngFor="let field of subjectFormConfig"
+        [id]="field.id"
+        [type]="field.type"
+        [label]="field.label"
+        [matIcon]="field?.matIcon"
+        [placeholder]="field.placeholder"
+        [validators]="field.control.validators"
+        [formControlName]="field.control.name"
+      >
+      </app-custom-input-field>
+    </div>
+  </ng-container>
+
+  <ng-container dialogActions>
+    <button class="primary-button" [disabled]="newSubjectForm.invalid" (click)="addSubject()">Добавить</button>
+  </ng-container>
+</app-dialog-layout>

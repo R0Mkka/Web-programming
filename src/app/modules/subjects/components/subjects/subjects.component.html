@@ -5,7 +5,7 @@
 
   <div headerActions>
     <div class="header-actions">
-      <button class="primary-button" matTooltip="Добавить дисциплину">
+      <button class="primary-button" matTooltip="Добавить дисциплину" (click)="openNewSubjectDialog()">
         <mat-icon>add</mat-icon>
         <mat-icon>menu_book</mat-icon>
       </button>
@@ -17,7 +17,7 @@
       <a
         class="subjects__item"
         *ngFor="let subject of subjects"
-        [routerLink]="subject.link"
+        [routerLink]="subject.accessLink"
       >
         <app-subject-card [subject]="subject"></app-subject-card>
       </a>
