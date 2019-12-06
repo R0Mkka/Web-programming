@@ -1,16 +1,15 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { WorksheetKeyboardController } from './journal-worksheet-keyboard.controller';
 import { RouteChangeWatcherService } from '../../services/route-change-watcher.service';
+import { WorksheetsService } from '../../services/worksheets.service';
 import { YesNoDialogService } from '@services/yes-no-dialog.service';
-import { FoldersService } from '../../services/folders.service';
 
 import { emptyWorksheeteData, removeWorksheetDialogData } from './journal-worksheet.config';
 import { IColumn } from '@models/table.models';
-import { IFolder } from '@models/folder.models';
 import { IWorksheet } from '@models/worksheet.models';
 
 @Component({
@@ -29,11 +28,10 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly router: Router,
     private readonly worksheetKeyboardController: WorksheetKeyboardController,
     private readonly routeChangesService: RouteChangeWatcherService,
     private readonly yesNoDialog: YesNoDialogService,
-    private readonly foldersService: FoldersService,
+    private readonly worksheetsService: WorksheetsService,
     private readonly elementRef: ElementRef,
     private readonly cdRef: ChangeDetectorRef
   ) { }
@@ -100,37 +98,28 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     // });
   }
 
-  public saveChanges(): void {
-    // const columnsElements = [...this.elementRef.nativeElement.querySelectorAll('.column')];
-    // this.getCurrentState().then(([worksheet, folder, folderList]) => {
-    //   const updatedData: IColumn[] = columnsElements.map((column: HTMLDivElement) => {
-    //     const inputs: HTMLInputElement[] = [].slice.call(column.querySelectorAll('input'), 0);
-    //     const cells: string[] = inputs.map((input: HTMLInputElement) => input.value);
+  public async saveChanges(): Promise<void> {
+    const columnsElements = [...this.elementRef.nativeElement.querySelectorAll('.column')];
 
-    //     if (column.classList.contains('left-column')) {
-    //       return { headerCell: '', cells };
-    //     }
+    const updatedData: IColumn[] = columnsElements.map((column: HTMLDivElement) => {
+      const inputs: HTMLInputElement[] = [].slice.call(column.querySelectorAll('input'), 0);
+      const cells: string[] = inputs.map((input: HTMLInputElement) => input.value);
 
-    //     return {
-    //       headerCell: column.querySelector('textarea').value,
-    //       cells
-    //     };
-    //   });
+      if (column.classList.contains('left-column')) {
+        return { headerCell: '', cells };
+      }
 
-    //   folderList.some((singleFolder: IFolder) => {
-    //     if (singleFolder.id === folder.id) {
-    //       singleFolder.worksheets.some((singleWorksheet: IWorksheet) => {
-    //         if (singleWorksheet.id === worksheet.id) {
-    //           singleWorksheet.content = updatedData;
-    //         }
+      return {
+        headerCell: column.querySelector('textarea').value,
+        cells
+      };
+    });
 
-    //         return singleWorksheet.id === worksheet.id;
-    //       });
+    await this.getCurrentState();
 
-    //       return singleFolder.id === folder.id;
-    //     }
-    //   });
-    // });
+    this.currentWorksheet.content = updatedData;
+
+    this.worksheetsService.editWorksheet(this.currentWorksheet).subscribe();
   }
 
   public cellFocused(target: HTMLInputElement, index: number): void {
@@ -155,7 +144,9 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         const { worksheetData } = this.route.snapshot.data;
 
-        this.currentWorksheet = worksheetData[0];
+        this.currentWorksheet = worksheetData;
+
+        this.cdRef.markForCheck();
 
         resolve(worksheetData);
       }, 0);
@@ -166,10 +157,12 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     this.routeChangesService.routeChanged$.pipe(
       takeUntil(this.subscriptionsDestroy$)
     ).subscribe(_ => {
+      console.log('changed');
       this.getCurrentState().then((worksheet) => {
+        console.log(this.route.snapshot.data);
         this.data$.next(worksheet.content);
 
-        this.cdRef.markForCheck();
+        this.cdRef.detectChanges();
       });
     });
   }

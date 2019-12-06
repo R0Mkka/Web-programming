@@ -28,4 +28,8 @@ export class WorksheetsService {
   public addWorksheet(worksheet: IWorksheet): Observable<IWorksheet> {
     return this.http.post<IWorksheet>(`${SERVER_URL}/${DBTables.Worksheets}`, JSON.stringify(worksheet), { headers });
   }
+
+  public editWorksheet(worksheet: IWorksheet): Observable<IWorksheet> {
+    return this.http.patch<IWorksheet>(`${SERVER_URL}/${DBTables.Worksheets}/${worksheet.id}`, worksheet);
+  }
 }

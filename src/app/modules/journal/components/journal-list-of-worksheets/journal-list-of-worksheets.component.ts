@@ -105,23 +105,9 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
   }
 
   public changeFolderName(newName: string): void {
-    const folders: IFolder[] = this.localStorageService
-      .getAsObject<IFolder[]>(LocalStorageItems.Folders);
+    this.folder.name = newName;
 
-    folders.some((folder: IFolder) => {
-      if (folder.id === this.folder.id) {
-        folder.name = newName;
-
-        this.folder = folder;
-
-        return true;
-      }
-    });
-
-    this.cdRef.markForCheck();
-
-    this.localStorageService
-      .setAsObject<IFolder[]>(LocalStorageItems.Folders, folders);
+    this.foldersSerivce.editFolder(this.folder).subscribe();
   }
 
   public changeWorksheetTitleState(componentRef: DoubleStateFieldComponent): void {
@@ -133,31 +119,25 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
   }
 
   public setNewWorksheetTitle(newTitle: string, worksheet: IWorksheet): void {
+    if (worksheet.title === newTitle) {
+      return;
+    }
+
     worksheet.title = newTitle;
 
-    this.folder.worksheets.some((singleWorksheet: IWorksheet) => {
-      if (singleWorksheet.id === worksheet.id) {
-        singleWorksheet = worksheet;
-      }
+    // this.folder.worksheets.some((singleWorksheet: IWorksheet) => {
+    //   if (singleWorksheet.id === worksheet.id) {
+    //     singleWorksheet = worksheet;
+    //   }
 
-      return singleWorksheet.id === worksheet.id;
-    });
+    //   return singleWorksheet.id === worksheet.id;
+    // });
 
-    const folders: IFolder[] = this.localStorageService
-      .getAsObject<IFolder[]>(LocalStorageItems.Folders);
+    console.log(newTitle);
 
-    folders.some((folder: IFolder) => {
-      if (folder.id === this.folder.id) {
-        folder.worksheets = this.folder.worksheets;
-
-        return true;
-      }
-    });
+    this.worksheetsService.editWorksheet(worksheet).subscribe();
 
     this.cdRef.markForCheck();
-
-    this.localStorageService
-      .setAsObject<IFolder[]>(LocalStorageItems.Folders, folders);
   }
 
   private initFolder(): void {
