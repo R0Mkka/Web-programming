@@ -32,4 +32,8 @@ export class WorksheetsService {
   public editWorksheet(worksheet: IWorksheet): Observable<IWorksheet> {
     return this.http.patch<IWorksheet>(`${SERVER_URL}/${DBTables.Worksheets}/${worksheet.id}`, worksheet);
   }
+
+  public deleteWorksheet(worksheetId: string): Observable<IWorksheet> {
+    return this.http.delete<IWorksheet>(`${SERVER_URL}/${DBTables.Worksheets}/${worksheetId}`, { headers });
+  }
 }

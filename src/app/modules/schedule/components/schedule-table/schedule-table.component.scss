@@ -86,6 +86,14 @@
       }
     }
 
+    &.white {
+      background-image: linear-gradient(to right, #ffffff -80%, #eeeeee);
+    }
+
+    &.green {
+      background-image: linear-gradient(to right, #dcffd6 -80%, #eeeeee);
+    }
+
     &.active {
       background-color: var(--white);
     }

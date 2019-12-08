@@ -1,11 +1,13 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ElementRef, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatMenuTrigger } from '@angular/material';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { WorksheetKeyboardController } from './journal-worksheet-keyboard.controller';
 import { RouteChangeWatcherService } from '../../services/route-change-watcher.service';
 import { WorksheetsService } from '../../services/worksheets.service';
+import { FoldersService } from '../../services/folders.service';
 import { YesNoDialogService } from '@services/yes-no-dialog.service';
 
 import { emptyWorksheeteData, removeWorksheetDialogData } from './journal-worksheet.config';
@@ -28,10 +30,12 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly route: ActivatedRoute,
+    private router: Router,
     private readonly worksheetKeyboardController: WorksheetKeyboardController,
     private readonly routeChangesService: RouteChangeWatcherService,
     private readonly yesNoDialog: YesNoDialogService,
     private readonly worksheetsService: WorksheetsService,
+    private foldersService: FoldersService,
     private readonly elementRef: ElementRef,
     private readonly cdRef: ChangeDetectorRef
   ) { }
@@ -76,26 +80,18 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     this.data$.next(columns);
   }
 
-  public openRemoveWorksheetDialog(): void {
+  public async openRemoveWorksheetDialog(): Promise<void> {
+    this.currentWorksheet = await this.getCurrentState();
+
     this.yesNoDialog.open(removeWorksheetDialogData(this));
   }
 
   public removeWorksheet(): void {
-    // this.getCurrentState().then(([worksheet, folder, folderList]) => {
-    //   folderList.some((singleFolder: IFolder) => {
-    //     if (singleFolder.id === folder.id) {
-    //       singleFolder.worksheets = singleFolder.worksheets.filter((singleWorksheet: IWorksheet) => {
-    //         return singleWorksheet.id !== worksheet.id;
-    //       });
+    this.worksheetsService.deleteWorksheet(this.currentWorksheet.id).subscribe(() => {
+      this.foldersService.removeWorksheet$.next(this.currentWorksheet as any);
 
-    //       this.yesNoDialog.close();
-    //       this.router.navigate(['/journal', folder.id]);
-    //       this.foldersService.removeWorksheet$.next();
-
-    //       return singleFolder.id === folder.id;
-    //     }
-    //   });
-    // });
+      this.yesNoDialog.close();
+    });
   }
 
   public async saveChanges(): Promise<void> {
@@ -115,7 +111,7 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
       };
     });
 
-    await this.getCurrentState();
+    this.currentWorksheet = await this.getCurrentState();
 
     this.currentWorksheet.content = updatedData;
 
@@ -136,19 +132,22 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
   }
 
   private initData(): void {
-    this.data$.next(this.route.snapshot.data.worksheetData.content as IColumn[]);
+    this.worksheetsService.getWorksheetById(this.route.snapshot.params.worksheetId)
+        .subscribe(value => {
+          this.data$.next(value.content);
+
+          this.cdRef.detectChanges();
+        });
   }
 
   private getCurrentState(): Promise<IWorksheet> {
     return new Promise(resolve => {
       setTimeout(() => {
-        const { worksheetData } = this.route.snapshot.data;
 
-        this.currentWorksheet = worksheetData;
-
-        this.cdRef.markForCheck();
-
-        resolve(worksheetData);
+        this.worksheetsService.getWorksheetById(this.route.snapshot.params.worksheetId)
+          .subscribe(value => {
+            resolve(value);
+          });
       }, 0);
     });
   }
@@ -157,13 +156,7 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     this.routeChangesService.routeChanged$.pipe(
       takeUntil(this.subscriptionsDestroy$)
     ).subscribe(_ => {
-      console.log('changed');
-      this.getCurrentState().then((worksheet) => {
-        console.log(this.route.snapshot.data);
-        this.data$.next(worksheet.content);
-
-        this.cdRef.detectChanges();
-      });
+      this.initData();
     });
   }
 }

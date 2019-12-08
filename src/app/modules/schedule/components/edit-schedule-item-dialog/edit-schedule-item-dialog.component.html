@@ -12,8 +12,8 @@
 <div class="content">
   <div *ngIf="data.more" class="additional-info">
     <span>{{ data.more.weekDay }}, </span>
-    <span>{{ data.more.classIndex }} пара</span>
-    <span>({{ data.more.classTime }})</span>
+    <span>{{ data.more.lessonId }} пара</span>
+    <span>({{ data.more.lessonTime }})</span>
   </div>
 
   <div [formGroup]="editScheduleItemForm" class="edit-schedule-item-form">

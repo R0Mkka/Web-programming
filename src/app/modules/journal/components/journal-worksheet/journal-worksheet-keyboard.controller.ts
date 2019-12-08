@@ -17,10 +17,16 @@ export class WorksheetKeyboardController {
         return;
       }
 
+      if (event.shiftKey && event.key === Keyboard.Tab) {
+        event.preventDefault();
+        this.moveLeft(target, context.focusedElementIndex);
+        return;
+      }
+
       // TODO: Tab and Sthift + Tab
       switch (event.key) {
-        case Keyboard.ArrowDown:
         case Keyboard.Enter:
+        case Keyboard.ArrowDown:
           event.preventDefault();
           this.moveDown(target);
           break;
@@ -28,6 +34,7 @@ export class WorksheetKeyboardController {
           event.preventDefault();
           this.moveUp(target);
           break;
+        case Keyboard.Tab:
         case Keyboard.ArrowRight:
           event.preventDefault();
           this.moveRight(target, context.focusedElementIndex);

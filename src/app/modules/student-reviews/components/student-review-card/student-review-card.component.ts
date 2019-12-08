@@ -1,5 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
+import { YesNoDialogService } from '@services/yes-no-dialog.service';
+
 import { IStudentReview, StudentReviewFields } from '@models/review.models';
 
 @Component({
@@ -17,7 +19,22 @@ export class StudentReviewCardComponent {
 
   public readonly fields = StudentReviewFields;
 
+  constructor(
+    private yesNoDialog: YesNoDialogService,
+  ) {}
+
   public removeReview(): void {
-    this.remove.emit();
+    this.yesNoDialog.open({
+      htmlMessage: `
+        Вы действительно хотите удалить отзыв?
+        <br />
+        Восстановить данные будет невозможно.
+      `,
+      onYes: () => {
+        this.remove.emit();
+
+        this.yesNoDialog.close();
+      },
+    });
   }
 }

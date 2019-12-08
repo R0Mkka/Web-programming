@@ -34,6 +34,7 @@ export enum Keyboard {
   Enter = 'Enter',
   Space = 'Space',
   Esc = 'Escape',
+  Tab = 'Tab',
   ArrowUp = 'ArrowUp',
   ArrowDown = 'ArrowDown',
   ArrowLeft = 'ArrowLeft',

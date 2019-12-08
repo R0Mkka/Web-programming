@@ -2,15 +2,14 @@ import { Subscription } from 'rxjs';
 import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 
 import { DialogService } from '@shared/dialog/dialog.service';
-import { LocalStorageService } from '@services/local-storage.service';
 import { ScheduleService } from '../../services/schedule.service';
+import { ScheduleHttpService } from '../../services/schedule-http.service';
 
 import { EditScheduleItemDialogComponent } from '../edit-schedule-item-dialog/edit-schedule-item-dialog.component';
 
 import { WeekColors } from '../../schedule.config';
-import { LocalStorageItems } from '@constants';
 import { IScheduleItem, IScheduleColumn } from '@models/subject';
-import { scheduleConfig, tableHeaderConfig, ITableHeaderItem } from './schedule-table.config';
+import { tableHeaderConfig, ITableHeaderItem } from './schedule-table.config';
 
 @Component({
   selector: 'app-schedule-table',
@@ -20,6 +19,11 @@ import { scheduleConfig, tableHeaderConfig, ITableHeaderItem } from './schedule-
 })
 export class ScheduleTableComponent implements OnInit, OnDestroy {
   @Input() public weekColor: WeekColors;
+  @Input() set clearSchedule(value: boolean) {
+    if (value) {
+      this.triggerClearSchedule();
+    }
+  }
 
   public tableHeader: ITableHeaderItem[] = tableHeaderConfig;
   public schedule: IScheduleColumn[];
@@ -29,8 +33,8 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly dialogService: DialogService,
-    private readonly localStorageService: LocalStorageService,
     private readonly scheduleService: ScheduleService,
+    private scheduleHttpService: ScheduleHttpService,
     private readonly cdRef: ChangeDetectorRef
   ) { }
 
@@ -53,6 +57,10 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
     };
   }
 
+  public get weekColorClass(): string {
+    return this.weekColor === WeekColors.Green ? 'green' : 'white';
+  }
+
   public checkIsActive(scheduleItem: IScheduleColumn): boolean {
     const [hoursFrom, minutesFrom] = scheduleItem.from.split(':');
     const [hoursTo, minutesTo] = scheduleItem.to.split(':');
@@ -71,8 +79,8 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
         data: {
           object: this.currentWeekSet(scheduleColumn)[itemIndex],
           more: {
-            classIndex: scheduleColumn.index,
-            classTime: `${scheduleColumn.from} - ${scheduleColumn.to}`,
+            lessonId: scheduleColumn.id,
+            lessonTime: `${scheduleColumn.from} - ${scheduleColumn.to}`,
             weekDay: this.tableHeader[itemIndex + 2].label
           }
         }
@@ -86,8 +94,13 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
         this.currentWeekSet(scheduleColumn)[itemIndex] = result;
       }
 
-      this.cdRef.detectChanges();
-      this.scheduleService.saveScheduleToLocalStorage(this.schedule);
+      this.cdRef.markForCheck();
+
+      const modifiedLessonInfo = this.schedule.find((scheduleLesson: IScheduleColumn) => scheduleColumn.id === scheduleLesson.id);
+
+      this.scheduleHttpService.modifySheduleLessonInfo(modifiedLessonInfo).subscribe(() => {
+        this.initSchedule();
+      });
 
       localSub.unsubscribe();
     });
@@ -102,9 +115,11 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
   }
 
   private initSchedule(): void {
-    this.schedule = this.localStorageService.has(LocalStorageItems.Schedule)
-      ? this.localStorageService.getAsObject<IScheduleColumn[]>(LocalStorageItems.Schedule)
-      : scheduleConfig;
+    this.scheduleHttpService.getSchedule().subscribe((schedule: IScheduleColumn[]) => {
+      this.schedule = schedule;
+
+      this.cdRef.detectChanges();
+    });
   }
 
   private newConfiguredDate(now: Date, hours: string, minutes: string): Date {
@@ -117,5 +132,11 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
       now.getSeconds(),
       now.getMilliseconds()
     );
+  }
+
+  private triggerClearSchedule(): void {
+    this.scheduleHttpService.clearSchedule().subscribe(() => {
+      this.initSchedule();
+    });
   }
 }

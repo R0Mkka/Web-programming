@@ -4,24 +4,37 @@
       {{ subject?.title }}
     </span>
 
-    <span *ngIf="subject.courseNumber">
-      ({{ subject.courseNumber }} курс)
+    <span *ngIf="subject?.courseNumber">
+      ({{ subject?.courseNumber }} курс)
     </span>
   </div>
 
   <div headerActions>
     <div class="header-actions">
-      <button class="secondary-button back-button" (click)="returnBack()">
-        <span>Назад</span>
+      <button
+        class="header-actions__item primary-button-square-35px"
+        matTooltip="Удалить дисциплину"
+        (click)="openRemoveSubjectDialog()"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <button
+        class="header-actions__item primary-button-square-35px"
+        matTooltip="Назад"
+        (click)="returnBack()"
+      >
+        <mat-icon>arrow_back</mat-icon>
       </button>
     </div>
   </div>
 
   <div pageContent>
     <div class="content">
-      <ng-container *ngIf="subject.description">
+      <ng-container *ngIf="subject?.description">
         <div class="subject-description">
-          <span>{{ subject.description }}</span>
+          <span>Описание курса: </span>
+          <span>{{ subject?.description }}</span>
         </div>
       </ng-container>
 

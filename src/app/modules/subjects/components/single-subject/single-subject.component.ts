@@ -1,12 +1,12 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { LocalStorageService } from '@services/local-storage.service';
+import { SubjectsService } from '../../services/subjects.service';
+import { YesNoDialogService } from '@services/yes-no-dialog.service';
 
-import { LocalStorageItems } from '@constants';
 import { tabsConfig } from './single-subject.config';
-import { ISubject } from '@models/subject';
 import { ILink } from '@models/link.models';
+import { Subject } from '../new-subject-dialog/subject';
 
 @Component({
   selector: 'app-single-subject',
@@ -15,25 +15,44 @@ import { ILink } from '@models/link.models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SingleSubjectComponent implements OnInit {
-  public subject: ISubject;
+  public subject: Subject;
   public readonly tabs: ILink[] = tabsConfig;
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
-    private readonly localStorage: LocalStorageService
+    private subjectsService: SubjectsService,
+    private yesNoDialog: YesNoDialogService,
+    private cdRef: ChangeDetectorRef,
   ) { }
 
   public ngOnInit(): void {
-    const subjectName = this.route.snapshot.paramMap.get('subject');
+    const subjectId = this.route.snapshot.paramMap.get('subject');
 
-    if (!this.localStorage.has(LocalStorageItems.Subjects)) {
-      this.localStorage.set(LocalStorageItems.Subjects, JSON.stringify({}));
+    this.subjectsService.getSubjectById(subjectId)
+      .subscribe(subject => {
+        this.subject = subject;
 
-      return;
-    }
+        this.cdRef.detectChanges();
+      });
+  }
 
-    this.subject = this.localStorage.getAsObject<any>(LocalStorageItems.Subjects)[subjectName];
+  public openRemoveSubjectDialog(): void {
+    this.yesNoDialog.open({
+      htmlMessage: `
+        Вы дейсвительно хотите удалить дисциплину "${this.subject.title}"?
+        <br />
+        Восстановить данные будет невозможно.
+      `,
+      onYes: () => {
+        this.subjectsService.deleteSubject(this.subject.id)
+          .subscribe(() => {
+            this.yesNoDialog.close();
+
+            this.returnBack();
+          });
+      }
+    });
   }
 
   public returnBack(): void {

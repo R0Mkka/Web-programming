@@ -6,6 +6,7 @@ import { MatIconModule, MatTooltipModule } from '@angular/material';
 import { InnerPageModule } from '@shared/inner-page/inner-page.module';
 import { DialogLayoutModule } from '@shared/dialog-layout/dialog-layout.module';
 import { CustomInputFieldModule } from '@shared/custom-input-field/custom-input-field.module';
+import { YesNoDialogModule } from '@shared/yes-no-dialog/yes-no-dialog.module';
 import { SubjectsRoutingModule } from './subjects-routing.module';
 
 import { SubjectsComponent } from './components/subjects/subjects.component';
@@ -27,6 +28,7 @@ import { NewSubjectDialogComponent } from './components/new-subject-dialog/new-s
     InnerPageModule,
     DialogLayoutModule,
     CustomInputFieldModule,
+    YesNoDialogModule,
     SubjectsRoutingModule
   ],
   declarations: [

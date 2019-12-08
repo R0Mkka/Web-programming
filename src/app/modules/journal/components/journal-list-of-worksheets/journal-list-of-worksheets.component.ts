@@ -11,7 +11,6 @@ import { FoldersService } from '../../services/folders.service';
 import { DoubleStateFieldComponent, FieldStates } from '@shared/double-state-field/double-state-field.component';
 
 import { AddWorksheetAction } from '@store/actions/worksheets.actions';
-import { LocalStorageItems } from '@constants';
 import { IFolder, AccessTypesText } from '@models/folder.models';
 import { IWorksheet } from '@models/worksheet.models';
 import { MAX_WORKSHEETS_COUNT, onRemoveDialogData } from './journal-list-of-worksheets.config';
@@ -35,7 +34,6 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
     public readonly yesNoDialog: YesNoDialogService,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
-    private readonly localStorageService: LocalStorageService,
     private readonly foldersSerivce: FoldersService,
     private readonly worksheetsService: WorksheetsService,
     private readonly cdRef: ChangeDetectorRef
@@ -67,10 +65,6 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
     return this.folder.worksheets.length < MAX_WORKSHEETS_COUNT;
   }
 
-  // public renameCurrentFolder(): void {
-  //   console.log('renameCurrentFolder');
-  // }
-
   public removeCurrentFolder(): void {
     this.yesNoDialog.open(onRemoveDialogData(this));
   }
@@ -85,7 +79,7 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
     const newWorksheet: IWorksheet = {
       folderId: this.folder.id,
       id: `worksheet-${Date.now().toString()}`,
-      title: Date.now().toString(),
+      title: 'Новый лист',
       content: emptyWorksheeteData
     };
 
@@ -125,16 +119,6 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
 
     worksheet.title = newTitle;
 
-    // this.folder.worksheets.some((singleWorksheet: IWorksheet) => {
-    //   if (singleWorksheet.id === worksheet.id) {
-    //     singleWorksheet = worksheet;
-    //   }
-
-    //   return singleWorksheet.id === worksheet.id;
-    // });
-
-    console.log(newTitle);
-
     this.worksheetsService.editWorksheet(worksheet).subscribe();
 
     this.cdRef.markForCheck();
@@ -155,7 +139,9 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
     this.foldersSerivce.removeWorksheet$.pipe(
       takeUntil(this.destroySubscriptions$)
     ).subscribe(_ => {
-      this.initFolder();
+      this.initWorksheets();
+
+      this.router.navigate(['./'], { relativeTo: this.route });
 
       this.cdRef.markForCheck();
     });

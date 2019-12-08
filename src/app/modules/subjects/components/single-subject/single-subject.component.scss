@@ -1,11 +1,29 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+}
+
 .header-actions {
   display: flex;
   justify-content: flex-end;
+
+  &__item {
+    margin-left: 10px;
+  }
 }
 
 .subject-description {
   margin-bottom: 20px;
   padding: 10px 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
 }
 
 .tabs {
@@ -34,4 +52,9 @@
       background-color: var(--primary-color);
     }
   }
+}
+
+.tabs-content {
+  flex-grow: 1;
+  padding: 20px;
 }

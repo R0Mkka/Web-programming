@@ -17,13 +17,13 @@ const routes: Routes = [
   { path: '', component: SubjectsComponent },
   {
     path: ':subject',
-    canActivate: [SubjectGuard],
+    // canActivate: [SubjectGuard],
     pathMatch: 'full',
     redirectTo: ':subject/plan'
   },
   {
     path: ':subject',
-    canActivate: [SubjectGuard],
+    // canActivate: [SubjectGuard],
     component: SingleSubjectComponent,
     children: [
       { path: PATHS.PLAN, component: PlanComponent },

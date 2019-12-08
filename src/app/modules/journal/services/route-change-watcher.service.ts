@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -11,8 +11,8 @@ export class RouteChangeWatcherService {
     private readonly router: Router
   ) {
     this.router.events.pipe(
-      filter((event: any) => event instanceof NavigationStart)
-    ).subscribe((_: NavigationStart) => {
+      filter((event: any) => event instanceof NavigationEnd)
+    ).subscribe((_: NavigationEnd) => {
       this.routeChanged$.next();
     });
   }

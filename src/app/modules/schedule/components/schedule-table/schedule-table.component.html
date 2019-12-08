@@ -16,7 +16,7 @@
   class="column"
 >
   <div class="cell class-index-cell">
-    {{ scheduleColumn.index }}.
+    {{ scheduleColumn.id }}.
   </div>
 
   <div class="cell time-cell">
@@ -29,7 +29,8 @@
     class="cell cell-ordinary"
     [ngClass]="[
       index === currentWeekDayIndex ? 'active' : '',
-      checkIsActive(scheduleColumn) && index === currentWeekDayIndex ? 'now' : ''
+      checkIsActive(scheduleColumn) && index === currentWeekDayIndex ? 'now' : '',
+      weekColorClass
     ]"
   >
     <mat-icon

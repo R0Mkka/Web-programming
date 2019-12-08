@@ -1,20 +1,20 @@
 export interface ISubject {
+  id: any;
   title: string;
   description?: string;
   link: string;
-  accessName: string;
   courseNumber?: number;
 }
 
 export interface IScheduleItem {
-  title: string;
-  group: string;
-  lectureRoom: string;
   isEmpty: boolean;
+  title?: string;
+  group?: string;
+  lectureRoom?: string;
 }
 
 export interface IScheduleColumn {
-  index: number;
+  id: number;
   from: string;
   to: string;
   whiteWeekData: IScheduleItem[];

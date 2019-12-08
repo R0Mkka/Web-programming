@@ -1,7 +1,15 @@
 <app-inner-page>
-  <div headerTitle>
+  <ng-container headerTitle>
     <span>Расписание</span>
-  </div>
+
+    <div
+      class="primary-button-circle clear-schedule-button"
+      matTooltip="Очистить расписание"
+      (click)="openClearScheduleDialog()"
+    >
+      <mat-icon>clear_all</mat-icon>
+    </div>
+  </ng-container>
 
   <div headerActions>
     <div class="header-actions">
@@ -20,6 +28,6 @@
   </div>
 
   <div pageContent>
-    <app-schedule-table [weekColor]="weekColor"></app-schedule-table>
+    <app-schedule-table [weekColor]="weekColor" [clearSchedule]="clearSchedule"></app-schedule-table>
   </div>
 </app-inner-page>

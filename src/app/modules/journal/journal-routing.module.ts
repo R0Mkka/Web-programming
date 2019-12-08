@@ -33,9 +33,6 @@ const routes: Routes = [
       {
         path: ':worksheetId',
         component: JournalWorksheetComponent,
-        resolve: {
-          worksheetData: DataResolve
-        }
       }
     ]
   }

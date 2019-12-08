@@ -4,7 +4,7 @@
     <app-building-block-link href="/student-reviews">Отзывы студентов</app-building-block-link>
     нажать
     на кнопку
-    <ng-container *ngTemplateOutlet="addButton"></ng-container>
+    <ng-container *ngTemplateOutlet="addCommentButton"></ng-container>
     в верхнем правом углу рабочей области (рисунок 1).
   </app-building-block-paragraph>
 
@@ -14,7 +14,7 @@
 
   <app-building-block-paragraph>
     <div>
-      После нажатия на кнопку <ng-container *ngTemplateOutlet="addButton"></ng-container>
+      После нажатия на кнопку <ng-container *ngTemplateOutlet="addCommentButton"></ng-container>
       мы увидим модальное окно с тремя полями:
     </div>
 
@@ -64,6 +64,13 @@
     <span>Рисунок 3 - Результат добавления нового отзыва</span>
   </app-building-block-image>
 </div>
+
+<ng-template #addCommentButton>
+    <app-building-block-button type="primary">
+      <mat-icon>add</mat-icon>
+      <mat-icon>comment</mat-icon>
+    </app-building-block-button>
+  </ng-template>
 
 <ng-template #addButton>
   <app-building-block-button type="primary">Добавить</app-building-block-button>

@@ -17,6 +17,10 @@ export class SubjectsService {
     return this.http.get<Subject[]>(`${SERVER_URL}/${DBTables.Subjects}`);
   }
 
+  public getSubjectById(subjectId: any): Observable<Subject> {
+    return this.http.get<Subject>(`${SERVER_URL}/${DBTables.Subjects}/${subjectId}`);
+  }
+
   public addSubject(subject: Subject): Observable<Subject> {
     return this.http.post<Subject>(
       `${SERVER_URL}/${DBTables.Subjects}`,
@@ -27,5 +31,9 @@ export class SubjectsService {
         })
       }
     );
+  }
+
+  public deleteSubject(subjectId: any): Observable<Subject> {
+    return this.http.delete<Subject>(`${SERVER_URL}/${DBTables.Subjects}/${subjectId}`);
   }
 }
