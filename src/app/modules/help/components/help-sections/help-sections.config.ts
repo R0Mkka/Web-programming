@@ -17,6 +17,9 @@ export const sectionList: IHelpSection[] = [
     items: [
       { label: 'Создание новой папки', path: 'create-folder' },
       { label: 'Удаление папки', path: 'remove-folder' },
+      { label: 'Изменение названия папки', path: 'edit-folder-name' },
+      { label: 'Изменение режима доступа папки', path: 'edit-folder-access-type' },
+      { label: 'Работа с папкой', path: 'work-inside-folder' },
     ]
   },
   {

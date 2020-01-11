@@ -12,6 +12,8 @@ import { HelpSectionCardComponent } from './components/help-section-card/help-se
 import { CreateFolderComponent } from './journal/create-folder/create-folder.component';
 import { RemoveFolderComponent } from './journal/remove-folder/remove-folder.component';
 import { EditFolderNameComponent } from './journal/edit-folder-name/edit-folder-name.component';
+import { EditFolderAccessTypeComponent } from './journal/edit-folder-access-type/edit-folder-access-type.component';
+import { WorkInsideFolderComponent } from './journal/work-inside-folder/work-inside-folder.component';
 import { AddStudentReviewComponent } from './student-reviews/add/add-student-review.component';
 import { RemoveStudentReviewComponent } from './student-reviews/remove/remove-student-review.component';
 
@@ -35,6 +37,8 @@ import { ParagraphBuildingBlockComponent } from './building-blocks/paragraph/par
     CreateFolderComponent,
     RemoveFolderComponent,
     EditFolderNameComponent,
+    EditFolderAccessTypeComponent,
+    WorkInsideFolderComponent,
     AddStudentReviewComponent,
     RemoveStudentReviewComponent,
     ButtonBuildingBlockComponent,

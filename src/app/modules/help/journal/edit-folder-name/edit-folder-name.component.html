@@ -1,50 +1,29 @@
-<app-building-block-paragraph headline="Создание папки">
-  Для создания папки необходимо на странице
+<app-building-block-paragraph headline="Изменение названия папки">
+  Для изменения названия папки нужно для начала на странице
   <app-building-block-link href="/journal">Журнал</app-building-block-link>
-  нажать на кнопку <app-building-block-button type="primary">
-    <mat-icon>add</mat-icon>
-    <mat-icon>folder</mat-icon>
-  </app-building-block-button>
-  в верхнем правом углу рабочей области (рисунок 1).
+  выбрать и открыть её. Для этого будет достаточно один раз кликнуть по соответвующей
+  папке. После этого откроется страничка с её содержимым - списком ранее созданных листов
+  или же пустой папкой без листов.
 </app-building-block-paragraph>
 
-<app-building-block-image name="Screenshot_create-folder-1.png">
-  <span>Рисунок 1 - Кнопка <i>Создать папку</i></span>
+<app-building-block-image name="Screenshot_edit-folder-name-1.png">
+  <span>Рисунок 1 - Пример первоначального экрана для пустой папки</span>
 </app-building-block-image>
 
 <app-building-block-paragraph>
-  <div>
-    После этого на экране появится модальное окно с двумя полями: название папки и доступность папки. Первое поле обязательно
-    для заполнения и имеет ограничение в размере на 40 символов. Второе поле - это выпадающий список, содержащий следующие значения:
-  </div>
-
-  <ul>
-    <li>Полный доступ</li>
-    <li>Только для чтения</li>
-    <li>Приватная</li>
-  </ul>
-
-  <div>
-    Значением по умолчанию является <i>Приватная</i>. После создания папки она автоматически появится в соответсвующей
-    секции.
-  </div>
+  Следующим шагом необходимо дважды кликнуть по имени текущей папки и
+  тогда вместо обычного текста на месте названия появится поле для ввода текста.
+  Здесь можно ввести новое имя для папки. Новое имя папки должно быть непустым и не более 30
+  символов в длину.
 </app-building-block-paragraph>
 
-<app-building-block-image name="Screenshot_create-folder-2.png">
-  <span>Рисунок 2 - Создание новой папки</span>
+<app-building-block-image name="Screenshot_edit-folder-name-2.png">
+  <span>Рисунок 2 - Название папки в режиме для редактирования</span>
 </app-building-block-image>
 
 <app-building-block-paragraph>
-  Создать папку можно по нажатию на кнопку <app-building-block-button>Создать</app-building-block-button> или по нажатию
-  клавиши <i>"Enter"</i> на клавиатуре.
-</app-building-block-paragraph>
-
-<app-building-block-image name="Screenshot_create-folder-3.png">
-  <span>Рисунок 3 - Результат создания новой папки</span>
-</app-building-block-image>
-
-<app-building-block-paragraph>
-  В любой момент процесса заполнения полей модального окна оно может быть закрыто по
-  нажатию кнопки <app-building-block-button type="circle-outlined" matIcon="close"></app-building-block-button>
-  в правом верхнем углу или клавиши <i>"Escape"</i> на клавиатуре.
+  Для сохранения нового имени папки необходимо или сбить с поля ввода фокус
+  (т.е. кликнуть мышкой где-то на экране за пределами поля ввода),
+  или нажать клавишу <i>"Enter"</i> на клавиатуре. После этого имя будет
+  сохранено автоматически.
 </app-building-block-paragraph>

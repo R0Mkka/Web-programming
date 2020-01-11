@@ -103,6 +103,12 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
   }
 
   public changeFolderName(newName: string): void {
+    const pureName = newName.trim();
+
+    if (!pureName.length || pureName.length > 30) {
+      return;
+    }
+
     this.folder.name = newName;
 
     this.foldersSerivce.editFolder(this.folder).subscribe();
@@ -117,7 +123,9 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
   }
 
   public setNewWorksheetTitle(newTitle: string, worksheet: IWorksheet): void {
-    if (worksheet.title === newTitle) {
+    const pureTitle = newTitle.trim();
+
+    if (worksheet.title === pureTitle || !pureTitle.length || pureTitle.length > 30) {
       return;
     }
 
