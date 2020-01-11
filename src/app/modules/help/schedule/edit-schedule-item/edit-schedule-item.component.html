@@ -1,0 +1,82 @@
+<app-building-block-paragraph headline="Редактирование пары">
+  Для того, чтобы отредактировать пару нужно на странице
+  <app-building-block-link href="/schedule">Расписание</app-building-block-link>
+  на соответствующей паре нажать на кнопку
+  <app-building-block-button type="circle" matIcon="edit"></app-building-block-button>
+  в левом верхнем углу ячейки таблицы.
+</app-building-block-paragraph>
+
+<app-building-block-note>
+  Кнопка
+  <app-building-block-button type="circle" matIcon="edit"></app-building-block-button>
+  появляется в ячейках только при наведении на них.
+</app-building-block-note>
+
+<app-building-block-image name="Screenshot_edit-schedule-day-1.png">
+  <span>Рисунок 1 - Кнопка для редактирования пары</span>
+</app-building-block-image>
+
+<app-building-block-paragraph>
+  <div>
+    После нажатия на кнопку появится модальное окно, сорежащее три поля для заполнения:
+  </div>
+
+  <ul>
+    <li>Дисциплина</li>
+    <li>Группа</li>
+    <li>Аудитория</li>
+  </ul>
+
+  <div>
+    Все три поля для ввода обязательны для заполнения, а также имеют ограничения на количество допустимых символов:
+  </div>
+
+  <ul>
+    <li>Дисциплина - 50 символов</li>
+    <li>Группа - 20 символов</li>
+    <li>Аудитория - 14 символов</li>
+  </ul>
+
+  <div>
+    Кроме этого внизу модального окна есть специальный "флажок" <i>Оставить ячейку пустой</i>.
+    Если в нём поставить галочку, то все поля для ввода будут заблокированы, а сама ячейка таблицы при сохранении
+    данных останется пустой.
+  </div>
+</app-building-block-paragraph>
+
+<app-building-block-note>
+  Если поставить флажок <i>Оставить ячейку пустой</i> после того, как данные были сохранены,
+  то ранее введённые в поля данные останутся, хоть и не будут отображаться с таблице.
+</app-building-block-note>
+
+<app-building-block-image name="Screenshot_edit-schedule-day-2.png">
+  <span>Рисунок 2 - Модальное окно с введёнными данными</span>
+</app-building-block-image>
+
+<app-building-block-image name="Screenshot_edit-schedule-day-3.png">
+  <span>Рисунок 3 - Модальное окно с некоррестными данными (превышение допустимого числа символов, пустое поле)</span>
+</app-building-block-image>
+
+<app-building-block-image name="Screenshot_edit-schedule-day-4.png">
+  <span>Рисунок 4 - Модальное окно с поставленным флажком <i>Оставить ячейку пустой</i></span>
+</app-building-block-image>
+
+<app-building-block-paragraph>
+  Для сохранения данных можно воспользоваться кнопкой
+  <app-building-block-button>Сохранить</app-building-block-button> ,
+  находящейся в нижнем правом углу модального окна или же клавишей <i>"Enter"</i> на клавиатуре.
+</app-building-block-paragraph>
+
+<app-building-block-note>
+  Кнопка
+  <app-building-block-button>Сохранить</app-building-block-button>
+  внизу модального окна блокируется в моменты, когда какие-то данные введены неверно.
+  Клавиша <i>"Enter"</i> в таких случаях также не сработает.
+</app-building-block-note>
+
+<app-building-block-paragraph>
+  В любой момент времени работы с модальным окном его можно закрыть.
+  Это можно сделать, нажав кнопку
+  <app-building-block-button type="circle-outlined" matIcon="close"></app-building-block-button>
+  в правом верхнем углу модального окна или же по клавише <i>"Escape"</i> на клавиатуре.
+</app-building-block-paragraph>

@@ -10,6 +10,9 @@ export const sectionList: IHelpSection[] = [
   {
     label: ApplicationSections.Schedule,
     items: [
+      { label: 'Изменение цвета недели', path: 'change-week-color' },
+      { label: 'Редактирование пары', path: 'edit-schedule-item' },
+      { label: 'Очистка расписания', path: 'clear-schedule' },
     ]
   },
   {

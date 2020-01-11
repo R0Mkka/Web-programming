@@ -96,15 +96,15 @@
       "to": "13:40",
       "whiteWeekData": [
         {
-          "isEmpty": true
+          "title": "иии",
+          "group": "иии",
+          "lectureRoom": "иии"
         },
         {
           "isEmpty": true
         },
         {
-          "title": "Программирование для Интернет",
-          "group": "16-ИТ-1",
-          "lectureRoom": "320Д"
+          "isEmpty": true
         },
         {
           "isEmpty": true
@@ -127,9 +127,7 @@
           "isEmpty": true
         },
         {
-          "title": "Программирование для Интернет",
-          "group": "16-ИТ-1",
-          "lectureRoom": "320Д"
+          "isEmpty": true
         },
         {
           "isEmpty": true
@@ -151,9 +149,7 @@
           "isEmpty": true
         },
         {
-          "title": "Разработка кросс-платформенных приложений",
-          "group": "16-ИТ-1",
-          "lectureRoom": "211A"
+          "isEmpty": true
         },
         {
           "isEmpty": true
@@ -167,7 +163,9 @@
       ],
       "greenWeekData": [
         {
-          "isEmpty": true
+          "title": "ааа",
+          "group": "ааа",
+          "lectureRoom": "ааа"
         },
         {
           "isEmpty": true
@@ -237,9 +235,7 @@
       "to": "18:20",
       "whiteWeekData": [
         {
-          "title": "Программирование для Интернет",
-          "group": "16-ИТ",
-          "lectureRoom": "320Д"
+          "isEmpty": true
         },
         {
           "isEmpty": true

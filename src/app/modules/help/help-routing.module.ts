@@ -4,6 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HelpComponent } from './components/help/help.component';
 import { HelpSectionsComponent } from './components/help-sections/help-sections.component';
 
+import { ChangeWeekColorComponent } from './schedule/change-week-color/change-week-color.component';
+import { EditScheduleItemComponent } from './schedule/edit-schedule-item/edit-schedule-item.component';
+import { ClearScheduleComponent } from './schedule/clear-schedule/clear-schedule.component';
 import { CreateFolderComponent } from './journal/create-folder/create-folder.component';
 import { RemoveFolderComponent } from './journal/remove-folder/remove-folder.component';
 import { EditFolderNameComponent } from './journal/edit-folder-name/edit-folder-name.component';
@@ -18,6 +21,9 @@ const routes: Routes = [
     component: HelpComponent,
     children: [
       { path: '', component: HelpSectionsComponent },
+      { path: 'change-week-color', component: ChangeWeekColorComponent },
+      { path: 'edit-schedule-item', component: EditScheduleItemComponent },
+      { path: 'clear-schedule', component: ClearScheduleComponent },
       { path: 'create-folder', component: CreateFolderComponent },
       { path: 'remove-folder', component: RemoveFolderComponent },
       { path: 'edit-folder-name', component: EditFolderNameComponent },

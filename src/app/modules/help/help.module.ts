@@ -9,6 +9,9 @@ import { HelpComponent } from './components/help/help.component';
 import { HelpSectionsComponent } from './components/help-sections/help-sections.component';
 import { HelpSectionCardComponent } from './components/help-section-card/help-section-card.component';
 
+import { ChangeWeekColorComponent } from './schedule/change-week-color/change-week-color.component';
+import { EditScheduleItemComponent } from './schedule/edit-schedule-item/edit-schedule-item.component';
+import { ClearScheduleComponent } from './schedule/clear-schedule/clear-schedule.component';
 import { CreateFolderComponent } from './journal/create-folder/create-folder.component';
 import { RemoveFolderComponent } from './journal/remove-folder/remove-folder.component';
 import { EditFolderNameComponent } from './journal/edit-folder-name/edit-folder-name.component';
@@ -34,6 +37,9 @@ import { ParagraphBuildingBlockComponent } from './building-blocks/paragraph/par
     HelpComponent,
     HelpSectionsComponent,
     HelpSectionCardComponent,
+    ChangeWeekColorComponent,
+    EditScheduleItemComponent,
+    ClearScheduleComponent,
     CreateFolderComponent,
     RemoveFolderComponent,
     EditFolderNameComponent,

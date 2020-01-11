@@ -17,4 +17,16 @@
     font-weight: bold;
     font-style: italic;
   }
+
+  &__important {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(255, 40, 40);
+
+    mat-icon {
+      margin-right: 5px;
+    }
+  }
 }
