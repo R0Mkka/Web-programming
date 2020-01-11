@@ -18,7 +18,7 @@ export const subjectFormConfig: ICustomField[] = [
   {
     id: 'subject-description',
     type: 'text',
-    label: 'Описание курса',
+    label: 'Описание дисциплины',
     placeholder: 'Введите описание курса',
     matIcon: 'description',
     control: {
@@ -36,7 +36,7 @@ export const subjectFormConfig: ICustomField[] = [
     control: {
       name: 'subjectCourseNumber',
       initialValue: '',
-      validators: [Validators.required, Validators.max(6)]
+      validators: [Validators.required, Validators.min(1), Validators.max(6)]
     }
   }
 ];

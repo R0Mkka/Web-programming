@@ -9,6 +9,8 @@ import { HelpComponent } from './components/help/help.component';
 import { HelpSectionsComponent } from './components/help-sections/help-sections.component';
 import { HelpSectionCardComponent } from './components/help-section-card/help-section-card.component';
 
+import { CreateSubjectComponent } from './subjects/create-subject/create-subject.component';
+import { RemoveSubjectComponent } from './subjects/remove-subject/remove-subject.component';
 import { ChangeWeekColorComponent } from './schedule/change-week-color/change-week-color.component';
 import { EditScheduleItemComponent } from './schedule/edit-schedule-item/edit-schedule-item.component';
 import { ClearScheduleComponent } from './schedule/clear-schedule/clear-schedule.component';
@@ -38,6 +40,8 @@ import { ParagraphBuildingBlockComponent } from './building-blocks/paragraph/par
     HelpComponent,
     HelpSectionsComponent,
     HelpSectionCardComponent,
+    CreateSubjectComponent,
+    RemoveSubjectComponent,
     ChangeWeekColorComponent,
     EditScheduleItemComponent,
     ClearScheduleComponent,

@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HelpComponent } from './components/help/help.component';
 import { HelpSectionsComponent } from './components/help-sections/help-sections.component';
 
+import { CreateSubjectComponent } from './subjects/create-subject/create-subject.component';
+import { RemoveSubjectComponent } from './subjects/remove-subject/remove-subject.component';
 import { ChangeWeekColorComponent } from './schedule/change-week-color/change-week-color.component';
 import { EditScheduleItemComponent } from './schedule/edit-schedule-item/edit-schedule-item.component';
 import { ClearScheduleComponent } from './schedule/clear-schedule/clear-schedule.component';
@@ -21,6 +23,8 @@ const routes: Routes = [
     component: HelpComponent,
     children: [
       { path: '', component: HelpSectionsComponent },
+      { path: 'create-subject', component: CreateSubjectComponent },
+      { path: 'remove-subject', component: RemoveSubjectComponent },
       { path: 'change-week-color', component: ChangeWeekColorComponent },
       { path: 'edit-schedule-item', component: EditScheduleItemComponent },
       { path: 'clear-schedule', component: ClearScheduleComponent },

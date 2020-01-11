@@ -5,7 +5,9 @@ export const sectionList: IHelpSection[] = [
   {
     label: ApplicationSections.Subjects,
     items: [
-    ]
+      { label: 'Добавление дисциплины', path: 'create-subject' },
+      { label: 'Удаление дисциплины', path: 'remove-subject' },
+    ],
   },
   {
     label: ApplicationSections.Schedule,
@@ -13,7 +15,7 @@ export const sectionList: IHelpSection[] = [
       { label: 'Изменение цвета недели', path: 'change-week-color' },
       { label: 'Редактирование пары', path: 'edit-schedule-item' },
       { label: 'Очистка расписания', path: 'clear-schedule' },
-    ]
+    ],
   },
   {
     label: ApplicationSections.Journal,
@@ -23,13 +25,13 @@ export const sectionList: IHelpSection[] = [
       { label: 'Изменение названия папки', path: 'edit-folder-name' },
       { label: 'Изменение режима доступа папки', path: 'edit-folder-access-type' },
       { label: 'Работа с папкой', path: 'work-inside-folder' },
-    ]
+    ],
   },
   {
     label: ApplicationSections.StudentReviews,
     items: [
       { label: 'Добавление отзыва', path: 'add-student-review' },
       { label: 'Удаление отзыва', path: 'remove-student-review' },
-    ]
+    ],
   },
 ];

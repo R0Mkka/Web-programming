@@ -14,8 +14,9 @@
 
 <app-building-block-paragraph>
   <div>
-    После нажатия на кнопку <ng-container *ngTemplateOutlet="addCommentButton"></ng-container>
-    мы увидим модальное окно с тремя полями:
+    После нажатия на кнопку
+    <ng-container *ngTemplateOutlet="addCommentButton"></ng-container>
+    появится модальное окно с тремя полями:
   </div>
 
   <ul>
@@ -25,8 +26,7 @@
   </ul>
 
   <div>
-    Все три поля обязательные для заполнения и могут быть заполнены любыми строковыми
-    данными. Также на всех полях есть ограничения на количество символов:
+    Все три поля обязательны для заполнения и имеют ограничения на количество символов:
   </div>
 
   <ul>
@@ -37,24 +37,32 @@
 
   <div>
     В любой момент процесса заполнения полей модального окна оно может быть закрыто по
-    нажатию кнопки <app-building-block-button type="circle-outlined" matIcon="close"></app-building-block-button>
+    нажатию кнопки
+    <app-building-block-button type="circle-outlined" matIcon="close"></app-building-block-button>
     в правом верхнем углу или клавиши <i>"Escape"</i> на клавиатуре.
   </div>
 
   <div>
-    Когда все поля будут верно заполнены, кнопка <app-building-block-button type="primary">Добавить</app-building-block-button>
-    внизу модального окна станет активной. Для сохранения отзыва необходимо нажать на
-    неё или на клавишу <i>"Enter"</i> на клавиатуре. На рисунке 2 представлен пример
+    Для сохранения отзыва необходимо нажать на кнопку
+    <app-building-block-button>Добавить</app-building-block-button>
+    или на клавишу <i>"Enter"</i> на клавиатуре. На рисунке 2 представлен пример
     формы с корректно введёнными данными.
   </div>
 </app-building-block-paragraph>
+
+<app-building-block-note>
+  В случае ввода некорректных данных кнопка
+  <app-building-block-button>Добавить</app-building-block-button>
+  будет заблокирована.
+</app-building-block-note>
 
 <app-building-block-image name="Screenshot_add-student-review-2.png">
   <span>Рисунок 2 - Форма для добавления нового отзыва</span>
 </app-building-block-image>
 
 <app-building-block-paragraph>
-  После нажатия кнопки <app-building-block-button type="primary">Добавить</app-building-block-button>
+  После нажатия кнопки
+  <app-building-block-button type="primary">Добавить</app-building-block-button>
   или клавиши <i>"Enter"</i> в списке отзывов должен появиться новый элемент с
   только что введёнными данными и датой, рассчитанной автоматически. Пример
   показан на рисунке 3.

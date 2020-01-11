@@ -1,4 +1,7 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subject as Subject$ } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { DialogService } from '@shared/dialog/dialog.service';
 
@@ -13,12 +16,16 @@ import { SubjectsService } from '../../services/subjects.service';
   styleUrls: ['./subjects.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SubjectsComponent implements OnInit {
+export class SubjectsComponent implements OnInit, OnDestroy {
   public subjects: Subject[];
+
+  private readonly destroy$ = new Subject$<void>();
 
   constructor(
     private readonly dialogService: DialogService,
     private readonly subjectsService: SubjectsService,
+    private readonly router: Router,
+    private readonly route: ActivatedRoute,
     private readonly cdRef: ChangeDetectorRef,
   ) { }
 
@@ -26,12 +33,31 @@ export class SubjectsComponent implements OnInit {
     this.initSubjects();
   }
 
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  get hasSubjects(): boolean {
+    return !!this.subjects && !!this.subjects.length;
+  }
+
   public openNewSubjectDialog(event: MouseEvent): void {
     const target = event.target as HTMLElement;
 
     target.blur();
 
-    this.dialogService.open(NewSubjectDialogComponent);
+    const dialogRef = this.dialogService.open(NewSubjectDialogComponent);
+
+    dialogRef.afterClosed$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((createdSubjectData: Subject) => {
+        if (!createdSubjectData) {
+          return;
+        }
+
+        this.router.navigate([createdSubjectData.id], { relativeTo: this.route });
+      });
   }
 
   private initSubjects(): void {

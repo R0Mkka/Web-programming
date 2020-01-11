@@ -1,0 +1,71 @@
+<app-building-block-paragraph headline="Добавление дисциплины">
+  Для добавления дисциплины нужно на странице
+  <app-building-block-link href="/subjects">Дисциплины</app-building-block-link>
+  нажать на кнопку
+  <app-building-block-button>
+    <mat-icon>add</mat-icon>
+    <mat-icon>menu_book</mat-icon>
+  </app-building-block-button>
+  в правом верхнем углу страницы.
+</app-building-block-paragraph>
+
+<app-building-block-image name="Screenshot_create-subject-1.png">
+  <span>Рисунок 1 - Кнопка для добавления дисциплин</span>
+</app-building-block-image>
+
+<app-building-block-paragraph>
+  <div>
+    После нажатия на кнопку
+    <app-building-block-button>
+      <mat-icon>add</mat-icon>
+      <mat-icon>menu_book</mat-icon>
+    </app-building-block-button>
+    появится модальное окно, содержащее три поля для ввода:
+  </div>
+
+  <ul>
+    <li>Название дисциплины</li>
+    <li>Описание дисциплины</li>
+    <li>Дисциплина для курса</li>
+  </ul>
+
+  <div>
+    Все три поля обязательны для заполнения и имеют некоторые ограничения на ввод:
+  </div>
+
+  <ul>
+    <li>Название дисциплины - максимум 50 символов</li>
+    <li>Описание дисциплины - максимум 255 символов</li>
+    <li>Дисциплина для курса - допустим только числовой ввод, диапазон от 1 до 6</li>
+  </ul>
+</app-building-block-paragraph>
+
+<app-building-block-image name="Screenshot_create-subject-2.png">
+  <span>Рисунок 2 - Модальное окно добавления дисциплин</span>
+</app-building-block-image>
+
+<app-building-block-paragraph>
+  <div>
+    В любой момент работы с модальным окном его можно закрыть с помощью кнопки
+    <app-building-block-button type="circle-outlined" matIcon="close"></app-building-block-button>
+    в правом верхнем углу модального окна.
+  </div>
+
+  <div>
+    После заполнения всех полей корректными данными для создания дисциплины нужно нажать на кнопку
+    <app-building-block-button>Добавить</app-building-block-button>
+    в нижнем правом углу модального окна.
+    Сразу после этого приложение автоматически перенаправит Вас на страничку только что созданной
+    дисциплины. По умолчанию это страничка <i>Программа курса</i>.
+  </div>
+</app-building-block-paragraph>
+
+<app-building-block-note>
+  В случае ввода некорректных данных, кнопка
+  <app-building-block-button>Добавить</app-building-block-button>
+  будет заблокирована.
+</app-building-block-note>
+
+<app-building-block-image name="Screenshot_create-subject-3.png">
+  <span>Рисунок 3 - Страничка новой дисциплины</span>
+</app-building-block-image>

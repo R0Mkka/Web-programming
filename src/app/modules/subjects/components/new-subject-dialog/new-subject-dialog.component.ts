@@ -43,8 +43,8 @@ export class NewSubjectDialogComponent implements OnInit {
 
     this.subjectsService
       .addSubject(newSubject)
-      .subscribe(_ => {
-        this.dialogRef.close();
+      .subscribe((createdSubjectData: Subject) => {
+        this.dialogRef.close(createdSubjectData);
       });
   }
 

@@ -1,3 +1,5 @@
+@import '../../../../../assets/scss/mixins';
+
 :host {
   display: flex;
   flex-direction: column;
@@ -10,17 +12,36 @@
   justify-content: flex-end;
 }
 
+.wrapper {
+  @include scrollbar;
+
+  flex-grow: 1;
+  min-height: 0;
+  background-color: var(--light-gray);
+  overflow-y: auto;
+}
+
 .subjects {
   display: flex;
   flex-wrap: wrap;
-  flex-grow: 1;
-  min-height: 0;
   padding: 10px;
-  background-color: var(--light-gray);
-  overflow-y: auto;
 
   &__item {
     align-self: flex-start;
     margin: 20px;
+  }
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  height: 45px;
+  margin: 10px auto 0 auto;
+  padding: 0 30px;
+  background-color: var(--white);
+  border-radius: 10px;
+
+  mat-icon {
+    margin-right: 5px;
   }
 }

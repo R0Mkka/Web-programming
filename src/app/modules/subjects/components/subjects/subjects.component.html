@@ -13,14 +13,25 @@
   </div>
 
   <div pageContent>
-    <div class="subjects styled-scrollbar">
-      <a
-        class="subjects__item"
-        *ngFor="let subject of subjects"
-        [routerLink]="subject.id"
-      >
-        <app-subject-card [subject]="subject"></app-subject-card>
-      </a>
+    <div class="wrapper">
+      <div class="subjects styled-scrollbar">
+        <ng-container *ngIf="hasSubjects; else emptyBlock">
+          <a
+            class="subjects__item"
+            *ngFor="let subject of subjects"
+            [routerLink]="subject.id"
+          >
+            <app-subject-card [subject]="subject"></app-subject-card>
+          </a>
+        </ng-container>
+      </div>
     </div>
   </div>
 </app-inner-page>
+
+<ng-template #emptyBlock>
+  <div class="empty">
+    <mat-icon class="empty__icon">warning</mat-icon>
+    <span class="empty__text">Список пуст.</span>
+  </div>
+</ng-template>

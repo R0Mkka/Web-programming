@@ -1,1 +1,26 @@
-<span>Экзамены</span>
+<div class="header">
+  <span>Экзамены</span>
+</div>
+
+<div class="content">
+  <div class="empty" *ngIf="!files">
+    <span>Пока ничего не добавлено</span>
+  </div>
+
+  <div class="files" *ngIf="files">
+    <div class="files__item" *ngFor="let file of files">
+      <span>{{ file.name }}</span>
+      <span>{{ file.lastModified | date:'dd/MM/yyyy' }}</span>
+      <span>{{ getFileSize(file) }}</span>
+    </div>
+  </div>
+</div>
+
+<div class="actions">
+  <input id="file-upload" type="file" multiple (change)="onNewFile($event)">
+
+  <label for="file-upload" class="primary-button">
+    <mat-icon>attach_file</mat-icon>
+    <span>Добавить</span>
+  </label>
+</div>
