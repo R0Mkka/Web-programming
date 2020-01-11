@@ -23,7 +23,11 @@ export class StudentReviewCardComponent {
     private yesNoDialog: YesNoDialogService,
   ) {}
 
-  public removeReview(): void {
+  public removeReview(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
+    target.blur();
+
     this.yesNoDialog.open({
       htmlMessage: `
         Вы действительно хотите удалить отзыв?

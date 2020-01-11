@@ -72,7 +72,11 @@ export class ScheduleTableComponent implements OnInit, OnDestroy {
     return dateNow >= dateFrom && dateNow <= dateTo;
   }
 
-  public openEditCellDialog(scheduleColumn: IScheduleColumn, itemIndex: number): void {
+  public openEditCellDialog(event: MouseEvent, scheduleColumn: IScheduleColumn, itemIndex: number): void {
+    const target = event.target as HTMLElement;
+
+    target.blur();
+
     const dialogRef = this.dialogService.open(
       EditScheduleItemDialogComponent,
       {

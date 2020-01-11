@@ -34,8 +34,11 @@ export class StudentReviewsComponent implements OnInit {
     this.initStudentReviews();
   }
 
-  public openReviewAddingDialog(): void {
+  public openReviewAddingDialog(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
     const dialogRef: DialogOverlayRef = this.dialogService.open(NewStudentReviewDialogComponent);
+
+    target.blur();
 
     this.subscribeOnDialogResult(dialogRef);
   }

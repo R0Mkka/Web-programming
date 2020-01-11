@@ -15,7 +15,11 @@ export class JournalComponent {
     private readonly dialogService: DialogService
   ) { }
 
-  public openNewForlderDialog(): void {
+  public openNewForlderDialog(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
+    target.blur();
+
     this.dialogService.open(NewFolderDialogComponent);
   }
 }

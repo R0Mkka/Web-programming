@@ -283,12 +283,6 @@
       "description": "111",
       "courseNumber": 2,
       "id": 1
-    },
-    {
-      "title": "asfasd",
-      "description": "12313",
-      "courseNumber": 3,
-      "id": 2
     }
   ],
   "folders": [
@@ -300,8 +294,26 @@
     },
     {
       "name": "Новая папка",
-      "accessType": "Read",
-      "id": "folder-1575811540912",
+      "accessType": "Private",
+      "id": "folder-1578735886589",
+      "worksheets": []
+    },
+    {
+      "name": "Новая папка",
+      "accessType": "Private",
+      "id": "folder-1578736450464",
+      "worksheets": []
+    },
+    {
+      "name": "Новая папка",
+      "accessType": "Private",
+      "id": "folder-1578736451608",
+      "worksheets": []
+    },
+    {
+      "name": "Новая папка",
+      "accessType": "Private",
+      "id": "folder-1578736452503",
       "worksheets": []
     }
   ],
@@ -589,36 +601,8 @@
       ]
     },
     {
-      "folderId": "folder-1575811540912",
-      "id": "worksheet-1575814375936",
-      "title": "Новый лист",
-      "content": [
-        {
-          "headerCell": "",
-          "cells": [
-            "",
-            ""
-          ]
-        },
-        {
-          "headerCell": "asdfasfasdf",
-          "cells": [
-            "123",
-            ""
-          ]
-        },
-        {
-          "headerCell": "(пусто)",
-          "cells": [
-            "123",
-            ""
-          ]
-        }
-      ]
-    },
-    {
-      "folderId": "folder-1575811540912",
-      "id": "worksheet-1577380183669",
+      "folderId": "folder-1578735886589",
+      "id": "worksheet-1578736416725",
       "title": "Новый лист",
       "content": [
         {
@@ -652,6 +636,13 @@
       "text": "Какой-то текст отзыва",
       "id": "1575817314721",
       "date": "2019-12-08T15:01:54.721Z"
+    },
+    {
+      "studentFullName": "Алексанов Роман",
+      "studentGroup": "123",
+      "text": "123",
+      "id": "1578736385329",
+      "date": "2020-01-11T09:53:05.329Z"
     }
   ]
 }

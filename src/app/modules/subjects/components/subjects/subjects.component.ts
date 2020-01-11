@@ -26,7 +26,11 @@ export class SubjectsComponent implements OnInit {
     this.initSubjects();
   }
 
-  public openNewSubjectDialog(): void {
+  public openNewSubjectDialog(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
+    target.blur();
+
     this.dialogService.open(NewSubjectDialogComponent);
   }
 

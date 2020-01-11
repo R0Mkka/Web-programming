@@ -65,7 +65,11 @@ export class JournalListOfWorksheetsComponent implements OnInit, OnDestroy {
     return this.folder.worksheets.length < MAX_WORKSHEETS_COUNT;
   }
 
-  public removeCurrentFolder(): void {
+  public removeCurrentFolder(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
+    target.blur();
+
     this.yesNoDialog.open(onRemoveDialogData(this));
   }
 

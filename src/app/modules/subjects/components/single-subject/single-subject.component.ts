@@ -37,7 +37,11 @@ export class SingleSubjectComponent implements OnInit {
       });
   }
 
-  public openRemoveSubjectDialog(): void {
+  public openRemoveSubjectDialog(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
+    target.blur();
+
     this.yesNoDialog.open({
       htmlMessage: `
         Вы дейсвительно хотите удалить дисциплину "${this.subject.title}"?

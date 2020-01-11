@@ -22,7 +22,11 @@ export class ScheduleComponent {
     return this.weekColor === 'White' ? 'Белая' : 'Зелёная';
   }
 
-  public openClearScheduleDialog(): void {
+  public openClearScheduleDialog(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+
+    target.blur();
+
     this.yesNoDialog.open({
       htmlMessage: `
         Вы действительно хотите очистить расписание?

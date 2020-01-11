@@ -80,7 +80,11 @@ export class JournalWorksheetComponent implements OnInit, OnDestroy {
     this.data$.next(columns);
   }
 
-  public async openRemoveWorksheetDialog(): Promise<void> {
+  public async openRemoveWorksheetDialog(event: MouseEvent): Promise<void> {
+    const target = event.target as HTMLElement;
+
+    target.blur();
+
     this.currentWorksheet = await this.getCurrentState();
 
     this.yesNoDialog.open(removeWorksheetDialogData(this));
