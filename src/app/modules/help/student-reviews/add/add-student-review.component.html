@@ -1,69 +1,68 @@
-<div class="page-wrapper">
-  <app-building-block-paragraph headline="Добавление отзыва">
-    Для добавление отзыва необходимо на странице
-    <app-building-block-link href="/student-reviews">Отзывы студентов</app-building-block-link>
-    нажать
-    на кнопку
-    <ng-container *ngTemplateOutlet="addCommentButton"></ng-container>
-    в верхнем правом углу рабочей области (рисунок 1).
-  </app-building-block-paragraph>
 
-  <app-building-block-image name="Screenshot_add-student-review-1.png">
-    <span>Рисунок 1 - Кнопка <i>Добавить</i></span>
-  </app-building-block-image>
+<app-building-block-paragraph headline="Добавление отзыва">
+  Для добавление отзыва необходимо на странице
+  <app-building-block-link href="/student-reviews">Отзывы студентов</app-building-block-link>
+  нажать
+  на кнопку
+  <ng-container *ngTemplateOutlet="addCommentButton"></ng-container>
+  в верхнем правом углу рабочей области (рисунок 1).
+</app-building-block-paragraph>
 
-  <app-building-block-paragraph>
-    <div>
-      После нажатия на кнопку <ng-container *ngTemplateOutlet="addCommentButton"></ng-container>
-      мы увидим модальное окно с тремя полями:
-    </div>
+<app-building-block-image name="Screenshot_add-student-review-1.png">
+  <span>Рисунок 1 - Кнопка <i>Добавить</i></span>
+</app-building-block-image>
 
-    <ul>
-      <li>Полное имя студента</li>
-      <li>Группа студента</li>
-      <li>Текст отзыва</li>
-    </ul>
+<app-building-block-paragraph>
+  <div>
+    После нажатия на кнопку <ng-container *ngTemplateOutlet="addCommentButton"></ng-container>
+    мы увидим модальное окно с тремя полями:
+  </div>
 
-    <div>
-      Все три поля обязательные для заполнения и могут быть заполнены любыми строковыми
-      данными. Также на всех полях есть ограничения на количество символов:
-    </div>
+  <ul>
+    <li>Полное имя студента</li>
+    <li>Группа студента</li>
+    <li>Текст отзыва</li>
+  </ul>
 
-    <ul>
-      <li>Полное имя студента - 50 символов</li>
-      <li>Группа студента - 18 символов</li>
-      <li>Текст отзыва - 256 символов</li>
-    </ul>
+  <div>
+    Все три поля обязательные для заполнения и могут быть заполнены любыми строковыми
+    данными. Также на всех полях есть ограничения на количество символов:
+  </div>
 
-    <div>
-      В любой момент процесса заполнения полей модального окна оно может быть закрыто по
-      нажатию кнопки <app-building-block-button type="circle-outlined" matIcon="close"></app-building-block-button>
-      в правом верхнем углу или клавиши <i>"Escape"</i> на клавиатуре.
-    </div>
+  <ul>
+    <li>Полное имя студента - 50 символов</li>
+    <li>Группа студента - 18 символов</li>
+    <li>Текст отзыва - 256 символов</li>
+  </ul>
 
-    <div>
-      Когда все поля будут верно заполнены, кнопка <app-building-block-button type="primary">Добавить</app-building-block-button>
-      внизу модального окна станет активной. Для сохранения отзыва необходимо нажать на
-      неё или на клавишу <i>"Enter"</i> на клавиатуре. На рисунке 2 представлен пример
-      формы с корректно введёнными данными.
-    </div>
-  </app-building-block-paragraph>
+  <div>
+    В любой момент процесса заполнения полей модального окна оно может быть закрыто по
+    нажатию кнопки <app-building-block-button type="circle-outlined" matIcon="close"></app-building-block-button>
+    в правом верхнем углу или клавиши <i>"Escape"</i> на клавиатуре.
+  </div>
 
-  <app-building-block-image name="Screenshot_add-student-review-2.png">
-    <span>Рисунок 2 - Форма для добавления нового отзыва</span>
-  </app-building-block-image>
+  <div>
+    Когда все поля будут верно заполнены, кнопка <app-building-block-button type="primary">Добавить</app-building-block-button>
+    внизу модального окна станет активной. Для сохранения отзыва необходимо нажать на
+    неё или на клавишу <i>"Enter"</i> на клавиатуре. На рисунке 2 представлен пример
+    формы с корректно введёнными данными.
+  </div>
+</app-building-block-paragraph>
 
-  <app-building-block-paragraph>
-    После нажатия кнопки <app-building-block-button type="primary">Добавить</app-building-block-button>
-    или клавиши <i>"Enter"</i> в списке отзывов должен появиться новый элемент с
-    только что введёнными данными и датой, рассчитанной автоматически. Пример
-    показан на рисунке 3.
-  </app-building-block-paragraph>
+<app-building-block-image name="Screenshot_add-student-review-2.png">
+  <span>Рисунок 2 - Форма для добавления нового отзыва</span>
+</app-building-block-image>
 
-  <app-building-block-image name="Screenshot_add-student-review-3.png">
-    <span>Рисунок 3 - Результат добавления нового отзыва</span>
-  </app-building-block-image>
-</div>
+<app-building-block-paragraph>
+  После нажатия кнопки <app-building-block-button type="primary">Добавить</app-building-block-button>
+  или клавиши <i>"Enter"</i> в списке отзывов должен появиться новый элемент с
+  только что введёнными данными и датой, рассчитанной автоматически. Пример
+  показан на рисунке 3.
+</app-building-block-paragraph>
+
+<app-building-block-image name="Screenshot_add-student-review-3.png">
+  <span>Рисунок 3 - Результат добавления нового отзыва</span>
+</app-building-block-image>
 
 <ng-template #addCommentButton>
     <app-building-block-button type="primary">

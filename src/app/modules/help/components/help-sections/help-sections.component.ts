@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { IHelpSection } from '@models/sections.models';
-import { ApplicationSections } from '@constants';
+import { sectionList } from './help-sections.config';
 
 @Component({
   selector: 'app-help-sections',
@@ -10,12 +10,5 @@ import { ApplicationSections } from '@constants';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HelpSectionsComponent {
-  public readonly sectionList: IHelpSection[] = [
-    {
-      label: ApplicationSections.StudentReviews,
-      items: [
-        { label: 'Добавить отзыв', path: 'add-student-review' }
-      ]
-    }
-  ];
+  public readonly sectionList: IHelpSection[] = sectionList;
 }

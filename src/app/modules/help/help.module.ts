@@ -9,6 +9,8 @@ import { HelpComponent } from './components/help/help.component';
 import { HelpSectionsComponent } from './components/help-sections/help-sections.component';
 import { HelpSectionCardComponent } from './components/help-section-card/help-section-card.component';
 
+import { CreateFolderComponent } from './journal/create-folder/create-folder.component';
+import { RemoveFolderComponent } from './journal/remove-folder/remove-folder.component';
 import { AddStudentReviewComponent } from './student-reviews/add/add-student-review.component';
 import { RemoveStudentReviewComponent } from './student-reviews/remove/remove-student-review.component';
 
@@ -29,6 +31,8 @@ import { ParagraphBuildingBlockComponent } from './building-blocks/paragraph/par
     HelpComponent,
     HelpSectionsComponent,
     HelpSectionCardComponent,
+    CreateFolderComponent,
+    RemoveFolderComponent,
     AddStudentReviewComponent,
     RemoveStudentReviewComponent,
     ButtonBuildingBlockComponent,

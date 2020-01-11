@@ -10,7 +10,7 @@ type ButtonTypes = 'primary' | 'secondary' | 'square' | 'circle' | 'circle-outli
 })
 export class ButtonBuildingBlockComponent {
   @Input()
-  public readonly type: ButtonTypes;
+  public readonly type: ButtonTypes = 'primary';
 
   @Input()
   public readonly matIcon: string;
