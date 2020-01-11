@@ -4,7 +4,16 @@
   </div>
 
   <div headerActions>
-
+    <div class="header-actions">
+      <button
+        class="header-actions__item primary-button-square-35px"
+        *ngIf="showBackButton"
+        matTooltip="Назад"
+        (click)="returnBack()"
+      >
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
   </div>
 
   <div pageContent>

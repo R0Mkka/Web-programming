@@ -4,3 +4,8 @@
   flex-grow: 1;
   min-height: 0;
 }
+
+.header-actions {
+  display: flex;
+  justify-content: flex-end;
+}

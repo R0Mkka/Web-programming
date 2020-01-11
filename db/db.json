@@ -98,7 +98,8 @@
         {
           "title": "иии",
           "group": "иии",
-          "lectureRoom": "иии"
+          "lectureRoom": "иии",
+          "isEmpty": true
         },
         {
           "isEmpty": true
@@ -292,7 +293,7 @@
     },
     {
       "name": "Тест 1",
-      "accessType": "Read",
+      "accessType": "ReadWrite",
       "id": "folder-1578742689028",
       "worksheets": []
     }

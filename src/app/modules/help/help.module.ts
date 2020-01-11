@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatTooltipModule } from '@angular/material';
 
 import { InnerPageModule } from '@shared/inner-page/inner-page.module';
 import { HelpRoutingModule } from './help-routing.module';
@@ -30,6 +30,7 @@ import { ParagraphBuildingBlockComponent } from './building-blocks/paragraph/par
   imports: [
     CommonModule,
     MatIconModule,
+    MatTooltipModule,
     InnerPageModule,
     HelpRoutingModule
   ],
